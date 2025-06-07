@@ -1,0 +1,230 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@keyframes twinkle {
+  0% { opacity: 0; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.2); }
+  100% { opacity: 0; transform: scale(1); }
+}
+
+@keyframes float {
+  0% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-20px) rotate(5deg); }
+  100% { transform: translateY(0px) rotate(0deg); }
+}
+
+@keyframes orbit {
+  0% { transform: rotate(0deg) translateX(100px) rotate(0deg); }
+  100% { transform: rotate(360deg) translateX(100px) rotate(-360deg); }
+}
+
+@keyframes glow {
+  0% { box-shadow: 0 0 5px var(--primary), 0 0 10px var(--primary), 0 0 15px var(--primary); }
+  50% { box-shadow: 0 0 10px var(--primary), 0 0 20px var(--primary), 0 0 30px var(--primary); }
+  100% { box-shadow: 0 0 5px var(--primary), 0 0 10px var(--primary), 0 0 15px var(--primary); }
+}
+
+@keyframes section-highlight {
+  0% {
+    box-shadow: 0 0 0 0 rgba(139, 92, 246, 0.7);
+    border-color: rgba(139, 92, 246, 0.7);
+  }
+  60% {
+    box-shadow: 0 0 0 8px rgba(139, 92, 246, 0.2);
+    border-color: rgba(139, 92, 246, 1);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(139, 92, 246, 0);
+    border-color: rgba(139, 92, 246, 0.7);
+  }
+}
+
+@keyframes section-flash-scale {
+  0% {
+    background-color: rgba(139, 92, 246, 0.25);
+    transform: scale(1);
+  }
+  40% {
+    background-color: rgba(139, 92, 246, 0.45);
+    transform: scale(1.03);
+  }
+  100% {
+    background-color: transparent;
+    transform: scale(1);
+  }
+}
+
+@keyframes pop-glow {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(139, 92, 246, 0);
+  }
+  40% {
+    transform: scale(1.13);
+    box-shadow: 0 0 48px 16px rgba(139, 92, 246, 0.55), 0 0 24px 8px #fff3;
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(139, 92, 246, 0);
+  }
+}
+
+.star {
+  position: fixed;
+  width: 2px;
+  height: 2px;
+  background: white;
+  border-radius: 50%;
+  animation: twinkle 3s infinite;
+  box-shadow: 0 0 4px white;
+}
+
+.star:nth-child(3n) {
+  animation-delay: 1s;
+  width: 3px;
+  height: 3px;
+}
+
+.star:nth-child(5n) {
+  animation-delay: 2s;
+  width: 4px;
+  height: 4px;
+}
+
+.rocket {
+  position: fixed;
+  width: 50px;
+  height: 50px;
+  animation: float 6s infinite;
+  opacity: 0.2;
+  z-index: -1;
+}
+
+.space-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%);
+  overflow: hidden;
+  z-index: -2;
+}
+
+.space-bg::before {
+  content: '';
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  top: -50%;
+  left: -50%;
+  background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='50' cy='50' r='1' fill='white' fill-opacity='0.1'/%3E%3C/svg%3E");
+  animation: orbit 240s linear infinite;
+  opacity: 0.3;
+}
+
+.glow {
+  animation: glow 3s infinite;
+}
+
+.orbit {
+  animation: orbit 20s linear infinite;
+}
+
+.float {
+  animation: float 6s ease-in-out infinite;
+}
+
+@layer base {
+  :root {
+    --background: 230 35% 7%;
+    --foreground: 0 0% 100%;
+    --card: 230 35% 7%;
+    --card-foreground: 0 0% 100%;
+    --popover: 230 35% 7%;
+    --popover-foreground: 0 0% 100%;
+    --primary: 265 89% 78%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 240 25% 12%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 240 25% 12%;
+    --muted-foreground: 0 0% 80%;
+    --accent: 265 89% 78%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 25% 12%;
+    --input: 240 25% 12%;
+    --ring: 265 89% 78%;
+    --radius: 0.75rem;
+  }
+
+  .dark {
+    --background: 230 35% 7%;
+    --foreground: 0 0% 100%;
+    --card: 230 35% 7%;
+    --card-foreground: 0 0% 100%;
+    --popover: 230 35% 7%;
+    --popover-foreground: 0 0% 100%;
+    --primary: 265 89% 78%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 240 25% 12%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 240 25% 12%;
+    --muted-foreground: 0 0% 80%;
+    --accent: 265 89% 78%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 25% 12%;
+    --input: 240 25% 12%;
+    --ring: 265 89% 78%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeInUp {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.animate-section-highlight {
+  animation: section-highlight 1s cubic-bezier(0.4,0,0.2,1);
+}
+
+.animate-section-flash-scale {
+  animation: section-flash-scale 0.7s cubic-bezier(0.4,0,0.2,1);
+}
+
+.animate-pop-glow {
+  animation: pop-glow 0.8s cubic-bezier(0.4,0,0.2,1);
+}
+
+/* Persistent glow for active section */
+.active-glow {
+  box-shadow: 0 0 32px 8px rgba(139, 92, 246, 0.25), 0 0 12px 2px #fff2;
+  transition: box-shadow 0.4s cubic-bezier(0.4,0,0.2,1);
+}
