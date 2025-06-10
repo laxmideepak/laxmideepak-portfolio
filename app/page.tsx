@@ -45,6 +45,14 @@ interface Experience {
   achievements: string[]
 }
 
+interface Certification {
+  title: string
+  issuer: string
+  period: string
+  description: string[]
+  pdfUrl?: string
+}
+
 interface Project {
   title: string
   description: string
@@ -220,7 +228,7 @@ export default function Home() {
     tools: ["Git", "XAMPP", "Gradio"]
   }
 
-  const experience: Experience[] = [
+  const experiences: Experience[] = [
     {
       title: "Graduate Research Assistant",
       company: "UTA Honors College",
@@ -249,10 +257,36 @@ export default function Home() {
       location: "Telangana, India",
       period: "Jul 2022 - Dec 2023",
       achievements: [
-        "Engineered a responsive property-listing platform with React, Node.js, and Express, improving content-update efficiency by 40% and serving 500+ active listings",
-        "Designed & optimized RESTful APIs and MongoDB schemas (indexing, aggregation tuning), accelerating query performance by ≈ 30% for high-traffic endpoints",
-        "Integrated AWS S3 + CloudFront with custom DNS, delivering global content in < 150 ms median latency"
+        "Developed and maintained web applications using React, Node.js, and MongoDB, improving client project delivery times by 30%",
+        "Collaborated with cross-functional teams to design and implement new features, resulting in a 25% increase in user engagement",
+        "Integrated third-party APIs and optimized database queries, reducing server response times by 40%"
       ]
+    },
+  ]
+
+  const certifications: Certification[] = [
+    {
+      title: "Advanced Software Engineering Virtual Experience",
+      issuer: "Walmart USA",
+      period: "June 2025",
+      description: [
+        "Completed the Advanced Software Engineering Job Simulation where I solved difficult technical projects for a variety of teams at Walmart",
+        "Developed a novel version of a heap data structure in Java for Walmart's shipping department, showcasing strong problem-solving and algorithmic skills",
+        "Designed a UML class diagram for a data processor, considering different operating modes and database connections",
+        "Created an entity relationship diagram to design a new database accounting for all requirements provided by Walmart's pet department"
+      ],
+      pdfUrl: "/certificates/walmart-advanced-software-engineering.pdf"
+    },
+    {
+      title: "GenAI Job Simulation",
+      issuer: "BCG",
+      period: "June 2025",
+      description: [
+        "Completed a job simulation involving AI-powered financial chatbot development for BCG's GenAI Consulting team",
+        "Gained experience in Python programming, including the use of libraries such as pandas for data manipulation",
+        "Integrated and interpreted complex financial data from 10-K and 10-Q reports, employing rule-based logic to create a chatbot that provides user-friendly financial insights and analysis"
+      ],
+      pdfUrl: "/certificates/bcg-genai-job-simulation.pdf"
     }
   ]
 
@@ -339,10 +373,28 @@ export default function Home() {
             <ScrollToSection targetId="hero" onNav={() => handleNavClick('hero')}>
               <span className="px-4 py-1 rounded-lg border-2 border-primary text-primary font-semibold bg-transparent transition duration-200 hover:bg-primary hover:text-background focus:outline-none focus:ring-2 focus:ring-primary/40">About</span>
             </ScrollToSection>
-            <ScrollToSection targetId="experience" onNav={() => handleNavClick('experience')}>
-              <span className="px-4 py-1 rounded-lg border-2 border-primary text-primary font-semibold bg-transparent transition duration-200 hover:bg-primary hover:text-background focus:outline-none focus:ring-2 focus:ring-primary/40">Experience</span>
+            <ScrollToSection
+              targetId="experience"
+              onNav={() => handleNavClick('experience')}
+            >
+              <div className="flex items-center gap-2">
+                <Briefcase className="h-5 w-5" />
+                <span>Experience</span>
+              </div>
             </ScrollToSection>
-            <ScrollToSection targetId="projects" onNav={() => handleNavClick('projects')}>
+            <ScrollToSection
+              targetId="certifications"
+              onNav={() => handleNavClick('certifications')}
+            >
+              <div className="flex items-center gap-2">
+                <Book className="h-5 w-5" />
+                <span>Certifications</span>
+              </div>
+            </ScrollToSection>
+            <ScrollToSection
+              targetId="projects"
+              onNav={() => handleNavClick('projects')}
+            >
               <span className="px-4 py-1 rounded-lg border-2 border-primary text-primary font-semibold bg-transparent transition duration-200 hover:bg-primary hover:text-background focus:outline-none focus:ring-2 focus:ring-primary/40">Projects</span>
             </ScrollToSection>
             <ScrollToSection targetId="skills" onNav={() => handleNavClick('skills')}>
@@ -393,7 +445,7 @@ export default function Home() {
             <p className="text-muted-foreground max-w-2xl mx-auto">My journey through the tech cosmos</p>
           </div>
           <div className="space-y-6">
-            {experience.map((exp, index) => (
+            {experiences.map((exp, index) => (
               <Card className="group hover:border-primary transition-all duration-300">
                 <CardHeader>
                   <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2">
@@ -415,6 +467,51 @@ export default function Home() {
             ))}
           </div>
         </motion.section>
+
+        {/* Certifications Section */}
+        <section id="certifications" className="py-20">
+          <div className="container mx-auto px-4">
+            <div className="flex items-center gap-4 mb-8">
+              <Book className="h-8 w-8 text-primary" />
+              <h2 className="text-3xl font-bold">Certifications</h2>
+            </div>
+            <div className="space-y-6">
+              {certifications.map((cert, index) => (
+                <Card key={index} className="group hover:border-primary transition-all duration-300">
+                  <CardHeader>
+                    <div className="flex justify-between items-start">
+                      <div>
+                        <CardTitle className="text-xl font-semibold group-hover:text-primary transition-colors">
+                          {cert.title}
+                        </CardTitle>
+                        <CardDescription className="mt-1">
+                          {cert.issuer} • {cert.period}
+                        </CardDescription>
+                      </div>
+                      {cert.pdfUrl && (
+                        <a
+                          href={cert.pdfUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="ml-4 px-3 py-1 rounded bg-primary text-background text-sm font-medium hover:bg-primary/80 transition-colors"
+                        >
+                          View Certificate
+                        </a>
+                      )}
+                    </div>
+                  </CardHeader>
+                  <CardContent>
+                    <ul className="list-disc list-inside space-y-2 text-muted-foreground">
+                      {cert.description.map((desc, i) => (
+                        <li key={i}>{desc}</li>
+                      ))}
+                    </ul>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </section>
 
         {/* Projects Section */}
         <motion.section
