@@ -437,7 +437,7 @@ export default function Home() {
           </div>
           <div className="space-y-6">
             {experiences.map((exp, index) => (
-              <Card key={exp.title || index} className="group hover:border-primary transition-all duration-300">
+              <Card key={exp.title || index} className="group hover:border-primary transition-all duration-300 ring-4 ring-primary/60 glow">
                 <CardHeader>
                   <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2">
                     <div>
@@ -468,7 +468,10 @@ export default function Home() {
             </div>
             <div className="space-y-6">
               {certifications.map((cert, index) => (
-                <Card key={cert.title || index} className="group hover:border-primary transition-all duration-300">
+                <Card
+                  key={cert.title || index}
+                  className={`group hover:border-primary transition-all duration-300 ring-4 ring-primary/60 glow`}
+                >
                   <CardHeader>
                     <div className="flex justify-between items-start">
                       <div>
@@ -583,7 +586,9 @@ export default function Home() {
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                   className=""
                 >
-                  <Card className="group hover:border-primary transition-all duration-300 flex flex-col items-stretch justify-between shadow-md hover:shadow-xl p-0 bg-card/90 rounded-2xl border-2 border-transparent relative">
+                  <Card
+                    className={`group hover:border-primary transition-all duration-300 flex flex-col items-stretch justify-between shadow-md hover:shadow-xl p-0 bg-card/90 rounded-2xl border-2 border-transparent relative ring-4 ring-primary/60 glow`}
+                  >
                     <div className="flex flex-col flex-1 justify-between p-4">
                       <CardHeader className="pb-2 px-0">
                         <CardTitle className="text-lg text-foreground mb-2 line-clamp-2">{project.title}</CardTitle>
