@@ -1,13 +1,13 @@
-import { Button } from "@/components/ui/button"
 import { ReactNode } from "react"
 
 interface ScrollToSectionProps {
   targetId: string
   children: ReactNode
   onNav?: () => void
+  className?: string
 }
 
-export function ScrollToSection({ targetId, children, onNav }: ScrollToSectionProps) {
+export function ScrollToSection({ targetId, children, onNav, className }: ScrollToSectionProps) {
   const scrollToSection = () => {
     const element = document.getElementById(targetId)
     if (element) {
@@ -17,13 +17,12 @@ export function ScrollToSection({ targetId, children, onNav }: ScrollToSectionPr
   }
 
   return (
-    <Button
-      variant="ghost"
+    <button
+      type="button"
       onClick={scrollToSection}
-      className="hover:text-primary transition-colors"
-      asChild={typeof children === 'object'}
+      className={className}
     >
       {children}
-    </Button>
+    </button>
   )
 }

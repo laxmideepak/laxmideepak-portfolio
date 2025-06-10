@@ -228,3 +228,38 @@ html {
   box-shadow: 0 0 32px 8px rgba(139, 92, 246, 0.25), 0 0 12px 2px #fff2;
   transition: box-shadow 0.4s cubic-bezier(0.4,0,0.2,1);
 }
+
+.nav-fill-btn {
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  transition: color 0.3s;
+}
+
+.nav-fill-btn::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 0%;
+  height: 100%;
+  background: linear-gradient(to right, #7c3aed, #f472b6);
+  z-index: -1;
+  transition: width 0.4s cubic-bezier(0.4,0,0.2,1);
+}
+
+.nav-fill-btn > * {
+  position: relative;
+  z-index: 2;
+}
+
+.nav-fill-btn:hover,
+.nav-fill-btn:focus {
+  color: #fff !important;
+  text-shadow: 0 1px 6px rgba(0,0,0,0.18), 0 1px 1px rgba(0,0,0,0.12);
+}
+
+.nav-fill-btn:hover::before,
+.nav-fill-btn:focus::before {
+  width: 100%;
+}

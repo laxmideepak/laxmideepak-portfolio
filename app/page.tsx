@@ -370,39 +370,30 @@ export default function Home() {
             </Button>
           </div>
           <nav className="flex items-center space-x-8">
-            <ScrollToSection targetId="hero" onNav={() => handleNavClick('hero')}>
-              <span className="px-4 py-1 rounded-lg border-2 border-primary text-primary font-semibold bg-transparent transition duration-200 hover:bg-primary hover:text-background focus:outline-none focus:ring-2 focus:ring-primary/40">About</span>
-            </ScrollToSection>
-            <ScrollToSection
-              targetId="experience"
-              onNav={() => handleNavClick('experience')}
-            >
-              <div className="flex items-center gap-2">
-                <Briefcase className="h-5 w-5" />
-                <span>Experience</span>
-              </div>
-            </ScrollToSection>
-            <ScrollToSection
-              targetId="certifications"
-              onNav={() => handleNavClick('certifications')}
-            >
-              <div className="flex items-center gap-2">
-                <Book className="h-5 w-5" />
-                <span>Certifications</span>
-              </div>
-            </ScrollToSection>
-            <ScrollToSection
-              targetId="projects"
-              onNav={() => handleNavClick('projects')}
-            >
-              <span className="px-4 py-1 rounded-lg border-2 border-primary text-primary font-semibold bg-transparent transition duration-200 hover:bg-primary hover:text-background focus:outline-none focus:ring-2 focus:ring-primary/40">Projects</span>
-            </ScrollToSection>
-            <ScrollToSection targetId="skills" onNav={() => handleNavClick('skills')}>
-              <span className="px-4 py-1 rounded-lg border-2 border-primary text-primary font-semibold bg-transparent transition duration-200 hover:bg-primary hover:text-background focus:outline-none focus:ring-2 focus:ring-primary/40">Skills</span>
-            </ScrollToSection>
-            <ScrollToSection targetId="contact" onNav={() => handleNavClick('contact')}>
-              <span className="px-4 py-1 rounded-lg border-2 border-primary text-primary font-semibold bg-transparent transition duration-200 hover:bg-primary hover:text-background focus:outline-none focus:ring-2 focus:ring-primary/40">Contact</span>
-            </ScrollToSection>
+            <a href="#hero" onClick={() => handleNavClick('hero')} className="nav-fill-btn px-4 py-1 rounded-lg font-semibold transition duration-200 cursor-pointer flex items-center gap-2">
+              <User className="h-5 w-5" />
+              <span>About</span>
+            </a>
+            <a href="#experience" onClick={() => handleNavClick('experience')} className="nav-fill-btn px-4 py-1 rounded-lg font-semibold transition duration-200 cursor-pointer flex items-center gap-2">
+              <Briefcase className="h-5 w-5" />
+              <span>Experience</span>
+            </a>
+            <a href="#certifications" onClick={() => handleNavClick('certifications')} className="nav-fill-btn px-4 py-1 rounded-lg font-semibold transition duration-200 cursor-pointer flex items-center gap-2">
+              <Book className="h-5 w-5" />
+              <span>Certifications</span>
+            </a>
+            <a href="#projects" onClick={() => handleNavClick('projects')} className="nav-fill-btn px-4 py-1 rounded-lg font-semibold transition duration-200 cursor-pointer flex items-center gap-2">
+              <FolderOpen className="h-5 w-5" />
+              <span>Projects</span>
+            </a>
+            <a href="#skills" onClick={() => handleNavClick('skills')} className="nav-fill-btn px-4 py-1 rounded-lg font-semibold transition duration-200 cursor-pointer flex items-center gap-2">
+              <Wrench className="h-5 w-5" />
+              <span>Skills</span>
+            </a>
+            <a href="#contact" onClick={() => handleNavClick('contact')} className="nav-fill-btn px-4 py-1 rounded-lg font-semibold transition duration-200 cursor-pointer flex items-center gap-2">
+              <Mail className="h-5 w-5" />
+              <span>Contact</span>
+            </a>
           </nav>
         </motion.header>
 
@@ -446,7 +437,7 @@ export default function Home() {
           </div>
           <div className="space-y-6">
             {experiences.map((exp, index) => (
-              <Card className="group hover:border-primary transition-all duration-300">
+              <Card key={exp.title || index} className="group hover:border-primary transition-all duration-300">
                 <CardHeader>
                   <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2">
                     <div>
@@ -477,7 +468,7 @@ export default function Home() {
             </div>
             <div className="space-y-6">
               {certifications.map((cert, index) => (
-                <Card key={index} className="group hover:border-primary transition-all duration-300">
+                <Card key={cert.title || index} className="group hover:border-primary transition-all duration-300">
                   <CardHeader>
                     <div className="flex justify-between items-start">
                       <div>
@@ -593,11 +584,6 @@ export default function Home() {
                   className=""
                 >
                   <Card className="group hover:border-primary transition-all duration-300 flex flex-col items-stretch justify-between shadow-md hover:shadow-xl p-0 bg-card/90 rounded-2xl border-2 border-transparent relative">
-                    {showImage && (
-                      <div className="relative w-full aspect-square bg-muted flex items-center justify-center overflow-hidden">
-                        <Image src={image} alt={project.title + ' image'} fill style={{ objectFit: 'cover' }} className="transition-transform duration-300 group-hover:scale-105" />
-                      </div>
-                    )}
                     <div className="flex flex-col flex-1 justify-between p-4">
                       <CardHeader className="pb-2 px-0">
                         <CardTitle className="text-lg text-foreground mb-2 line-clamp-2">{project.title}</CardTitle>
@@ -642,8 +628,8 @@ export default function Home() {
             </motion.h2>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {(Object.keys(skills) as Array<keyof typeof skills>).map((skill, index) => (
-              <Card className="group hover:border-primary transition-all duration-300 h-full flex flex-col justify-between">
+            {(Object.keys(skills) as Array<keyof typeof skills>).map((skill) => (
+              <Card key={skill} className="group hover:border-primary transition-all duration-300 h-full flex flex-col justify-between">
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
                     {skill === "languages" && <Code2 className="h-5 w-5 text-primary" />}
@@ -774,6 +760,15 @@ export default function Home() {
             <span>Base Station: Dallas, Texas 🌎</span>
           </div>
         </motion.section>
+
+        {/* DC Style Footer */}
+        <footer className="w-full py-6 flex flex-col items-center mt-8">
+          <div className="w-full border-t border-border mb-4" />
+          <span className="flex items-center gap-2 text-primary font-semibold text-lg tracking-wide">
+            <Code2 className="h-5 w-5 text-primary" />
+            Made by Deepak Chowdary
+          </span>
+        </footer>
       </div>
       {/* Footer */}
       <motion.footer
