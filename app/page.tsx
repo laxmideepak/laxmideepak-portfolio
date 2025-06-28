@@ -394,13 +394,21 @@ export default function Home() {
                     ))}
                   </ul>
                 </CardContent>
-              </Card>
+                </Card>
+              </motion.div>
             ))}
           </div>
         </motion.section>
 
         {/* Certifications Section */}
-        <section id="certifications" className="py-20">
+        <motion.section
+          id="certifications"
+          className={`scroll-mt-24 space-y-8 py-16 rounded-2xl transition-all duration-500 ${activeSection === 'certifications' ? 'ring-4 ring-primary/60 active-glow' : ''}`}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+        >
           <div className="container mx-auto px-4">
             <div className="flex items-center gap-4 mb-8">
               <Book className="h-8 w-8 text-primary" />
@@ -408,44 +416,50 @@ export default function Home() {
             </div>
             <div className="space-y-6">
               {certifications.map((cert, index) => (
-                <Card
+                <motion.div
                   key={cert.title || index}
-                  className={`group hover:border-primary transition-all duration-300 ring-4 ring-primary/60 glow`}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  whileHover={{ scale: 1.03 }}
+                  transition={{ duration: 0.4, delay: index * 0.1 }}
                 >
-                  <CardHeader>
-                    <div className="flex justify-between items-start">
-                      <div>
-                        <CardTitle className="text-xl font-semibold group-hover:text-primary transition-colors">
-                          {cert.title}
-                        </CardTitle>
-                        <CardDescription className="mt-1">
-                          {cert.issuer} • {cert.period}
-                        </CardDescription>
+                  <Card className="group hover:border-primary transition-all duration-300 ring-4 ring-primary/60 glow">
+                    <CardHeader>
+                      <div className="flex justify-between items-start">
+                        <div>
+                          <CardTitle className="text-xl font-semibold group-hover:text-primary transition-colors">
+                            {cert.title}
+                          </CardTitle>
+                          <CardDescription className="mt-1">
+                            {cert.issuer} • {cert.period}
+                          </CardDescription>
+                        </div>
+                        {cert.pdfUrl && (
+                          <a
+                            href={cert.pdfUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="ml-4 px-3 py-1 rounded bg-primary text-background text-sm font-medium hover:bg-primary/80 transition-colors"
+                          >
+                            View Certificate
+                          </a>
+                        )}
                       </div>
-                      {cert.pdfUrl && (
-                        <a
-                          href={cert.pdfUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="ml-4 px-3 py-1 rounded bg-primary text-background text-sm font-medium hover:bg-primary/80 transition-colors"
-                        >
-                          View Certificate
-                        </a>
-                      )}
-                    </div>
-                  </CardHeader>
-                  <CardContent>
-                    <ul className="list-disc list-inside space-y-2 text-muted-foreground">
-                      {cert.description.map((desc, i) => (
-                        <li key={i}>{desc}</li>
-                      ))}
-                    </ul>
-                  </CardContent>
-                </Card>
+                    </CardHeader>
+                    <CardContent>
+                      <ul className="list-disc list-inside space-y-2 text-muted-foreground">
+                        {cert.description.map((desc, i) => (
+                          <li key={i}>{desc}</li>
+                        ))}
+                      </ul>
+                    </CardContent>
+                  </Card>
+                </motion.div>
               ))}
             </div>
           </div>
-        </section>
+        </motion.section>
 
         {/* Projects Section */}
         <motion.section
@@ -524,7 +538,7 @@ export default function Home() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className=""
+                  whileHover={{ scale: 1.03 }}
                 >
                   <Card
                     className={`group hover:border-primary transition-all duration-300 flex flex-col items-stretch justify-between shadow-md hover:shadow-xl p-0 bg-card/90 rounded-2xl border-2 border-transparent relative ring-4 ring-primary/60 glow`}
@@ -574,9 +588,17 @@ export default function Home() {
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {(Object.keys(skills) as Array<keyof typeof skills>).map((skill) => (
-              <Card key={skill} className="group hover:border-primary transition-all duration-300 h-full flex flex-col justify-between">
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
+              <motion.div
+                key={skill}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                whileHover={{ scale: 1.03 }}
+                transition={{ duration: 0.5 }}
+              >
+                <Card className="group hover:border-primary transition-all duration-300 h-full flex flex-col justify-between">
+                  <CardHeader>
+                    <CardTitle className="flex items-center gap-2">
                     {skill === "languages" && <Code2 className="h-5 w-5 text-primary" />}
                     {skill === "webFrameworks" && <ExternalLink className="h-5 w-5 text-primary" />}
                     {skill === "databases" && <Database className="h-5 w-5 text-primary" />}
@@ -596,7 +618,8 @@ export default function Home() {
                     ))}
                   </div>
                 </CardContent>
-              </Card>
+                </Card>
+              </motion.div>
             ))}
           </div>
         </motion.section>
