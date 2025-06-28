@@ -69,66 +69,6 @@ interface SkillsType {
   tools: string[]
 }
 
-// UFO landing animation duration (ms)
-const UFO_ANIMATION_DURATION = 2200;
-
-// Helper: random float in range
-function randomFloat(min: number, max: number) {
-  return Math.random() * (max - min) + min;
-}
-
-// Rocket/UFO collision state
-type CrashState = 'none' | 'crashed';
-
-function RocketBackground({ crashState }: { crashState: CrashState }) {
-  // Only one rocket, wandering in the center area
-  // We'll use a fixed position for collision logic
-  const rocketLeft = '48%';
-  const rocketTop = '38%';
-  return (
-    <div className="pointer-events-none fixed inset-0 z-0">
-      <motion.span
-        initial={{ y: 0, x: 0, opacity: 0.8 }}
-        animate={crashState === 'crashed'
-          ? { scale: [1, 1.2, 0], rotate: [0, 30, -30, 0], opacity: [0.8, 1, 0] }
-          : {
-              y: [0, -10, 10, 0],
-              x: [0, 10, -10, 0],
-              opacity: [0.8, 1, 0.8, 0.8],
-            }
-        }
-        transition={{ duration: UFO_ANIMATION_DURATION / 1000, times: [0, 0.6, 0.8, 1], ease: "easeInOut" }}
-        style={{
-          position: 'absolute',
-          left: rocketLeft,
-          top: rocketTop,
-          fontSize: 48,
-          zIndex: 0,
-          filter: 'drop-shadow(0 0 12px #fff6) drop-shadow(0 0 24px #aaf)',
-        }}
-      >
-        🚀
-      </motion.span>
-      {crashState === 'crashed' && (
-        <motion.span
-          initial={{ scale: 0, opacity: 0 }}
-          animate={{ scale: [0, 1.5, 1], opacity: [0, 1, 0] }}
-          transition={{ duration: 0.7, times: [0, 0.5, 1] }}
-          style={{
-            position: 'absolute',
-            left: rocketLeft,
-            top: rocketTop,
-            fontSize: 56,
-            zIndex: 1,
-            pointerEvents: 'none',
-          }}
-        >
-          💥
-        </motion.span>
-      )}
-    </div>
-  )
-}
 
 const roles = [
   "Software Engineer",
@@ -783,8 +723,6 @@ export default function Home() {
         transition={{ delay: 0.5 }}
       >
         <span className="font-mono">[SYSTEM]</span> Powered by Next.js • Tailwind CSS • Framer Motion • Quantum Core v2.0
-        <div className="absolute -left-8 bottom-0 text-2xl float">🌠</div>
-        <div className="absolute -right-8 bottom-0 text-2xl float">✨</div>
       </motion.footer>
     </div>
   )
