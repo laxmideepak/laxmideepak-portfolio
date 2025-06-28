@@ -6,6 +6,7 @@ import { ThemeProvider } from "@/components/theme-provider"
 import "./globals.css"
 import Image from "next/image"
 import StarfieldBackground from "@/components/StarfieldBackground"
+import { ScrollToTop } from "@/components/scroll-to-top"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -68,6 +69,7 @@ export default function RootLayout({
         />
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
           {children}
+          <ScrollToTop />
         </ThemeProvider>
       </body>
     </html>
