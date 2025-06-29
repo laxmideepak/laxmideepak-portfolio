@@ -395,8 +395,7 @@ export default function Home() {
                   </ul>
                 </CardContent>
                 </Card>
-              </motion.div>
-            ))}
+              ))}
           </div>
         </motion.section>
 
