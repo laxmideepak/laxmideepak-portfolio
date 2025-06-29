@@ -69,66 +69,6 @@ interface SkillsType {
   tools: string[]
 }
 
-// UFO landing animation duration (ms)
-const UFO_ANIMATION_DURATION = 2200;
-
-// Helper: random float in range
-function randomFloat(min: number, max: number) {
-  return Math.random() * (max - min) + min;
-}
-
-// Rocket/UFO collision state
-type CrashState = 'none' | 'crashed';
-
-function RocketBackground({ crashState }: { crashState: CrashState }) {
-  // Only one rocket, wandering in the center area
-  // We'll use a fixed position for collision logic
-  const rocketLeft = '48%';
-  const rocketTop = '38%';
-  return (
-    <div className="pointer-events-none fixed inset-0 z-0">
-      <motion.span
-        initial={{ y: 0, x: 0, opacity: 0.8 }}
-        animate={crashState === 'crashed'
-          ? { scale: [1, 1.2, 0], rotate: [0, 30, -30, 0], opacity: [0.8, 1, 0] }
-          : {
-              y: [0, -10, 10, 0],
-              x: [0, 10, -10, 0],
-              opacity: [0.8, 1, 0.8, 0.8],
-            }
-        }
-        transition={{ duration: UFO_ANIMATION_DURATION / 1000, times: [0, 0.6, 0.8, 1], ease: "easeInOut" }}
-        style={{
-          position: 'absolute',
-          left: rocketLeft,
-          top: rocketTop,
-          fontSize: 48,
-          zIndex: 0,
-          filter: 'drop-shadow(0 0 12px #fff6) drop-shadow(0 0 24px #aaf)',
-        }}
-      >
-        🚀
-      </motion.span>
-      {crashState === 'crashed' && (
-        <motion.span
-          initial={{ scale: 0, opacity: 0 }}
-          animate={{ scale: [0, 1.5, 1], opacity: [0, 1, 0] }}
-          transition={{ duration: 0.7, times: [0, 0.5, 1] }}
-          style={{
-            position: 'absolute',
-            left: rocketLeft,
-            top: rocketTop,
-            fontSize: 56,
-            zIndex: 1,
-            pointerEvents: 'none',
-          }}
-        >
-          💥
-        </motion.span>
-      )}
-    </div>
-  )
-}
 
 const roles = [
   "Software Engineer",
@@ -399,10 +339,16 @@ export default function Home() {
 
         {/* Hero Section */}
         <section id="hero" className="scroll-mt-24 min-h-[60vh] flex flex-col md:flex-row justify-center items-center text-center md:text-left relative space-y-6 mb-16">
-          <div className="flex-1 flex flex-col justify-center items-center md:items-start space-y-4">
-            <div className="text-primary/80 mb-2 font-mono">INITIALIZING NEURAL LINK...</div>
-            <motion.h1 style={{ rotateX, transition: `transform ${duration} cubic-bezier(0.95,0.05,0.795,0.035)`, transformStyle: "preserve-3d" }} className="text-4xl md:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary via-accent to-primary glow mb-2">Laxmideepak Nelapatla</motion.h1>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-4 backdrop-blur-sm bg-background/30 p-4 rounded-lg border border-primary/20">Graduate student in Computer Science at UTA with over 2 years of experience developing scalable full-stack applications using React, Node.js, and AWS. Proficient in RESTful API design, cloud integration, and database optimization.</p>
+          <div className="flex-1 flex flex-col justify-center items-center md:items-start space-y-6">
+            <motion.h1
+              style={{ rotateX, transition: `transform ${duration} cubic-bezier(0.95,0.05,0.795,0.035)`, transformStyle: "preserve-3d" }}
+              className="text-5xl md:text-7xl font-bold tracking-tight mb-4"
+            >
+              Teleport a Thought
+            </motion.h1>
+            <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
+              I’m <span className="font-semibold">Laxmideepak Nelapatla</span>—a software engineer turning ideas into reality.
+            </p>
             <AnimatedRoles />
           </div>
           <div className="flex-1 flex justify-center items-center mt-8 md:mt-0">
@@ -454,13 +400,20 @@ export default function Home() {
                     ))}
                   </ul>
                 </CardContent>
-              </Card>
-            ))}
+                </Card>
+              ))}
           </div>
         </motion.section>
 
         {/* Certifications Section */}
-        <section id="certifications" className="py-20">
+        <motion.section
+          id="certifications"
+          className={`scroll-mt-24 space-y-8 py-16 rounded-2xl transition-all duration-500 ${activeSection === 'certifications' ? 'ring-4 ring-primary/60 active-glow' : ''}`}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+        >
           <div className="container mx-auto px-4">
             <div className="flex items-center gap-4 mb-8">
               <Book className="h-8 w-8 text-primary" />
@@ -468,44 +421,50 @@ export default function Home() {
             </div>
             <div className="space-y-6">
               {certifications.map((cert, index) => (
-                <Card
+                <motion.div
                   key={cert.title || index}
-                  className={`group hover:border-primary transition-all duration-300 ring-4 ring-primary/60 glow`}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  whileHover={{ scale: 1.03 }}
+                  transition={{ duration: 0.4, delay: index * 0.1 }}
                 >
-                  <CardHeader>
-                    <div className="flex justify-between items-start">
-                      <div>
-                        <CardTitle className="text-xl font-semibold group-hover:text-primary transition-colors">
-                          {cert.title}
-                        </CardTitle>
-                        <CardDescription className="mt-1">
-                          {cert.issuer} • {cert.period}
-                        </CardDescription>
+                  <Card className="group hover:border-primary transition-all duration-300 ring-4 ring-primary/60 glow">
+                    <CardHeader>
+                      <div className="flex justify-between items-start">
+                        <div>
+                          <CardTitle className="text-xl font-semibold group-hover:text-primary transition-colors">
+                            {cert.title}
+                          </CardTitle>
+                          <CardDescription className="mt-1">
+                            {cert.issuer} • {cert.period}
+                          </CardDescription>
+                        </div>
+                        {cert.pdfUrl && (
+                          <a
+                            href={cert.pdfUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="ml-4 px-3 py-1 rounded bg-primary text-background text-sm font-medium hover:bg-primary/80 transition-colors"
+                          >
+                            View Certificate
+                          </a>
+                        )}
                       </div>
-                      {cert.pdfUrl && (
-                        <a
-                          href={cert.pdfUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="ml-4 px-3 py-1 rounded bg-primary text-background text-sm font-medium hover:bg-primary/80 transition-colors"
-                        >
-                          View Certificate
-                        </a>
-                      )}
-                    </div>
-                  </CardHeader>
-                  <CardContent>
-                    <ul className="list-disc list-inside space-y-2 text-muted-foreground">
-                      {cert.description.map((desc, i) => (
-                        <li key={i}>{desc}</li>
-                      ))}
-                    </ul>
-                  </CardContent>
-                </Card>
+                    </CardHeader>
+                    <CardContent>
+                      <ul className="list-disc list-inside space-y-2 text-muted-foreground">
+                        {cert.description.map((desc, i) => (
+                          <li key={i}>{desc}</li>
+                        ))}
+                      </ul>
+                    </CardContent>
+                  </Card>
+                </motion.div>
               ))}
             </div>
           </div>
-        </section>
+        </motion.section>
 
         {/* Projects Section */}
         <motion.section
@@ -584,7 +543,7 @@ export default function Home() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className=""
+                  whileHover={{ scale: 1.03 }}
                 >
                   <Card
                     className={`group hover:border-primary transition-all duration-300 flex flex-col items-stretch justify-between shadow-md hover:shadow-xl p-0 bg-card/90 rounded-2xl border-2 border-transparent relative ring-4 ring-primary/60 glow`}
@@ -634,9 +593,17 @@ export default function Home() {
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {(Object.keys(skills) as Array<keyof typeof skills>).map((skill) => (
-              <Card key={skill} className="group hover:border-primary transition-all duration-300 h-full flex flex-col justify-between">
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
+              <motion.div
+                key={skill}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                whileHover={{ scale: 1.03 }}
+                transition={{ duration: 0.5 }}
+              >
+                <Card className="group hover:border-primary transition-all duration-300 h-full flex flex-col justify-between">
+                  <CardHeader>
+                    <CardTitle className="flex items-center gap-2">
                     {skill === "languages" && <Code2 className="h-5 w-5 text-primary" />}
                     {skill === "webFrameworks" && <ExternalLink className="h-5 w-5 text-primary" />}
                     {skill === "databases" && <Database className="h-5 w-5 text-primary" />}
@@ -656,7 +623,8 @@ export default function Home() {
                     ))}
                   </div>
                 </CardContent>
-              </Card>
+                </Card>
+              </motion.div>
             ))}
           </div>
         </motion.section>
@@ -738,7 +706,7 @@ export default function Home() {
         >
           <div className="absolute -left-12 top-0 text-4xl animate-pulse">️</div>
           <div className="absolute -right-16 bottom-8 text-4xl animate-bounce">🚀</div>
-          <motion.h2 style={{ rotateX, transition: `transform ${duration} cubic-bezier(0.95,0.05,0.795,0.035)`, transformStyle: "preserve-3d" }} className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent animate-pulse">Teleport a Thought</motion.h2>
+          <motion.h2 style={{ rotateX, transition: `transform ${duration} cubic-bezier(0.95,0.05,0.795,0.035)`, transformStyle: "preserve-3d" }} className="text-3xl font-bold">Get in Touch</motion.h2>
           <p className="text-muted-foreground max-w-lg mx-auto backdrop-blur-sm bg-background/30 p-6 rounded-lg border border-primary/20 shadow-lg shadow-primary/10">Ready to explore new frontiers? Whether you want to discuss tech innovations or just beam a friendly signal, my communication channels are open! 🪄</p>
           <div className="flex items-center justify-center gap-8">
             <Button asChild variant="ghost" size="icon" className="hover:bg-primary/20 group relative hover:scale-110 transition-transform">
@@ -783,8 +751,6 @@ export default function Home() {
         transition={{ delay: 0.5 }}
       >
         <span className="font-mono">[SYSTEM]</span> Powered by Next.js • Tailwind CSS • Framer Motion • Quantum Core v2.0
-        <div className="absolute -left-8 bottom-0 text-2xl float">🌠</div>
-        <div className="absolute -right-8 bottom-0 text-2xl float">✨</div>
       </motion.footer>
     </div>
   )
