@@ -339,10 +339,16 @@ export default function Home() {
 
         {/* Hero Section */}
         <section id="hero" className="scroll-mt-24 min-h-[60vh] flex flex-col md:flex-row justify-center items-center text-center md:text-left relative space-y-6 mb-16">
-          <div className="flex-1 flex flex-col justify-center items-center md:items-start space-y-4">
-            <div className="text-primary/80 mb-2 font-mono">INITIALIZING NEURAL LINK...</div>
-            <motion.h1 style={{ rotateX, transition: `transform ${duration} cubic-bezier(0.95,0.05,0.795,0.035)`, transformStyle: "preserve-3d" }} className="text-4xl md:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary via-accent to-primary glow mb-2">Laxmideepak Nelapatla</motion.h1>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-4 backdrop-blur-sm bg-background/30 p-4 rounded-lg border border-primary/20">Graduate student in Computer Science at UTA with over 2 years of experience developing scalable full-stack applications using React, Node.js, and AWS. Proficient in RESTful API design, cloud integration, and database optimization.</p>
+          <div className="flex-1 flex flex-col justify-center items-center md:items-start space-y-6">
+            <motion.h1
+              style={{ rotateX, transition: `transform ${duration} cubic-bezier(0.95,0.05,0.795,0.035)`, transformStyle: "preserve-3d" }}
+              className="text-5xl md:text-7xl font-bold tracking-tight mb-4"
+            >
+              Teleport a Thought
+            </motion.h1>
+            <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
+              I’m <span className="font-semibold">Laxmideepak Nelapatla</span>—a software engineer turning ideas into reality.
+            </p>
             <AnimatedRoles />
           </div>
           <div className="flex-1 flex justify-center items-center mt-8 md:mt-0">
@@ -700,7 +706,7 @@ export default function Home() {
         >
           <div className="absolute -left-12 top-0 text-4xl animate-pulse">️</div>
           <div className="absolute -right-16 bottom-8 text-4xl animate-bounce">🚀</div>
-          <motion.h2 style={{ rotateX, transition: `transform ${duration} cubic-bezier(0.95,0.05,0.795,0.035)`, transformStyle: "preserve-3d" }} className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent animate-pulse">Teleport a Thought</motion.h2>
+          <motion.h2 style={{ rotateX, transition: `transform ${duration} cubic-bezier(0.95,0.05,0.795,0.035)`, transformStyle: "preserve-3d" }} className="text-3xl font-bold">Get in Touch</motion.h2>
           <p className="text-muted-foreground max-w-lg mx-auto backdrop-blur-sm bg-background/30 p-6 rounded-lg border border-primary/20 shadow-lg shadow-primary/10">Ready to explore new frontiers? Whether you want to discuss tech innovations or just beam a friendly signal, my communication channels are open! 🪄</p>
           <div className="flex items-center justify-center gap-8">
             <Button asChild variant="ghost" size="icon" className="hover:bg-primary/20 group relative hover:scale-110 transition-transform">
