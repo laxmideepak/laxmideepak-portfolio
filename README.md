@@ -16,6 +16,10 @@ Your project is live at:
 
 **[https://vercel.com/laxmideepak2023-2364s-projects/v0-modern-portfolio-website](https://vercel.com/laxmideepak2023-2364s-projects/v0-modern-portfolio-website)**
 
+## Space Landing Demo
+
+To see the animated landing page added in this repository, open `/space-landing.html` from the `public` folder. When running the site locally (`npm run dev`), visit `http://localhost:3000/space-landing.html`.
+
 ## Build your app
 
 Continue building your app on:
