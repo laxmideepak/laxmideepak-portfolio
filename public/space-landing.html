@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Space Landing</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body,html{overflow:hidden;height:100%}
+  </style>
+</head>
+<body class="h-full bg-black">
+  <div id="intro" class="fixed inset-0 bg-cover bg-center flex items-center justify-center text-cyan-300 font-mono text-center" style="background-image:url('https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=1800&q=80');background-size:100%">
+    <div id="overlay" class="space-y-4 p-4">
+      <p id="status" class="text-xl sm:text-2xl">Searching asset coordinates…</p>
+      <p id="coords" class="text-xl sm:text-2xl"></p>
+      <p id="found" class="text-3xl sm:text-5xl font-bold opacity-0 scale-90">ASSET FOUND</p>
+    </div>
+  </div>
+  <main id="main" class="pointer-events-none hidden opacity-0 h-full flex items-center justify-center bg-gray-950 text-white">
+    <h1 class="text-3xl sm:text-5xl">Welcome to the Main Site</h1>
+  </main>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/typeit@8.7.1/dist/typeit.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      gsap.to('#intro', {backgroundSize: '3000%', duration: 6, ease: 'power2.inOut'});
+      const ti = new TypeIt('#coords', {speed: 80, waitUntilVisible: true})
+        .pause(1000)
+        .type('34.0522\u00B0 N, 118.2437\u00B0 W')
+        .pause(1000)
+        .delete(null, {delay: 500})
+        .type('40.7128\u00B0 N, 74.0060\u00B0 W')
+        .pause(1000)
+        .delete(null, {delay: 500})
+        .type('32.7767\u00B0 N, 96.7970\u00B0 W \u2014 Dallas, TX')
+        .pause(500)
+        .exec(() => {
+          gsap.fromTo('#found', {scale: 0.8, opacity: 0}, {scale: 1.4, opacity: 1, duration: 0.4, yoyo: true, repeat: 1, onComplete: () => {
+            setTimeout(() => {
+              gsap.to('#intro', {opacity: 0, duration: 1, onComplete: () => {
+                document.getElementById('intro').style.display = 'none';
+                document.documentElement.style.overflow = 'auto';
+                document.body.style.overflow = 'auto';
+                const main = document.getElementById('main');
+                main.classList.remove('hidden', 'pointer-events-none');
+                gsap.to(main, {opacity: 1, duration: 1});
+              }});
+            }, 2000);
+          }});
+        })
+        .go();
+    });
+  </script>
+</body>
+</html>
