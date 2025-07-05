@@ -773,6 +773,12 @@ export default function Home() {
             <Code2 className="h-5 w-5 text-primary" />
             Made by Deepak Chowdary
           </span>
+          <Link
+            href="/space-landing.html"
+            className="mt-2 text-sm underline text-accent-foreground hover:text-accent"
+          >
+            View Space Landing Demo
+          </Link>
         </footer>
       </div>
       {/* Footer */}
