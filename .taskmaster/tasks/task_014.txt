@@ -1,0 +1,37 @@
+# Task ID: 14
+# Title: Write Unit Tests for Location Card
+# Status: done
+# Dependencies: 12
+# Priority: high
+# Description: Test location card functionality with Jest and React Testing Library
+# Details:
+Write unit tests for geolocation hooks, map rendering, and reverse-geocoding logic. Ensure 100% test coverage.
+
+# Test Strategy:
+Run Jest tests and verify all components and hooks pass
+
+# Subtasks:
+## 1. Set Up Testing Environment [done]
+### Dependencies: None
+### Description: Install and configure Jest, React Testing Library, and testing utilities
+### Details:
+Install Jest, React Testing Library, and configure testing environment for Next.js with TypeScript support.
+
+## 2. Write Tests for Geolocation Hooks [done]
+### Dependencies: None
+### Description: Write unit tests for useGeolocation hook and related utilities
+### Details:
+Test geolocation hooks, error handling, permission management, and utility functions.
+
+## 3. Write Tests for Location Components [done]
+### Dependencies: None
+### Description: Write unit tests for LocationCard, FallbackLocationCard, and RemoteConnectionCTA components
+### Details:
+Test component rendering, props, user interactions, and accessibility features.
+
+## 4. Write Tests for Utility Functions [done]
+### Dependencies: None
+### Description: Write unit tests for distance calculation, geocoding, and error handling utilities
+### Details:
+Test distance calculation, reverse geocoding, error formatting, and utility functions.
+

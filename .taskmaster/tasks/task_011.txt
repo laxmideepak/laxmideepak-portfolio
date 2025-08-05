@@ -1,0 +1,31 @@
+# Task ID: 11
+# Title: Add Loading Spinner for Position Fetch
+# Status: done
+# Dependencies: 9
+# Priority: medium
+# Description: Show spinner while awaiting coordinates
+# Details:
+Implement a loading spinner that appears while geolocation data is being fetched. Hide spinner once coordinates are available.
+
+# Test Strategy:
+Verify spinner appears during geolocation request and disappears when data is received
+
+# Subtasks:
+## 1. Create Loading Spinner Component [done]
+### Dependencies: None
+### Description: Create a reusable loading spinner component for geolocation requests
+### Details:
+Create a React component that displays a loading spinner with appropriate messaging for geolocation requests.
+
+## 2. Integrate Spinner with LocationCard [done]
+### Dependencies: None
+### Description: Add loading spinner to LocationCard component during geolocation requests
+### Details:
+Integrate the loading spinner into the LocationCard component to show during geolocation requests and hide when coordinates are available.
+
+## 3. Test Loading Spinner Functionality [done]
+### Dependencies: None
+### Description: Test that the loading spinner appears and disappears correctly
+### Details:
+Verify that the loading spinner appears during geolocation requests and disappears when coordinates are received.
+

@@ -1,0 +1,31 @@
+# Task ID: 10
+# Title: Implement Responsive Layout
+# Status: done
+# Dependencies: 8
+# Priority: medium
+# Description: Ensure card layout adapts to different screen sizes
+# Details:
+Create media queries for ≥1280px (card floats right), <1280px (card stacks below), and ≤640px (card occupies 90% width with height 160px).
+
+# Test Strategy:
+Verify layout matches design specs on all breakpoints
+
+# Subtasks:
+## 1. Implement Desktop Layout (≥1280px) [done]
+### Dependencies: None
+### Description: Create layout where card floats right for screens ≥1280px
+### Details:
+Implement responsive layout for large desktop screens where the location card floats to the right side of the content area.
+
+## 2. Implement Tablet Layout (<1280px) [done]
+### Dependencies: None
+### Description: Create layout where card stacks below content for screens <1280px
+### Details:
+Implement responsive layout for tablet and smaller desktop screens where the location card stacks below the main content.
+
+## 3. Implement Mobile Layout (≤640px) [done]
+### Dependencies: None
+### Description: Create layout where card occupies 90% width with 160px height for screens ≤640px
+### Details:
+Implement responsive layout for mobile screens where the location card occupies 90% width with a height of 160px.
+

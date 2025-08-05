@@ -1,0 +1,11 @@
+# Task ID: 8
+# Title: Implement Reverse-Geocoding
+# Status: done
+# Dependencies: 6
+# Priority: medium
+# Description: Convert coordinates to readable address
+# Details:
+Use Mapbox Geocoding API to reverse-geocode coordinates. Cache result for session and display as subtitle.
+
+# Test Strategy:
+Verify reverse-geocoding works and address is displayed correctly
