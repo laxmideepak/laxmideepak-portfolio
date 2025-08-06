@@ -23,12 +23,13 @@ export default function LazyMapboxMap({
   useEffect(() => {
     const loadMapbox = async () => {
       try {
-        // Validate Mapbox token first
-        const token = validateMapboxToken();
+        // Check for token
+        let token = validateMapboxToken();
+        
+        // If no token, use a demo token for development
         if (!token) {
-          setError("Mapbox token not configured");
-          setIsLoading(false);
-          return;
+          console.warn("Using demo Mapbox token for development. Get your own token at mapbox.com");
+          token = "pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw";
         }
 
         // Dynamically import mapbox-gl
@@ -69,18 +70,7 @@ export default function LazyMapboxMap({
           <div className="text-center p-4">
             <div className="text-4xl mb-2">🗺️</div>
             <h3 className="font-semibold text-foreground mb-1">Map Preview</h3>
-            <p className="text-sm text-muted-foreground mb-2">
-              {error === "Mapbox token not configured" 
-                ? "Map display requires configuration"
-                : "Map temporarily unavailable"
-              }
-            </p>
-            {error === "Mapbox token not configured" && (
-              <div className="text-xs text-muted-foreground bg-background/50 p-2 rounded">
-                <p>To enable maps, add your Mapbox token to:</p>
-                <code className="block mt-1 font-mono text-xs">.env.local</code>
-              </div>
-            )}
+            <p className="text-sm text-muted-foreground mb-2">Map temporarily unavailable</p>
           </div>
         </div>
       </div>

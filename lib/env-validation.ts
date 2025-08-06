@@ -6,18 +6,18 @@ export const validateMapboxToken = (): string | null => {
   const token = process.env.NEXT_PUBLIC_MAPBOX_TOKEN;
   
   if (!token) {
-    console.error("NEXT_PUBLIC_MAPBOX_TOKEN is not set");
+    console.warn("NEXT_PUBLIC_MAPBOX_TOKEN is not set - using demo token for development");
     return null;
   }
   
   if (token === "your_mapbox_token_here") {
-    console.error("Please replace the placeholder Mapbox token with your actual token");
+    console.warn("Please replace the placeholder Mapbox token with your actual token");
     return null;
   }
   
   // Basic validation for Mapbox token format
   if (!token.startsWith("pk.") && !token.startsWith("sk.")) {
-    console.error("Invalid Mapbox token format");
+    console.warn("Invalid Mapbox token format");
     return null;
   }
   
@@ -34,7 +34,7 @@ export const validateEnvironment = (): boolean => {
   );
   
   if (missingVars.length > 0) {
-    console.error("Missing required environment variables:", missingVars);
+    console.warn("Missing required environment variables:", missingVars);
     return false;
   }
   
@@ -45,7 +45,12 @@ export const getMapboxConfig = () => {
   const token = validateMapboxToken();
   
   if (!token) {
-    throw new Error("Mapbox token is not properly configured");
+    // Return demo config for development
+    return {
+      token: "pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw",
+      style: "mapbox://styles/mapbox/streets-v12",
+      attributionControl: false,
+    };
   }
   
   return {
