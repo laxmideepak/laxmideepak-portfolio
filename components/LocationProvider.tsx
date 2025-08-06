@@ -1,30 +1,33 @@
 "use client";
 
-import { createContext, useContext, useEffect, useState, useRef, useCallback, ReactNode } from "react";
-import { useGeolocation } from "@/hooks/useGeolocation";
-import { geolocationStorage } from "@/lib/geolocation-storage";
-import { geocoding } from "@/lib/geocoding";
-import { throttle, isSignificantMovement } from "@/lib/location-utils";
-import { GeolocationError } from "@/lib/geolocation-errors";
-import { FallbackLocationCard } from "./FallbackLocationCard";
+import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
+import { GeolocationError } from '@/lib/geolocation-errors';
+
+// Dallas, Texas coordinates
+const DALLAS_COORDINATES = {
+  latitude: 32.7767,
+  longitude: -96.7970,
+  accuracy: 10
+};
+
+// Dallas address
+const DALLAS_ADDRESS = "Dallas, Texas, United States";
 
 interface LocationContextType {
-  position: {
-    latitude: number;
-    longitude: number;
-    accuracy: number;
-  } | null;
+  // Static location data
+  position: typeof DALLAS_COORDINATES | null;
   address: string | null;
   isLoading: boolean;
   error: GeolocationError | null;
-  permissionStatus: PermissionState | null;
   hasPermission: boolean;
-  requestPermission: () => Promise<void>;
-  getCurrentLocation: () => Promise<void>;
-  clearLocation: () => void;
   showFallback: boolean;
-  retryLocation: () => Promise<void>;
-  // Real-time location properties
+  
+  // Simplified actions (no real geolocation)
+  requestPermission: () => Promise<void>;
+  clearLocation: () => void;
+  retryLocation: () => void;
+  
+  // Real-time tracking (disabled)
   isWatching: boolean;
   startWatching: () => void;
   stopWatching: () => void;
@@ -34,218 +37,110 @@ interface LocationContextType {
 
 const LocationContext = createContext<LocationContextType | undefined>(undefined);
 
-interface LocationProviderProps {
-  children: ReactNode;
+export function useLocation() {
+  const context = useContext(LocationContext);
+  if (context === undefined) {
+    throw new Error('useLocation must be used within a LocationProvider');
+  }
+  return context;
 }
 
-export function LocationProvider({ children }: LocationProviderProps) {
+export function LocationProvider({ children }: { children: React.ReactNode }) {
+  const [position, setPosition] = useState<typeof DALLAS_COORDINATES | null>(null);
   const [address, setAddress] = useState<string | null>(null);
-  const [hasPermission, setHasPermission] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<GeolocationError | null>(null);
+  const [hasPermission, setHasPermission] = useState(true); // Always true for static location
   const [showFallback, setShowFallback] = useState(false);
+  
+  // Real-time tracking states (disabled)
   const [isWatching, setIsWatching] = useState(false);
   const [lastUpdate, setLastUpdate] = useState<Date | null>(null);
   const [movementDistance, setMovementDistance] = useState<number | null>(null);
-  
-  const watchIdRef = useRef<number | null>(null);
-  const lastPositionRef = useRef<{ latitude: number; longitude: number } | null>(null);
-  
-  const {
-    position,
-    error,
-    isLoading,
-    permissionStatus,
-    requestPermission: requestGeolocationPermission,
-    getCurrentPosition,
-    watchPosition,
-    clearWatch,
-  } = useGeolocation();
 
-  // Check if we have stored permission status
+  // Initialize with Dallas location
   useEffect(() => {
-    const storedPermission = geolocationStorage.getPermissionStatus();
-    if (storedPermission === "granted") {
-      setHasPermission(true);
-    }
-  }, []);
-
-  // Update hasPermission and showFallback when permissionStatus changes
-  useEffect(() => {
-    if (permissionStatus === "granted") {
-      setHasPermission(true);
-      setShowFallback(false);
-      geolocationStorage.setPermissionStatus("granted");
-    } else if (permissionStatus === "denied") {
-      setHasPermission(false);
-      setShowFallback(true);
-      geolocationStorage.setPermissionStatus("denied");
-    }
-  }, [permissionStatus]);
-
-  // Show fallback when there's an error
-  useEffect(() => {
-    if (error) {
-      setShowFallback(true);
-    }
-  }, [error]);
-
-  // Throttled function to update address
-  const throttledUpdateAddress = useCallback(
-    throttle(async (lat: number, lng: number) => {
+    const initializeDallasLocation = async () => {
+      setIsLoading(true);
+      setError(null);
+      
       try {
-        const newAddress = await geocoding.reverseGeocode(lat, lng);
-        if (newAddress) {
-          setAddress(newAddress);
-        }
-      } catch (error) {
-        console.error("Error getting address:", error);
-      }
-    }, 1000), // Throttle to 1 Hz
-    []
-  );
-
-  // Store position and get address when it changes
-  useEffect(() => {
-    if (position) {
-      setShowFallback(false);
-      const { latitude, longitude } = position.coords;
-      
-      // Calculate movement distance
-      if (lastPositionRef.current) {
-        const distance = calculateDistance(
-          lastPositionRef.current.latitude,
-          lastPositionRef.current.longitude,
-          latitude,
-          longitude
-        );
-        setMovementDistance(distance);
-      } else {
-        setMovementDistance(null);
-      }
-      
-      // Update last position
-      lastPositionRef.current = { latitude, longitude };
-      
-      // Store position
-      geolocationStorage.setLastPosition(latitude, longitude);
-      
-      // Update timestamp
-      setLastUpdate(new Date());
-      
-      // Get address from coordinates (throttled)
-      throttledUpdateAddress(latitude, longitude);
-    }
-  }, [position, throttledUpdateAddress]);
-
-  // Cleanup watcher on unmount
-  useEffect(() => {
-    return () => {
-      if (watchIdRef.current !== null) {
-        clearWatch(watchIdRef.current);
-        watchIdRef.current = null;
+        // Set Dallas coordinates
+        setPosition(DALLAS_COORDINATES);
+        
+        // Set Dallas address
+        setAddress(DALLAS_ADDRESS);
+        
+        // Set last update to now
+        setLastUpdate(new Date());
+        
+        setShowFallback(false);
+      } catch (err) {
+        console.error('Failed to initialize Dallas location:', err);
+        setError({
+          code: 0,
+          message: 'Failed to load Dallas location',
+          userMessage: 'Unable to display Dallas location',
+          type: 'unknown',
+          canRetry: true,
+          requiresUserAction: false
+        });
+        setShowFallback(true);
+      } finally {
+        setIsLoading(false);
       }
     };
-  }, [clearWatch]);
 
-  const requestPermission = async (): Promise<void> => {
-    try {
-      setShowFallback(false);
-      const status = await requestGeolocationPermission();
-      if (status === "granted") {
-        setHasPermission(true);
-        await getCurrentLocation();
-      } else {
-        setShowFallback(true);
-      }
-    } catch (err) {
-      console.error("Error requesting permission:", err);
-      setShowFallback(true);
-    }
-  };
+    initializeDallasLocation();
+  }, []);
 
-  const getCurrentLocation = async (): Promise<void> => {
-    try {
-      setShowFallback(false);
-      await getCurrentPosition();
-    } catch (err) {
-      console.error("Error getting current location:", err);
-      setShowFallback(true);
-    }
-  };
+  // Simplified permission request (always succeeds)
+  const requestPermission = useCallback(async () => {
+    setHasPermission(true);
+    setPosition(DALLAS_COORDINATES);
+    setAddress(DALLAS_ADDRESS);
+    setLastUpdate(new Date());
+    setShowFallback(false);
+  }, []);
 
-  const clearLocation = (): void => {
-    geolocationStorage.clear();
+  // Clear location (resets to Dallas)
+  const clearLocation = useCallback(() => {
+    setPosition(null);
     setAddress(null);
-    setHasPermission(false);
-    setShowFallback(true);
-    setIsWatching(false);
     setLastUpdate(null);
     setMovementDistance(null);
-    lastPositionRef.current = null;
-    
-    // Clear watcher
-    if (watchIdRef.current !== null) {
-      clearWatch(watchIdRef.current);
-      watchIdRef.current = null;
-    }
-  };
-
-  const retryLocation = async (): Promise<void> => {
-    setShowFallback(false);
-    await requestPermission();
-  };
-
-  // Start watching location with throttling and distance filtering
-  const startWatching = useCallback(() => {
-    if (!hasPermission || isWatching) return;
-
-    try {
-      setIsWatching(true);
-      
-      const throttledPositionHandler = throttle((newPosition: any) => {
-        const { latitude, longitude } = newPosition.coords;
-        
-        // Check if movement is significant (5 meters minimum)
-        if (lastPositionRef.current && !isSignificantMovement(lastPositionRef.current, { latitude, longitude }, 5)) {
-          return; // Ignore small movements
-        }
-        
-        // Update position (this will trigger the useEffect above)
-        // The position will be set by the watchPosition callback
-      }, 1000); // Throttle to 1 Hz
-
-      watchIdRef.current = watchPosition(throttledPositionHandler);
-    } catch (err) {
-      console.error("Error starting location watch:", err);
-      setIsWatching(false);
-    }
-  }, [hasPermission, isWatching, watchPosition]);
-
-  // Stop watching location
-  const stopWatching = useCallback(() => {
-    if (watchIdRef.current !== null) {
-      clearWatch(watchIdRef.current);
-      watchIdRef.current = null;
-    }
     setIsWatching(false);
-  }, [clearWatch]);
+  }, []);
 
-  const contextValue: LocationContextType = {
-    position: position ? {
-      latitude: position.coords.latitude,
-      longitude: position.coords.longitude,
-      accuracy: position.coords.accuracy,
-    } : null,
+  // Retry location (resets to Dallas)
+  const retryLocation = useCallback(() => {
+    setPosition(DALLAS_COORDINATES);
+    setAddress(DALLAS_ADDRESS);
+    setLastUpdate(new Date());
+    setShowFallback(false);
+    setError(null);
+  }, []);
+
+  // Disabled real-time tracking functions
+  const startWatching = useCallback(() => {
+    console.log('Real-time tracking disabled - showing static Dallas location');
+    setIsWatching(false);
+  }, []);
+
+  const stopWatching = useCallback(() => {
+    setIsWatching(false);
+  }, []);
+
+  const value: LocationContextType = {
+    position,
     address,
     isLoading,
     error,
-    permissionStatus,
     hasPermission,
-    requestPermission,
-    getCurrentLocation,
-    clearLocation,
     showFallback,
+    requestPermission,
+    clearLocation,
     retryLocation,
-    // Real-time location properties
     isWatching,
     startWatching,
     stopWatching,
@@ -254,37 +149,8 @@ export function LocationProvider({ children }: LocationProviderProps) {
   };
 
   return (
-    <LocationContext.Provider value={contextValue}>
+    <LocationContext.Provider value={value}>
       {children}
     </LocationContext.Provider>
   );
-}
-
-export function useLocation() {
-  const context = useContext(LocationContext);
-  if (context === undefined) {
-    throw new Error("useLocation must be used within a LocationProvider");
-  }
-  return context;
-}
-
-// Helper function to calculate distance (moved from location-utils for internal use)
-function calculateDistance(
-  lat1: number,
-  lon1: number,
-  lat2: number,
-  lon2: number
-): number {
-  const R = 6371e3; // Earth's radius in meters
-  const φ1 = (lat1 * Math.PI) / 180;
-  const φ2 = (lat2 * Math.PI) / 180;
-  const Δφ = ((lat2 - lat1) * Math.PI) / 180;
-  const Δλ = ((lon2 - lon1) * Math.PI) / 180;
-
-  const a =
-    Math.sin(Δφ / 2) * Math.sin(Δφ / 2) +
-    Math.cos(φ1) * Math.cos(φ2) * Math.sin(Δλ / 2) * Math.sin(Δλ / 2);
-  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-
-  return R * c; // Distance in meters
 } 

@@ -1,16 +1,16 @@
 "use client";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { MapPin } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { Badge } from "@/components/ui/badge";
+import { MapPin, Navigation } from "lucide-react";
 import LazyMapboxMap from "./LazyMapboxMap";
 import { LoadingSpinner } from "./LoadingSpinner";
+import { formatDistance, formatAccuracy } from "@/lib/location-utils";
 
 interface LocationCardProps {
   latitude: number;
   longitude: number;
   address?: string | null;
-  className?: string;
   isLoading?: boolean;
 }
 
@@ -18,91 +18,88 @@ export function LocationCard({
   latitude, 
   longitude, 
   address, 
-  className,
   isLoading = false 
 }: LocationCardProps) {
+  if (isLoading) {
+    return (
+      <Card className="w-full max-w-sm">
+        <CardHeader className="pb-3">
+          <CardTitle className="text-lg flex items-center gap-2">
+            <MapPin className="h-5 w-5 text-primary" />
+            Dallas, Texas
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          <LoadingSpinner message="Loading Dallas location..." size="sm" />
+        </CardContent>
+      </Card>
+    );
+  }
+
   return (
-    <Card 
-      className={cn(
-        // Base styles
-        "transition-all duration-300 hover:shadow-lg hover:scale-[1.02]",
-        "border-2 hover:border-blue-200 dark:hover:border-blue-800",
-        
-        // Desktop layout (≥1280px): Card floats right, 300x220px
-        "xl:w-[300px] xl:h-[220px] xl:flex-shrink-0",
-        
-        // Tablet layout (<1280px): Card stacks below, responsive width
-        "lg:w-full lg:max-w-[400px] lg:h-[200px]",
-        
-        // Mobile layout (≤640px): 90% width, 160px height
-        "w-[90%] h-[160px] sm:w-full sm:max-w-[350px] sm:h-[180px]",
-        
-        // Ensure proper flex behavior
-        "flex flex-col",
-        
-        className
-      )}
-      role="region"
-      aria-label="Your current location"
-      aria-describedby="location-address"
-    >
-      <CardHeader className="pb-2 flex-shrink-0">
-        <CardTitle className="flex items-center gap-2 text-lg font-semibold">
-          <MapPin className="h-5 w-5 text-blue-600 dark:text-blue-400 animate-pulse" aria-hidden="true" />
-          You are here
+    <Card className="w-full max-w-sm">
+      <CardHeader className="pb-3">
+        <CardTitle className="text-lg flex items-center gap-2">
+          <MapPin className="h-5 w-5 text-primary" />
+          Dallas, Texas
         </CardTitle>
-        {address && (
-          <p 
-            id="location-address"
-            className="text-sm text-gray-700 dark:text-gray-300 font-medium leading-tight"
-            aria-live="polite"
-          >
-            {address}
-          </p>
-        )}
-        {!address && !isLoading && (
-          <p 
-            className="text-sm text-gray-700 dark:text-gray-300 font-medium leading-tight"
-            aria-live="polite"
-          >
-            Getting your location...
-          </p>
-        )}
-        {isLoading && (
-          <p 
-            className="text-sm text-blue-600 dark:text-blue-400 font-medium leading-tight"
-            aria-live="polite"
-          >
-            Finding your location...
-          </p>
-        )}
       </CardHeader>
-      
-      <CardContent className="p-0 flex-1 min-h-0 relative">
-        {isLoading ? (
-          // Show loading spinner when loading
-          <div className="absolute inset-0 flex items-center justify-center bg-background/50 backdrop-blur-sm rounded-lg">
-            <LoadingSpinner 
-              message="Finding your location..." 
-              size="sm"
-              className="bg-background/90"
-            />
+      <CardContent className="space-y-4">
+        {/* Map */}
+        <div className="relative">
+          <LazyMapboxMap
+            latitude={latitude}
+            longitude={longitude}
+            zoom={12}
+            className="w-full h-48 rounded-lg"
+          />
+        </div>
+
+        {/* Location Details */}
+        <div className="space-y-2">
+          <div className="flex items-center justify-between">
+            <span className="text-sm text-muted-foreground">Location</span>
+            <Badge variant="secondary" className="text-xs">
+              Dallas, TX
+            </Badge>
           </div>
-        ) : (
-          // Show map when not loading
-          <div 
-            className="w-full h-full min-h-0"
-            role="img"
-            aria-label={`Interactive map showing your location at coordinates ${latitude}, ${longitude}`}
+          
+          <div className="flex items-center justify-between">
+            <span className="text-sm text-muted-foreground">Coordinates</span>
+            <span className="text-xs font-mono text-muted-foreground">
+              {latitude.toFixed(4)}, {longitude.toFixed(4)}
+            </span>
+          </div>
+
+          {address && (
+            <div className="flex items-center justify-between">
+              <span className="text-sm text-muted-foreground">Address</span>
+              <span className="text-xs text-muted-foreground text-right max-w-[200px] truncate">
+                {address}
+              </span>
+            </div>
+          )}
+
+          <div className="flex items-center justify-between">
+            <span className="text-sm text-muted-foreground">Accuracy</span>
+            <span className="text-xs text-muted-foreground">
+              {formatAccuracy(10)}
+            </span>
+          </div>
+        </div>
+
+        {/* Navigation Link */}
+        <div className="pt-2">
+          <a
+            href={`https://www.google.com/maps?q=${latitude},${longitude}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 text-sm text-primary hover:text-primary/80 transition-colors"
           >
-            <LazyMapboxMap
-              latitude={latitude}
-              longitude={longitude}
-              zoom={12}
-              className="w-full h-full rounded-lg"
-            />
-          </div>
-        )}
+            <Navigation className="h-4 w-4" />
+            View on Google Maps
+          </a>
+        </div>
       </CardContent>
     </Card>
   );
