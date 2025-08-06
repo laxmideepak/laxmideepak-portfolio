@@ -88,7 +88,8 @@ export function GlassNav({ links, logo }: GlassNavProps) {
       style={{
         backgroundColor: `rgba(255, 255, 255, ${scrollOpacity * 0.1})`,
         backdropFilter: `blur(${8 + scrollOpacity * 4}px)`,
-        borderBottom: `1px solid rgba(255, 255, 255, ${scrollOpacity * 0.2})`
+        borderBottom: `2px solid rgba(255, 255, 255, ${0.3 + scrollOpacity * 0.2})`,
+        boxShadow: `0 4px 20px rgba(0, 0, 0, ${0.1 + scrollOpacity * 0.1})`
       }}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
@@ -130,7 +131,7 @@ export function GlassNav({ links, logo }: GlassNavProps) {
             <Button
               variant="outline"
               size="sm"
-              className="gap-2 text-foreground border-foreground/20 hover:bg-foreground/10"
+              className="gap-2 text-foreground border-foreground/30 hover:bg-foreground/10 bg-background/50 backdrop-blur-sm"
               onClick={downloadResume}
             >
               <Download className="h-4 w-4" />
@@ -145,7 +146,7 @@ export function GlassNav({ links, logo }: GlassNavProps) {
               variant="ghost"
               size="sm"
               onClick={() => setIsOpen(!isOpen)}
-              className="p-2"
+              className="p-2 text-foreground hover:bg-foreground/10"
               aria-label={isOpen ? 'Close menu' : 'Open menu'}
             >
               {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
@@ -186,7 +187,7 @@ export function GlassNav({ links, logo }: GlassNavProps) {
                   <Button
                     variant="outline"
                     size="sm"
-                    className="w-full gap-2 text-foreground border-foreground/20 hover:bg-foreground/10"
+                    className="w-full gap-2 text-foreground border-foreground/30 hover:bg-foreground/10 bg-background/50 backdrop-blur-sm"
                     onClick={() => {
                       downloadResume()
                       setIsOpen(false)
