@@ -8,6 +8,7 @@ import { Badge } from "@/components/ui/badge"
 import { ThemeToggle } from "@/components/theme-toggle"
 import { TypewriterEffect } from "@/components/typewriter"
 import { ScrollToSection } from "@/components/scroll-to-section"
+import { GlassNav } from "@/components/GlassNav"
 import Image from "next/image"
 import Link from "next/link"
 import { 
@@ -368,8 +369,21 @@ export default function Home() {
     setTimeout(() => setAnimKey(null), 700)
   }
 
+  // Navigation links for GlassNav
+  const navLinks = [
+    { label: "About", href: "#hero", icon: <User className="h-5 w-5" /> },
+    { label: "Experience", href: "#experience", icon: <Briefcase className="h-5 w-5" /> },
+    { label: "Certifications", href: "#certifications", icon: <Book className="h-5 w-5" /> },
+    { label: "Projects", href: "#projects", icon: <FolderOpen className="h-5 w-5" /> },
+    { label: "Skills", href: "#skills", icon: <Wrench className="h-5 w-5" /> },
+    { label: "Contact", href: "#contact", icon: <Mail className="h-5 w-5" /> }
+  ]
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted/20">
+      {/* Glass Navigation */}
+      <GlassNav links={navLinks} />
+      
       {/* Main Container */}
       <div className="max-w-4xl w-full mx-auto px-4 sm:px-6 lg:px-8 pb-32 pt-32">
         {/* Social Links Sidebar */}
@@ -392,53 +406,6 @@ export default function Home() {
           </div>
           <div className="h-24 w-[1px] bg-border" />
         </motion.div>
-
-        {/* Navigation */}
-        <motion.header
-          className="fixed top-0 left-0 right-0 z-50 flex justify-between items-center px-8 py-4 bg-background/80 backdrop-blur-sm border-b border-border"
-          initial={{ y: -100 }}
-          animate={{ y: 0 }}
-          transition={{ delay: 0.2 }}
-        >
-          <div className="flex items-center space-x-4">
-            <ThemeToggle />
-            <Button
-              variant="outline"
-              size="sm"
-              className="gap-2 text-foreground border-foreground/20 hover:bg-foreground/10"
-              onClick={downloadResume}
-            >
-              <Download className="h-4 w-4" />
-              Download Resume
-            </Button>
-          </div>
-          <nav className="flex items-center space-x-8">
-            <a href="#hero" onClick={() => handleNavClick('hero')} className="nav-fill-btn px-4 py-1 rounded-lg font-semibold transition duration-200 cursor-pointer flex items-center gap-2">
-              <User className="h-5 w-5" />
-              <span>About</span>
-            </a>
-            <a href="#experience" onClick={() => handleNavClick('experience')} className="nav-fill-btn px-4 py-1 rounded-lg font-semibold transition duration-200 cursor-pointer flex items-center gap-2">
-              <Briefcase className="h-5 w-5" />
-              <span>Experience</span>
-            </a>
-            <a href="#certifications" onClick={() => handleNavClick('certifications')} className="nav-fill-btn px-4 py-1 rounded-lg font-semibold transition duration-200 cursor-pointer flex items-center gap-2">
-              <Book className="h-5 w-5" />
-              <span>Certifications</span>
-            </a>
-            <a href="#projects" onClick={() => handleNavClick('projects')} className="nav-fill-btn px-4 py-1 rounded-lg font-semibold transition duration-200 cursor-pointer flex items-center gap-2">
-              <FolderOpen className="h-5 w-5" />
-              <span>Projects</span>
-            </a>
-            <a href="#skills" onClick={() => handleNavClick('skills')} className="nav-fill-btn px-4 py-1 rounded-lg font-semibold transition duration-200 cursor-pointer flex items-center gap-2">
-              <Wrench className="h-5 w-5" />
-              <span>Skills</span>
-            </a>
-            <a href="#contact" onClick={() => handleNavClick('contact')} className="nav-fill-btn px-4 py-1 rounded-lg font-semibold transition duration-200 cursor-pointer flex items-center gap-2">
-              <Mail className="h-5 w-5" />
-              <span>Contact</span>
-            </a>
-          </nav>
-        </motion.header>
 
         {/* Hero Section - No Location Card */}
         <HeroSection />

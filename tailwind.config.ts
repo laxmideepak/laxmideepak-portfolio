@@ -60,7 +60,19 @@ const config: Config = {
   				'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
   				border: 'hsl(var(--sidebar-border))',
   				ring: 'hsl(var(--sidebar-ring))'
+  			},
+  			glass: {
+  				light: 'rgba(255, 255, 255, 0.1)',
+  				dark: 'rgba(0, 0, 0, 0.1)',
+  				border: {
+  					light: 'rgba(255, 255, 255, 0.2)',
+  					dark: 'rgba(255, 255, 255, 0.1)'
+  				}
   			}
+  		},
+  		backdropBlur: {
+  			sm: '4px',
+  			glass: '8px'
   		},
   		borderRadius: {
   			lg: 'var(--radius)',
@@ -83,11 +95,33 @@ const config: Config = {
   				to: {
   					height: '0'
   				}
+  			},
+  			'slide-down': {
+  				from: {
+  					opacity: '0',
+  					transform: 'translateY(-10px)'
+  				},
+  				to: {
+  					opacity: '1',
+  					transform: 'translateY(0)'
+  				}
+  			},
+  			'slide-up': {
+  				from: {
+  					opacity: '1',
+  					transform: 'translateY(0)'
+  				},
+  				to: {
+  					opacity: '0',
+  					transform: 'translateY(-10px)'
+  				}
   			}
   		},
   		animation: {
   			'accordion-down': 'accordion-down 0.2s ease-out',
-  			'accordion-up': 'accordion-up 0.2s ease-out'
+  			'accordion-up': 'accordion-up 0.2s ease-out',
+  			'slide-down': 'slide-down 0.2s ease-out',
+  			'slide-up': 'slide-up 0.2s ease-out'
   		}
   	}
   },
