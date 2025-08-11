@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { ThemeToggle } from "@/components/theme-toggle"
 import { Download, Menu, X } from "lucide-react"
-import { useScrollPosition } from "@/hooks/use-mobile"
+import { useScrollPosition } from "@/components/ui/use-mobile"
 import Link from "next/link"
 
 interface NavLink {
