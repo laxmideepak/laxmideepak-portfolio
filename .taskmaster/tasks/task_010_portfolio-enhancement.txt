@@ -1,0 +1,11 @@
+# Task ID: 10
+# Title: Implement Preconnect and DNS-Prefetch
+# Status: pending
+# Dependencies: None
+# Priority: medium
+# Description: Add preconnect and DNS-prefetch tags for fonts and analytics to improve load times.
+# Details:
+Add preconnect tags for fonts and analytics services. Use DNS-prefetch to speed up domain resolution. Ensure that these tags are included in the HTML head section.
+
+# Test Strategy:
+Verify that preconnect and DNS-prefetch tags are present in the HTML head. Check that they are correctly configured for fonts and analytics.

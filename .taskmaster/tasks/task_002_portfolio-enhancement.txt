@@ -1,0 +1,31 @@
+# Task ID: 2
+# Title: Implement Sticky Navigation with Scroll Compression
+# Status: in-progress
+# Dependencies: None
+# Priority: high
+# Description: Create a sticky navigation bar that reduces height as the user scrolls down the page.
+# Details:
+Use React state to track scroll position and dynamically adjust the navbar height. Implement IntersectionObserver to highlight the active section in the navbar. Ensure the navbar remains visible on all screen sizes and adapts to mobile views.
+
+# Test Strategy:
+Manually scroll the page and verify the navbar height changes. Check that the active section is highlighted correctly. Test on different screen sizes to ensure responsiveness.
+
+# Subtasks:
+## 1. Create scroll position tracking hook [pending]
+### Dependencies: None
+### Description: Implement a custom React hook to track scroll position and determine when to compress the navigation
+### Details:
+
+
+## 2. Update GlassNav component for height compression [pending]
+### Dependencies: None
+### Description: Modify the existing GlassNav component to dynamically adjust its height based on scroll position
+### Details:
+
+
+## 3. Add IntersectionObserver for active section highlighting [pending]
+### Dependencies: None
+### Description: Implement IntersectionObserver to detect which section is currently in view and highlight it in the navigation
+### Details:
+
+

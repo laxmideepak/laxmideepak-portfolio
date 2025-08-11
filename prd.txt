@@ -1,99 +1,112 @@
-## Product Requirements Document (PRD)
 
-**Feature:** Display “Current Location” map component on [laxmideepak-portfolio.vercel.app](https://laxmideepak-portfolio.vercel.app/) (a Next.js portfolio site)
-**Goal:** Give visitors an at-a-glance, real-time view of their current position—similar in spirit to Lyft’s “You are here” card—without storing or re-using the data elsewhere.
 
----
+# **PRD – Portfolio Website UX, Design, & Performance Upgrade**
 
-### 1  UI Requirements
+## **1. Overview**
 
-| Page / Section                               | Component                                                           | Key Behaviours                                                                                                                                                    |
-| -------------------------------------------- | ------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Home (or dedicated “Contact Me” section)** | **Location Card** (≈ 300 × 220 px on desktop; full-width on mobile) | • Mini-map with blue “you” pin<br>• Title text: “You are here”<br>• Subtitle with street + city (reverse-geocoded)<br>• Light/dark theme parity with rest of site |
-| **Modal / Permission Banner**                | Top-of-page toast asking for geolocation permission                 | • Only appears first visit or until user decides<br>• Links to Privacy Policy                                                                                     |
-
-Responsive rules
-
-* **≥ 1280 px:** Card floats right of hero text.
-* **< 1280 px:** Card stacks below primary content.
-* **≤ 640 px:** Card occupies 90 % width; height shrinks to 160 px.
+The goal is to elevate the **[https://laxmideepak-portfolio.vercel.app/](https://laxmideepak-portfolio.vercel.app/)** site’s professionalism, usability, and performance to better convert visitors (especially recruiters) into interview opportunities. Improvements will focus on **user experience**, **visual design**, and **technical performance**.
 
 ---
 
-### 2  Functional Requirements
+## **2. Objectives**
 
-| ID      | Description                                                                                                 | Priority |
-| ------- | ----------------------------------------------------------------------------------------------------------- | -------- |
-| **F-1** | On page load, request browser geolocation.                                                                  | P0       |
-| **F-2** | Render map centered on latitude/longitude with “pulsing” user pin.                                          | P0       |
-| **F-3** | Update position in real time (≤ 1 s latency) while page remains open.                                       | P1       |
-| **F-4** | Graceful fallback: if permission denied or unavailable, show static world graphic + “Location unavailable”. | P0       |
-| **F-5** | Reverse-geocode coordinates to readable address once, cache for session.                                    | P2       |
+* Improve **navigation** and content flow for faster orientation and engagement.
+* Enhance **visual hierarchy** and **branding consistency** to leave a strong, memorable impression.
+* Reduce **page load times** and improve **Core Web Vitals** for SEO and user satisfaction.
+* Ensure seamless **mobile responsiveness** and accessibility across devices.
 
 ---
 
-### 3  Technical Requirements
+## **3. User Stories**
 
-* **Frontend stack**
+### **Navigation & UX**
 
-  * Next.js 14 (React 18)
-  * Map rendering → Mapbox GL JS (lightweight; no Google API billing)
-  * State management via React Context or Zustand for position stream
-  * Real-time updates → `navigator.geolocation.watchPosition()`; abort via `clearWatch` on unmount
-* **APIs & keys**
+1. As a recruiter, I want clear navigation with visible section highlights, so I can quickly find relevant information.
+2. As a hiring manager, I want a single click to access case studies for projects, so I can evaluate skills in context.
+3. As a visitor, I want obvious calls-to-action (e.g., “View Work” / “Download Résumé”), so I know the next step without scrolling.
 
-  * Mapbox token (public but domain-restricted)
-  * Optional: Nominatim / Mapbox Geocoding for reverse lookup
-* **Performance**
+### **Visual Design**
 
-  * Lazy-load map bundle only when component becomes visible (Next.js dynamic import + `ssr:false`)
-  * Throttle updates to 1 Hz; ignore movements < 5 m to cut re-renders
-* **Accessibility**
+4. As a user, I want a consistent color palette and type hierarchy, so the site feels cohesive and professional.
+5. As a visual learner, I want optimized project imagery, so I can understand the work quickly without reading too much.
 
-  * Provide ARIA label “User location map”
-  * Pin icon complies with WCAG color-contrast against map style
+### **Performance**
+
+6. As a mobile user, I want pages to load quickly and without layout shifts, so I can navigate smoothly.
+7. As a returning visitor, I want assets cached and served quickly, so I don’t wait for reloads.
 
 ---
 
-### 4  UX Considerations
+## **4. Functional Requirements**
 
-1. **Consent first** Use native permission dialog triggered by explicit button (“Show my location”) to avoid auto-prompting on load.
-2. **Feedback loops** While awaiting coordinates, show spinner overlay (“Finding you…”).
-3. **Contextual copy** If user is far (> 50 km) from site owner’s city (Dallas), optionally surface call-to-action: “👋 Let’s connect remotely!”
-4. **Error states** Clear, friendly messages for timeout, denied, or insecure-origin errors (must force **HTTPS**).
+### **Navigation & Layout**
 
----
+* Sticky navigation with scroll-based height reduction.
+* IntersectionObserver to highlight active section in navbar.
+* Two CTAs in hero (Primary: “View My Work” → scroll to projects; Secondary: “Download Résumé” PDF).
+* Project cards with title, one-line metric-based result, tech tags, and **Live/Code** buttons.
+* Dedicated case study pages per project (Problem → Approach → Tech → Role → Metrics → Links).
+* Contact form with inline validation, success/failure states, and mailto fallback.
 
-### 5  Security & Privacy
+### **Visual Design**
 
-| Concern            | Mitigation                                                                             |
-| ------------------ | -------------------------------------------------------------------------------------- |
-| Data minimisation  | Location never sent to backend; lives solely in client memory.                         |
-| Transport security | Site already on Vercel HTTPS. Geolocation works only over secure origin.               |
-| Third-party calls  | Map tiles & reverse-geocode use domain-scoped API keys; no PII transmitted.            |
-| Policy updates     | Privacy Policy section amended to explain purpose, retention (none), and user control. |
+* 3-tone palette (background, primary accent, support color) with WCAG 2.1 AA contrast compliance.
+* Typography: Inter/Geist for body text, Spectral for headings (via `next/font` with subsets).
+* Images: All via `next/image` with defined width/height, `priority` for hero, `sizes` for responsive scaling.
+* Hover/focus-visible states for all interactive elements.
 
----
+### **Technical Performance**
 
-### 6  Testing & Quality Assurance
-
-| Phase             | Test Cases                                                                    | Tools                        |
-| ----------------- | ----------------------------------------------------------------------------- | ---------------------------- |
-| **Unit**          | • Hook returns coords / errors<br>• Map renders with props                    | Jest + React Testing Library |
-| **Integration**   | • watchPosition starts/stops on mount/unmount<br>• Reverse-geocode fires once | Cypress component tests      |
-| **Cross-browser** | Chrome, Safari, Firefox, Edge (latest 2 versions)                             | BrowserStack Automate        |
-| **Device matrix** | iOS 15+ (Safari, Chrome), Android 11+ (Chrome), macOS/Windows laptops         | Real devices & simulators    |
-| **Performance**   | Lighthouse ≤ 100 KB JS upward diff; map lazy-load verified                    | Chrome DevTools              |
-| **Accessibility** | Axe-core score ≥ 98; keyboard nav & screen-reader pin alt text                | Axe CLI                      |
-| **Security**      | Verify no location data in network tab; check Content Security Policy         | OWASP ZAP spider             |
-
-**Definition of Done**
-
-* 100 % unit & integration tests passing
-* Card visually matches Figma spec on all breakpoints
-* No Lighthouse regressions > 2 pt
-* Privacy Policy updated and legal review signed-off
+* Font optimization: preload, subset, WOFF2 only, `display: swap`.
+* Image optimization: AVIF/WebP, compressed to 60–70 quality, lazy-loaded below fold.
+* JS optimization: React Server Components where possible, dynamic imports for non-critical libs.
+* Preconnect & DNS-prefetch for fonts/analytics.
+* CLS prevention: define width/height or aspect-ratio for all media.
+* Mobile optimization: safe-area insets, ≥44px tap targets, `prefers-reduced-motion` support.
 
 ---
 
-**Release Target:** 1 sprint (2 weeks) after design approval.
+## **5. Non-Functional Requirements**
+
+* **Performance:** LCP < 2.5s, INP < 200ms, CLS < 0.1 on desktop & mobile.
+* **Accessibility:** WCAG 2.1 AA compliance for contrast, focus order, alt text.
+* **SEO:** Structured data for projects, optimized meta titles/descriptions, OG tags.
+* **Cross-browser Support:** Latest Chrome, Firefox, Safari, Edge.
+
+---
+
+## **6. Deliverables**
+
+* Updated navigation bar with scroll compression & active-section highlight.
+* Redesigned hero section with two CTAs.
+* New project cards & individual case study pages.
+* Optimized typography & color scheme.
+* Compressed & responsive images.
+* Mobile-optimized layout & animations.
+* Updated deployment with Vercel Speed Insights monitoring.
+
+---
+
+## **7. Success Metrics (KPIs)**
+
+* **Bounce rate** reduced by ≥15% within 30 days post-launch.
+* **Average time on site** increases by ≥25%.
+* **LCP** < 2.5s, **CLS** < 0.1 across devices.
+* **Conversion rate** (form submissions / resume downloads) up ≥20%.
+* All **Core Web Vitals** in “Good” range on PageSpeed Insights.
+
+---
+
+## **8. Technical Stack & Tools**
+
+* **Frontend:** Next.js, TailwindCSS, next/image, next/font.
+* **Hosting:** Vercel with ISR for static pages.
+* **Analytics & Monitoring:** Vercel Speed Insights, Google Analytics.
+* **Forms:** React Hook Form + email API (Resend / Nodemailer).
+* **Design Tools:** Figma for mockups.
+* **Performance:** ImageOptim, SVGO for assets.
+
+
+
+---
+

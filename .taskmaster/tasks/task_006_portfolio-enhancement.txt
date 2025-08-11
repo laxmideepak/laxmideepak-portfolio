@@ -1,0 +1,11 @@
+# Task ID: 6
+# Title: Optimize Typography with next/font
+# Status: pending
+# Dependencies: None
+# Priority: medium
+# Description: Implement a 3-tone color palette and use Inter/Geist for body text and Spectral for headings.
+# Details:
+Use next/font to load Inter, Geist, and Spectral fonts with appropriate subsets. Ensure the color palette is consistent across the site and meets WCAG 2.1 AA contrast compliance.
+
+# Test Strategy:
+Verify that the fonts are loaded correctly and that the color palette is consistent. Check that the contrast ratios meet WCAG 2.1 AA standards.

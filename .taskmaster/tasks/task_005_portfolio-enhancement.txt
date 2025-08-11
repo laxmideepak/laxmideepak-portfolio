@@ -1,0 +1,11 @@
+# Task ID: 5
+# Title: Create Case Study Pages for Each Project
+# Status: pending
+# Dependencies: None
+# Priority: medium
+# Description: Develop dedicated case study pages for each project with sections for Problem, Approach, Tech, Role, Metrics, and Links.
+# Details:
+Use Next.js for dynamic routing to create individual pages for each project. Structure each page with the specified sections and ensure consistent styling across all case study pages.
+
+# Test Strategy:
+Verify that each project has its own page and that all sections are present and styled correctly. Check that navigation between case study pages is smooth and functional.

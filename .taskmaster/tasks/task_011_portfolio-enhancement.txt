@@ -1,0 +1,11 @@
+# Task ID: 11
+# Title: Prevent Layout Shifts (CLS)
+# Status: pending
+# Dependencies: None
+# Priority: high
+# Description: Ensure all media elements have defined width/height or aspect-ratio to prevent layout shifts.
+# Details:
+Set width and height attributes for all images and videos. Use aspect-ratio for responsive media elements. Ensure that the layout is stable and does not shift during page load.
+
+# Test Strategy:
+Verify that all media elements have defined width/height or aspect-ratio. Check that the layout is stable and does not shift during page load.
