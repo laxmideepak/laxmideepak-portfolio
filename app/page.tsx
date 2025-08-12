@@ -219,7 +219,7 @@ function HeroSection() {
   if (!mounted) return null
 
   return (
-    <section id="hero" className="scroll-mt-24 min-h-[60vh] flex flex-col md:flex-row justify-center items-center text-center md:text-left relative space-y-6 mb-16">
+    <section id="hero" className="scroll-mt-28 min-h-[60vh] flex flex-col md:flex-row justify-center items-center text-center md:text-left relative space-y-6 mb-16">
       <div className="flex-1 flex flex-col justify-center items-center md:items-start space-y-4">
         <div className="text-primary/80 mb-2 font-mono">INITIALIZING NEURAL LINK...</div>
         <motion.h1 style={{ rotateX, transition: `transform ${duration} cubic-bezier(0.95,0.05,0.795,0.035)`, transformStyle: "preserve-3d" }} className="text-4xl md:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary via-accent to-primary glow mb-2">Laxmideepak Nelapatla</motion.h1>
@@ -385,7 +385,7 @@ export default function Home() {
       <GlassNav links={navLinks} />
       
       {/* Main Container */}
-      <div className="max-w-4xl w-full mx-auto px-4 sm:px-6 lg:px-8 pb-32 pt-32">
+      <div className="max-w-4xl w-full mx-auto px-4 sm:px-6 lg:px-8 pb-32 pt-36">
         {/* Social Links Sidebar */}
         <motion.div
           className="fixed left-8 bottom-0 flex flex-col items-center gap-6 z-40"

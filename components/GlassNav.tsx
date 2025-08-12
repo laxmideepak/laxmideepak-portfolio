@@ -86,7 +86,7 @@ export function GlassNav({ links, logo }: GlassNavProps) {
     >
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className={`flex items-center justify-between transition-all duration-300 ${
-          isScrolled ? 'h-12' : 'h-16'
+          isScrolled ? 'h-14' : 'h-20'
         }`}>
           {/* Logo */}
           <div className="flex items-center">
