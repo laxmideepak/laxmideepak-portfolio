@@ -9,6 +9,7 @@ import { ThemeToggle } from "@/components/theme-toggle"
 
 import { GlassNav } from "@/components/GlassNav"
 import { ContactForm } from "@/components/ContactForm"
+import { ProjectCard } from "@/components/ProjectCard"
 import Image from "next/image"
 import Link from "next/link"
 import { 
@@ -59,6 +60,9 @@ interface Project {
   description: string
   technologies: string[]
   link?: string
+  githubUrl?: string
+  image?: string
+  highlights?: string[]
 }
 
 interface SkillsType {
@@ -338,27 +342,63 @@ export default function Home() {
     {
       title: "Conference Management System",
       description: "A full-stack web application for managing and tracking personal expenses. Features user authentication, expense categories, and data visualization. Built with React, Node.js, and MongoDB.",
-      technologies: ["React", "Node.js", "MongoDB", "RESTful APIs", "HTML/CSS", "JavaScript"]
+      technologies: ["React", "Node.js", "MongoDB", "RESTful APIs", "HTML/CSS", "JavaScript"],
+      highlights: [
+        "Developed a full-stack conference management system using React, PHP, and RESTful APIs",
+        "Integrated and optimized MySQL/PostgreSQL databases with secure authentication",
+        "Used Docker for containerized development and deployment",
+        "Followed RESTful API best practices with versioning and schema validation"
+      ]
     },
     {
       title: "University Library Management System",
       description: "A sci-fi themed personal portfolio website built with Next.js 13, TypeScript, and Tailwind CSS. Features smooth animations using Framer Motion and a dark/light theme toggle. Implements responsive design and modern UI components.",
-      technologies: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion", "HTML/CSS", "JavaScript"]
+      technologies: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion", "HTML/CSS", "JavaScript"],
+      highlights: [
+        "Developed a full-stack library system using MySQL and PHP",
+        "Built real-time analytics dashboards using SQL joins and aggregates",
+        "Designed interactive JavaScript-based user interfaces for borrowing and returning",
+        "MySQL triggers automated alerts—reducing admin workload by 60%"
+      ]
     },
     {
       title: "Toy Search Engine | Information Retrieval System",
-      description: "Engineered a TF-IDF based search engine processing 30+ documents with cosine similarity ranking, achieving precise document retrieval through mathematical scoring algorithms and vector space modeling. Built comprehensive NLP preprocessing pipeline using NLTK for tokenization, Porter stemming, and stopword removal, implementing regex-based text parsing with multi-encoding support. Developed query processing system with normalized TF-IDF weighting and inverse document frequency calculations, delivering ranked search results with quantified similarity scores. Implemented mathematical retrieval algorithms including logarithmic term weighting, cosine magnitude calculations, and dot product computations for accurate document-query matching.",
-      technologies: ["Python", "NLTK", "TF-IDF", "Cosine Similarity", "Regex", "NLP"]
+      description: "Engineered a TF-IDF based search engine processing 30+ documents with cosine similarity ranking, achieving precise document retrieval through mathematical scoring algorithms and vector space modeling.",
+      technologies: ["Python", "NLTK", "TF-IDF", "Cosine Similarity", "Regex", "NLP"],
+      image: "/ai/search-engine.png",
+      highlights: [
+        "TF-IDF based search engine with cosine similarity ranking",
+        "NLP preprocessing: tokenization, stemming, stopword removal (NLTK)",
+        "Regex-based text parsing, multi-encoding support",
+        "Query processing with normalized TF-IDF weighting",
+        "Mathematical retrieval: logarithmic weighting, cosine similarity"
+      ]
     },
     {
       title: "CNN Image Classification | Deep Learning Project",
-      description: "Architected and deployed Convolutional Neural Network using TensorFlow/Keras achieving 95%+ accuracy on multi-class image classification, implementing multiple conv layers, pooling, dropout, and dense layers for robust feature extraction. Engineered comprehensive data preprocessing pipeline with image augmentation techniques (rotation, zoom, flip), normalization, and batch processing to handle large datasets and prevent overfitting. Implemented advanced CNN optimization techniques including Adam optimizer, categorical crossentropy loss, learning rate scheduling, and early stopping to maximize model performance and training efficiency. Built end-to-end ML workflow from data loading and preprocessing to model training, validation, and deployment with visualization of training metrics, confusion matrices, and classification reports.",
-      technologies: ["TensorFlow", "Keras", "CNN", "Python", "Image Augmentation", "Deep Learning", "Adam Optimizer"]
+      description: "Architected and deployed Convolutional Neural Network using TensorFlow/Keras achieving 95%+ accuracy on multi-class image classification, implementing multiple conv layers, pooling, dropout, and dense layers for robust feature extraction.",
+      technologies: ["TensorFlow", "Keras", "CNN", "Python", "Image Augmentation", "Deep Learning", "Adam Optimizer"],
+      image: "/ai/cnn-classification.png",
+      highlights: [
+        "CNN with TensorFlow/Keras, 95%+ accuracy on multi-class images",
+        "Multiple conv, pooling, dropout, and dense layers",
+        "Image augmentation: rotation, zoom, flip, normalization",
+        "Advanced optimization: Adam, learning rate scheduling, early stopping",
+        "End-to-end ML workflow with training metrics and visualizations"
+      ]
     },
     {
       title: "NBA Player Classification | Sports Analytics & Machine Learning",
-      description: "Engineered multi-class classification system using statistical player data (points, rebounds, assists, shooting percentages) to categorize NBA players into traditional and modern position archetypes with 88%+ accuracy using ensemble methods. Developed comprehensive feature engineering pipeline analyzing 20+ basketball metrics including advanced stats (PER, usage rate, defensive rating) with dimensionality reduction using PCA and correlation analysis for optimal model performance. Implemented clustering algorithms (K-means, Gaussian Mixture Models) to identify player archetypes beyond traditional positions, discovering 7-9 distinct player types including 'combo guards,' 'stretch forwards,' and 'defensive anchors.' Built end-to-end sports analytics solution with data scraping from NBA APIs, statistical analysis using pandas/numpy, model comparison (Random Forest, SVM, XGBoost), and interactive visualizations showcasing player similarities and team composition insights.",
-      technologies: ["Python", "Pandas", "Numpy", "Scikit-learn", "XGBoost", "SVM", "Random Forest", "PCA", "K-means", "GMM", "Sports Analytics", "Data Visualization"]
+      description: "Engineered multi-class classification system using statistical player data to categorize NBA players into traditional and modern position archetypes with 88%+ accuracy using ensemble methods.",
+      technologies: ["Python", "Pandas", "Numpy", "Scikit-learn", "XGBoost", "SVM", "Random Forest", "PCA", "K-means", "GMM", "Sports Analytics", "Data Visualization"],
+      image: "/ai/nba-analytics.png",
+      highlights: [
+        "Multi-class classification of NBA players (88%+ accuracy)",
+        "Feature engineering: 20+ stats, PCA, correlation analysis",
+        "Clustering: K-means, GMM for player archetypes",
+        "Model comparison: Random Forest, SVM, XGBoost",
+        "Interactive visualizations of player/team insights"
+      ]
     }
   ]
 
@@ -515,95 +555,21 @@ export default function Home() {
             </motion.h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">Innovative solutions demonstrating full-stack development and system design expertise</p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {projects.map((project, index) => {
-              let techStack = null;
-              let customBullets = null;
-              if (project.title === "Conference Management System") {
-                customBullets = [
-                  "Developed a full-stack conference management system using React, PHP, and RESTful APIs with modules for authentication, scheduling, and registration.",
-                  "Integrated and optimized MySQL/PostgreSQL databases with secure authentication and efficient data handling.",
-                  "Used Docker for containerized development and deployment, enabling consistent environments and simplified builds.",
-                  "Followed RESTful API best practices with versioning, schema validation, and modular endpoint design."
-                ];
-              } else if (project.title === "University Library Management System") {
-                customBullets = [
-                  "Developed a full-stack library system using MySQL and PHP to manage book circulation, member data, and transaction tracking.",
-                  "Built real-time analytics dashboards using SQL joins and aggregates to uncover weekly borrowing patterns by subject and author.",
-                  "Designed interactive JavaScript-based user interfaces for borrowing, returning, and renewing, while MySQL triggers automated alerts—reducing admin workload by 60%."
-                ];
-              }
-              let bullets: string[] = [];
-              let image = `/ai/project${index + 1}.png`;
-              if (project.title.includes("Toy Search Engine")) {
-                bullets = [
-                  "TF-IDF based search engine with cosine similarity ranking",
-                  "NLP preprocessing: tokenization, stemming, stopword removal (NLTK)",
-                  "Regex-based text parsing, multi-encoding support",
-                  "Query processing with normalized TF-IDF weighting",
-                  "Mathematical retrieval: logarithmic weighting, cosine similarity"
-                ];
-                image = "/ai/search-engine.png";
-              } else if (project.title.includes("CNN Image Classification")) {
-                bullets = [
-                  "CNN with TensorFlow/Keras, 95%+ accuracy on multi-class images",
-                  "Multiple conv, pooling, dropout, and dense layers",
-                  "Image augmentation: rotation, zoom, flip, normalization",
-                  "Advanced optimization: Adam, learning rate scheduling, early stopping",
-                  "End-to-end ML workflow with training metrics and visualizations"
-                ];
-                image = "/ai/cnn-classification.png";
-              } else if (project.title.includes("NBA Player Classification")) {
-                bullets = [
-                  "Multi-class classification of NBA players (88%+ accuracy)",
-                  "Feature engineering: 20+ stats, PCA, correlation analysis",
-                  "Clustering: K-means, GMM for player archetypes",
-                  "Model comparison: Random Forest, SVM, XGBoost",
-                  "Interactive visualizations of player/team insights"
-                ];
-                image = "/ai/nba-analytics.png";
-              } else {
-                // Fallback: split description into short sentences
-                bullets = project.description.split('. ').map(s => s.trim()).filter(Boolean).slice(0, 4);
-              }
-              // Only show image for AI/ML projects
-              const showImage = project.title.includes("Toy Search Engine") || project.title.includes("CNN Image Classification") || project.title.includes("NBA Player Classification");
-              const isBulletProject = showImage || project.title.includes("NBA Player Classification") || customBullets;
+              const showImage = project.image && (
+                project.title.includes("Toy Search Engine") || 
+                project.title.includes("CNN Image Classification") || 
+                project.title.includes("NBA Player Classification")
+              );
+              
               return (
-                <motion.div
+                <ProjectCard
                   key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className=""
-                >
-                  <Card
-                    className={`group hover:border-primary transition-all duration-300 flex flex-col items-stretch justify-between shadow-md hover:shadow-xl p-0 bg-card/90 rounded-2xl border-2 border-transparent relative ring-4 ring-primary/60 glow`}
-                  >
-                    <div className="flex flex-col flex-1 justify-between p-4">
-                      <CardHeader className="pb-2 px-0">
-                        <CardTitle className="text-lg text-foreground mb-2 line-clamp-2">{project.title}</CardTitle>
-                      </CardHeader>
-                      <CardContent className="px-0 pb-6 flex-1 flex flex-col justify-between">
-                        {isBulletProject ? (
-                          <ul className="list-disc list-inside text-foreground/90 text-sm space-y-2 mb-2">
-                            {(customBullets || bullets).map((point, i) => (
-                              <li key={i} className="leading-snug">{point}</li>
-                            ))}
-                          </ul>
-                        ) : (
-                          <p className="text-foreground/90 text-sm mb-2">{project.description}</p>
-                        )}
-                        <div className="flex flex-wrap justify-start gap-2 mt-2">
-                          {project.technologies.map((tech, i) => (
-                            <Badge key={i} variant="secondary">{tech}</Badge>
-                          ))}
-                        </div>
-                      </CardContent>
-                    </div>
-                  </Card>
-                </motion.div>
+                  project={project}
+                  index={index}
+                  showImage={!!showImage}
+                />
               );
             })}
           </div>
