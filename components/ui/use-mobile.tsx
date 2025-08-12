@@ -17,3 +17,23 @@ export function useIsMobile() {
 
   return !!isMobile
 }
+
+export function useScrollPosition() {
+  const [scrollY, setScrollY] = React.useState(0)
+  const [isScrolled, setIsScrolled] = React.useState(false)
+  const [scrollOpacity, setScrollOpacity] = React.useState(0)
+
+  React.useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY
+      setScrollY(currentScrollY)
+      setIsScrolled(currentScrollY > 50)
+      setScrollOpacity(Math.min(currentScrollY / 200, 1))
+    }
+
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
+  return { scrollY, isScrolled, scrollOpacity }
+}

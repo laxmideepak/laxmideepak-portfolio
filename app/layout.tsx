@@ -5,7 +5,7 @@ import { Inter } from "next/font/google"
 import { ThemeProvider } from "@/components/theme-provider"
 import "./globals.css"
 import Image from "next/image"
-import StarfieldBackground from "@/components/StarfieldBackground"
+
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -30,7 +30,6 @@ export default function RootLayout({
         )}
       >
         <div className="fixed inset-0 -z-20 bg-background transition-colors duration-500" />
-        <StarfieldBackground />
         <div className="space-bg" />
         {[...Array(50)].map((_, i) => (
           <div

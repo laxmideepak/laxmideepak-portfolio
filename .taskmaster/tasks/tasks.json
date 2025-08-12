@@ -1,0 +1,139 @@
+{
+  "master": {
+    "tasks": [
+      {
+        "id": 1,
+        "title": "Setup Project Repository",
+        "description": "Initialize Next.js App Router project with TypeScript, Tailwind CSS, and MDX configuration",
+        "details": "Create new Next.js project using create-next-app, enable TypeScript, install Tailwind CSS with JIT mode, configure MDX support, and set up ESLint and Prettier for code quality",
+        "testStrategy": "Verify project structure, check for successful build, confirm MDX files render correctly",
+        "priority": "high",
+        "dependencies": [],
+        "status": "done",
+        "subtasks": []
+      },
+      {
+        "id": 2,
+        "title": "Implement Navigation System",
+        "description": "Create responsive navigation with sticky header, skip link, and mobile drawer",
+        "details": "Build header component with sticky positioning, implement skip link for screen readers, create mobile drawer with 44×44px tap targets, and ensure keyboard navigation and focus trapping",
+        "testStrategy": "Test navigation accessibility with screen readers, verify mobile drawer functionality across devices, check focus management",
+        "priority": "high",
+        "dependencies": [
+          1
+        ],
+        "status": "done",
+        "subtasks": []
+      },
+      {
+        "id": 3,
+        "title": "Design Hero Section",
+        "description": "Create visually engaging hero section with CTAs and value proposition",
+        "details": "Develop hero component with headline, subheadline, call-to-action buttons, and visual elements that communicate skills and personality, ensuring mobile responsiveness and accessibility",
+        "testStrategy": "Verify visual hierarchy, check button accessibility, ensure mobile responsiveness",
+        "priority": "medium",
+        "dependencies": [
+          1
+        ],
+        "status": "done",
+        "subtasks": []
+      },
+      {
+        "id": 4,
+        "title": "Create Project Card Component",
+        "description": "Develop reusable ProjectCard component for work pages",
+        "details": "Implement ProjectCard with title, summary, stack icons, and image display, ensuring consistent styling and accessibility attributes for all elements",
+        "testStrategy": "Validate component rendering across different project types, check accessibility attributes",
+        "priority": "medium",
+        "dependencies": [
+          1
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 5,
+        "title": "Implement Work Page Layout",
+        "description": "Create filterable grid of ProjectCards for work section",
+        "details": "Develop work page with responsive grid layout, implement filtering functionality, and ensure proper routing for individual project pages",
+        "testStrategy": "Verify grid responsiveness, test filtering functionality, check routing behavior",
+        "priority": "medium",
+        "dependencies": [
+          4
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 6,
+        "title": "Design Work Detail Page",
+        "description": "Create detailed project page with Problem → Approach → Result structure",
+        "details": "Develop work detail page with structured content sections, KPI callout, architecture diagram, and 'What I'd do next' section, ensuring proper routing and responsive design",
+        "testStrategy": "Verify content structure, check responsive design, validate routing",
+        "priority": "medium",
+        "dependencies": [
+          5
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 7,
+        "title": "Implement About Page",
+        "description": "Create about page with bio, values, and skills section",
+        "details": "Develop about page with structured content, including bio section, values statement, and skills visualization, ensuring accessibility and mobile responsiveness",
+        "testStrategy": "Verify content structure, check accessibility, ensure mobile responsiveness",
+        "priority": "medium",
+        "dependencies": [
+          1
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 8,
+        "title": "Design Writing Section",
+        "description": "Create writing section with list and detail views with reading progress",
+        "details": "Implement writing section with list view of posts, detail view with reading progress tracking using CSS scroll-timeline, and ensure reduced-motion fallback",
+        "testStrategy": "Verify reading progress tracking, check reduced-motion fallback, validate responsive design",
+        "priority": "medium",
+        "dependencies": [
+          1
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 9,
+        "title": "Implement Contact Form",
+        "description": "Contact form implemented with accessibility, inline validation, and spam prevention mechanisms",
+        "status": "done",
+        "dependencies": [
+          1
+        ],
+        "priority": "high",
+        "details": "Fully functional contact form with ARIA labels, React Hook Form, Zod validation, honeypot field, and /api/contact endpoint. Includes real-time validation, animations, and responsive design. Replaced mailto links with professional form integration.",
+        "testStrategy": "Verify form accessibility, test validation logic, check spam prevention mechanisms",
+        "subtasks": []
+      },
+      {
+        "id": 10,
+        "title": "Configure SEO and Analytics",
+        "description": "Implement SEO metadata and analytics tracking across all routes",
+        "details": "Set up metadata API for dynamic SEO tags, implement structured data for Person/Article, and configure analytics tracking for page views, scroll depth, and Web Vitals",
+        "testStrategy": "Verify SEO metadata, check structured data validity, validate analytics tracking implementation",
+        "priority": "medium",
+        "dependencies": [
+          1
+        ],
+        "status": "pending",
+        "subtasks": []
+      }
+    ],
+    "metadata": {
+      "created": "2025-08-12T17:21:36.990Z",
+      "updated": "2025-08-12T17:42:09.753Z",
+      "description": "Tasks for master context"
+    }
+  }
+}

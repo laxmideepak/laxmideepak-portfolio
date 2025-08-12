@@ -6,9 +6,9 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { ThemeToggle } from "@/components/theme-toggle"
-import { TypewriterEffect } from "@/components/typewriter"
-import { ScrollToSection } from "@/components/scroll-to-section"
+
 import { GlassNav } from "@/components/GlassNav"
+import { ContactForm } from "@/components/ContactForm"
 import Image from "next/image"
 import Link from "next/link"
 import { 
@@ -36,7 +36,7 @@ import { useRef } from "react"
 import { Fragment } from "react"
 import React from 'react';
 import { SiPython, SiJavascript, SiPhp, SiHtml5, SiCss3, SiReact, SiNodedotjs, SiAngular, SiExpress, SiMongodb, SiPostgresql, SiMysql, SiTensorflow, SiKeras, SiNumpy, SiPandas, SiScikitlearn, SiAmazon, SiDocker, SiGithub, SiGit, SiXampp, SiKubernetes } from 'react-icons/si';
-import QuantumSplitIntro from "@/components/QuantumSplitIntro";
+
 
 interface Experience {
   title: string
@@ -722,39 +722,52 @@ export default function Home() {
         {/* Contact Section */}
         <motion.section
           id="contact"
-          className={`scroll-mt-24 text-center space-y-8 relative py-16 rounded-2xl ${activeSection === 'contact' ? 'ring-4 ring-primary/60' : ''}`}
+          className={`scroll-mt-24 space-y-8 relative py-16 rounded-2xl ${activeSection === 'contact' ? 'ring-4 ring-primary/60' : ''}`}
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
         >
-          <div className="absolute -left-12 top-0 text-4xl animate-pulse">️</div>
-          <div className="absolute -right-16 bottom-8 text-4xl animate-bounce">🚀</div>
-          <motion.h2 style={{ rotateX, transition: `transform ${duration} cubic-bezier(0.95,0.05,0.795,0.035)`, transformStyle: "preserve-3d" }} className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent animate-pulse">Teleport a Thought</motion.h2>
-          <p className="text-muted-foreground max-w-lg mx-auto backdrop-blur-sm bg-background/30 p-6 rounded-lg border border-primary/20 shadow-lg shadow-primary/10">Ready to explore new frontiers? Whether you want to discuss tech innovations or just beam a friendly signal, my communication channels are open! 🪄</p>
-          <div className="flex items-center justify-center gap-8">
-            <Button asChild variant="ghost" size="icon" className="hover:bg-primary/20 group relative hover:scale-110 transition-transform">
-              <Link href="mailto:nelapatla.laxmideepak@gmail.com" target="_blank">
-                <Code2 className="h-4 w-4" />
-                <span className="absolute hidden group-hover:block bg-secondary/80 text-xs px-2 py-1 rounded -bottom-8 whitespace-nowrap">Send Signal 📡</span>
-              </Link>
-            </Button>
-            <Button asChild variant="ghost" size="icon" className="hover:bg-primary/20 group relative hover:scale-110 transition-transform">
-              <Link href="https://github.com/laxmideepak" target="_blank">
-                <Github className="h-5 w-5" />
-                <span className="absolute hidden group-hover:block bg-secondary/80 text-xs px-2 py-1 rounded -bottom-8 whitespace-nowrap">Code Base 💾</span>
-              </Link>
-            </Button>
-            <Button asChild variant="ghost" size="icon" className="hover:bg-primary/20 group relative hover:scale-110 transition-transform">
-              <Link href="https://linkedin.com/in/laxmideepak" target="_blank">
-                <Linkedin className="h-5 w-5" />
-                <span className="absolute hidden group-hover:block bg-secondary/80 text-xs px-2 py-1 rounded -bottom-8 whitespace-nowrap">Neural Network 🧠</span>
-              </Link>
-            </Button>
+          <div className="text-center space-y-4">
+            <motion.h2 style={{ rotateX, transition: `transform ${duration} cubic-bezier(0.95,0.05,0.795,0.035)`, transformStyle: "preserve-3d" }} className="text-3xl md:text-4xl font-bold flex items-center justify-center gap-3">
+              <Mail className="h-8 w-8 text-primary" />
+              Contact
+            </motion.h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto">Ready to explore new frontiers? Whether you want to discuss tech innovations or just beam a friendly signal, my communication channels are open! 🪄</p>
           </div>
-          <div className="text-muted-foreground flex items-center justify-center gap-2">
-            <MapPin className="h-5 w-5" />
-            <span>Base Station: Dallas, Texas 🌎</span>
+          
+          {/* Contact Form */}
+          <div className="mt-8">
+            <ContactForm />
+          </div>
+          
+          {/* Alternative Contact Methods */}
+          <div className="text-center space-y-6 mt-12">
+            <p className="text-muted-foreground">Or reach out directly:</p>
+            <div className="flex items-center justify-center gap-8">
+              <Button asChild variant="ghost" size="icon" className="hover:bg-primary/20 group relative hover:scale-110 transition-transform">
+                <Link href="mailto:nelapatla.laxmideepak@gmail.com" target="_blank">
+                  <Code2 className="h-4 w-4" />
+                  <span className="absolute hidden group-hover:block bg-secondary/80 text-xs px-2 py-1 rounded -bottom-8 whitespace-nowrap">Send Signal 📡</span>
+                </Link>
+              </Button>
+              <Button asChild variant="ghost" size="icon" className="hover:bg-primary/20 group relative hover:scale-110 transition-transform">
+                <Link href="https://github.com/laxmideepak" target="_blank">
+                  <Github className="h-5 w-5" />
+                  <span className="absolute hidden group-hover:block bg-secondary/80 text-xs px-2 py-1 rounded -bottom-8 whitespace-nowrap">Code Base 💾</span>
+                </Link>
+              </Button>
+              <Button asChild variant="ghost" size="icon" className="hover:bg-primary/20 group relative hover:scale-110 transition-transform">
+                <Link href="https://linkedin.com/in/laxmideepak" target="_blank">
+                  <Linkedin className="h-5 w-5" />
+                  <span className="absolute hidden group-hover:block bg-secondary/80 text-xs px-2 py-1 rounded -bottom-8 whitespace-nowrap">Neural Network 🧠</span>
+                </Link>
+              </Button>
+            </div>
+            <div className="text-muted-foreground flex items-center justify-center gap-2">
+              <MapPin className="h-5 w-5" />
+              <span>Base Station: Dallas, Texas 🌎</span>
+            </div>
           </div>
         </motion.section>
 
