@@ -127,8 +127,8 @@ export function GlassNav({ links, logo }: GlassNavProps) {
         <div 
           className={`w-full transition-all duration-300 ${
             isScrolled 
-              ? 'bg-background/95 backdrop-blur-md border-b border-border/50 shadow-sm' 
-              : 'bg-background/90 backdrop-blur-sm'
+              ? 'bg-background/95 backdrop-blur-md border border-primary/20 rounded-2xl mx-4 my-2 shadow-lg' 
+              : 'bg-background/90 backdrop-blur-sm border border-primary/10 rounded-2xl mx-4 my-2 shadow-md'
           }`}
         >
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
