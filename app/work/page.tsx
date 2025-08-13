@@ -28,6 +28,7 @@ interface Project {
   image?: string
   highlights?: string[]
   category?: string
+  slug?: string
 }
 
 // Enhanced project data with categories
@@ -37,6 +38,7 @@ const projects: Project[] = [
     description: "A full-stack web application for managing and tracking personal expenses. Features user authentication, expense categories, and data visualization. Built with React, Node.js, and MongoDB.",
     technologies: ["React", "Node.js", "MongoDB", "RESTful APIs", "HTML/CSS", "JavaScript"],
     category: "Web Development",
+    slug: "conference-management-system",
     highlights: [
       "Developed a full-stack conference management system using React, PHP, and RESTful APIs",
       "Integrated and optimized MySQL/PostgreSQL databases with secure authentication",
@@ -49,6 +51,7 @@ const projects: Project[] = [
     description: "A sci-fi themed personal portfolio website built with Next.js 13, TypeScript, and Tailwind CSS. Features smooth animations using Framer Motion and a dark/light theme toggle. Implements responsive design and modern UI components.",
     technologies: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion", "HTML/CSS", "JavaScript"],
     category: "Web Development",
+    slug: "university-library-management",
     highlights: [
       "Developed a full-stack library system using MySQL and PHP",
       "Built real-time analytics dashboards using SQL joins and aggregates",
@@ -61,6 +64,7 @@ const projects: Project[] = [
     description: "Engineered a TF-IDF based search engine processing 30+ documents with cosine similarity ranking, achieving precise document retrieval through mathematical scoring algorithms and vector space modeling.",
     technologies: ["Python", "NLTK", "TF-IDF", "Cosine Similarity", "Regex", "NLP"],
     category: "Machine Learning",
+    slug: "toy-search-engine",
     image: "/ai/search-engine.png",
     highlights: [
       "TF-IDF based search engine with cosine similarity ranking",
@@ -75,6 +79,7 @@ const projects: Project[] = [
     description: "Architected and deployed Convolutional Neural Network using TensorFlow/Keras achieving 95%+ accuracy on multi-class image classification, implementing multiple conv layers, pooling, dropout, and dense layers for robust feature extraction.",
     technologies: ["TensorFlow", "Keras", "CNN", "Python", "Image Augmentation", "Deep Learning", "Adam Optimizer"],
     category: "Machine Learning",
+    slug: "cnn-image-classification",
     image: "/ai/cnn-classification.png",
     highlights: [
       "CNN with TensorFlow/Keras, 95%+ accuracy on multi-class images",
@@ -89,6 +94,7 @@ const projects: Project[] = [
     description: "Engineered multi-class classification system using statistical player data to categorize NBA players into traditional and modern position archetypes with 88%+ accuracy using ensemble methods.",
     technologies: ["Python", "Pandas", "Numpy", "Scikit-learn", "XGBoost", "SVM", "Random Forest", "PCA", "K-means", "GMM", "Sports Analytics", "Data Visualization"],
     category: "Machine Learning",
+    slug: "nba-player-classification",
     image: "/ai/nba-analytics.png",
     highlights: [
       "Multi-class classification of NBA players (88%+ accuracy)",
