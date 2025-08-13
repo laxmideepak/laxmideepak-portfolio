@@ -131,22 +131,17 @@
       },
       {
         "id": 11,
-        "title": "Redesign Navigation Bar",
-        "description": "Redesign the navigation bar to be cleaner and less cluttered with 4 main items and a prominent resume download button, meeting accessibility and performance standards",
-        "details": "Implement a responsive navigation bar with sticky header, 4 main items (Work, About, Writing, Contact), and a prominent resume download button. Ensure accessibility standards (WCAG 2.2) by adding skip link, focus management, and proper ARIA labels. Implement mobile drawer with focus trap and ensure keyboard navigation. Optimize performance metrics (INP ≤ 200ms, CLS ≤ 0.02) by minimizing layout shifts and ensuring fast load times. Follow Material Design/Carbon UI patterns for consistency. Include skip link, focus management, mobile drawer with focus trap, and proper ARIA labels as specified.",
-        "testStrategy": "Test navigation accessibility with screen readers, verify mobile drawer functionality across devices, check focus management and keyboard navigation. Measure performance metrics (INP and CLS) using Lighthouse. Validate UI against Material Design/Carbon guidelines. Ensure skip link is functional and ARIA labels are correctly implemented.",
-        "status": "done",
+        "title": "Redesign Navigation Bar for Cleanliness and Prominence",
+        "description": "Redesign the navigation bar to be cleaner, less cluttered, and more focused with streamlined links and a prominent resume download button",
+        "details": "1. Remove redundant navigation items and consolidate into fewer, more focused links\n2. Implement a redesigned resume download button with styling similar to the 'Start Testing' button from the reference design\n3. Ensure the new navigation is responsive and works across all device sizes\n4. Maintain accessibility standards with proper ARIA attributes and keyboard navigation\n5. Integrate with existing routing system from Task 2\n6. Test the new design with the existing content from Task 3 and Task 6 to ensure visual consistency\n7. Update the CSS styling to match the overall design language established in other tasks",
+        "testStrategy": "1. Verify navigation accessibility with screen readers and keyboard navigation\n2. Test mobile responsiveness and tap target sizes\n3. Confirm the resume download button is visually prominent and correctly styled\n4. Ensure the new navigation integrates properly with existing routing from Task 2\n5. Validate visual consistency with content from Task 3 and Task 6\n6. Check for proper ARIA attributes and focus management\n7. Perform cross-browser testing to ensure compatibility",
+        "status": "pending",
         "dependencies": [
           2,
-          7,
           3,
-          10,
           6,
           9,
-          8,
-          5,
-          4,
-          1
+          10
         ],
         "priority": "high",
         "subtasks": []
@@ -154,7 +149,7 @@
     ],
     "metadata": {
       "created": "2025-08-12T17:21:36.990Z",
-      "updated": "2025-08-13T02:41:25.232Z",
+      "updated": "2025-08-13T02:47:21.720Z",
       "description": "Tasks for master context"
     }
   }

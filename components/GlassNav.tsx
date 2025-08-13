@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { ThemeToggle } from "@/components/theme-toggle"
-import { Download, Menu, X, Mail } from "lucide-react"
+import { Download, Menu, X, Mail, ChevronDown, Briefcase, Book, FolderOpen, Wrench, User } from "lucide-react"
 import Link from "next/link"
 
 interface NavLink {
@@ -20,8 +20,10 @@ interface GlassNavProps {
 
 export function GlassNav({ links, logo }: GlassNavProps) {
   const [isOpen, setIsOpen] = useState(false)
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
   const mobileMenuRef = useRef<HTMLDivElement>(null)
+  const dropdownRef = useRef<HTMLDivElement>(null)
   const firstFocusableRef = useRef<HTMLAnchorElement>(null)
 
   // Handle scroll for navbar styling
@@ -78,17 +80,35 @@ export function GlassNav({ links, logo }: GlassNavProps) {
     }
   }, [isOpen])
 
-  // Handle escape key for mobile menu
+  // Handle escape key for mobile menu and dropdown
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
-      if (e.key === 'Escape' && isOpen) {
-        setIsOpen(false)
+      if (e.key === 'Escape') {
+        if (isOpen) setIsOpen(false)
+        if (isDropdownOpen) setIsDropdownOpen(false)
       }
     }
 
     document.addEventListener('keydown', handleEscape)
     return () => document.removeEventListener('keydown', handleEscape)
-  }, [isOpen])
+  }, [isOpen, isDropdownOpen])
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsDropdownOpen(false)
+      }
+    }
+
+    if (isDropdownOpen) {
+      document.addEventListener('mousedown', handleClickOutside)
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside)
+    }
+  }, [isDropdownOpen])
 
   const downloadResume = () => {
     window.open('/Laxmideepak_Nelapatla_Resume_SDE-2025.pdf', '_blank')
@@ -106,6 +126,15 @@ export function GlassNav({ links, logo }: GlassNavProps) {
     link.href.includes('/writing') ||
     link.href.includes('#contact')
   ).slice(0, 4)
+
+  // Dropdown items for additional sections
+  const dropdownItems = [
+    { label: "Experience", href: "#experience", icon: <Briefcase className="h-4 w-4" /> },
+    { label: "Certifications", href: "#certifications", icon: <Book className="h-4 w-4" /> },
+    { label: "Projects", href: "#projects", icon: <FolderOpen className="h-4 w-4" /> },
+    { label: "Skills", href: "#skills", icon: <Wrench className="h-4 w-4" /> },
+    { label: "About Section", href: "#hero", icon: <User className="h-4 w-4" /> }
+  ]
 
   return (
     <>
@@ -133,8 +162,8 @@ export function GlassNav({ links, logo }: GlassNavProps) {
         >
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex items-center justify-between h-16">
-              {/* Logo - Left aligned */}
-              <div className="flex items-center">
+              {/* Logo and Dropdown - Left aligned */}
+              <div className="flex items-center space-x-3">
                 {logo || (
                   <Link 
                     href="/" 
@@ -144,6 +173,48 @@ export function GlassNav({ links, logo }: GlassNavProps) {
                     Laxmideepak
                   </Link>
                 )}
+                
+                {/* Dropdown Button */}
+                <div className="relative" ref={dropdownRef}>
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                    className="flex items-center gap-1 text-foreground/80 hover:text-primary hover:bg-primary/10"
+                    aria-label="Open sections menu"
+                    aria-expanded={isDropdownOpen}
+                  >
+                    <span className="text-sm font-medium">Sections</span>
+                    <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${isDropdownOpen ? 'rotate-180' : ''}`} />
+                  </Button>
+
+                  {/* Dropdown Menu */}
+                  <AnimatePresence>
+                    {isDropdownOpen && (
+                      <motion.div
+                        className="absolute top-full left-0 mt-2 w-48 bg-background/95 backdrop-blur-md border border-border/50 rounded-lg shadow-lg z-50"
+                        initial={{ opacity: 0, y: -10, scale: 0.95 }}
+                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                        exit={{ opacity: 0, y: -10, scale: 0.95 }}
+                        transition={{ duration: 0.2 }}
+                      >
+                        <div className="py-2">
+                          {dropdownItems.map((item) => (
+                            <Link
+                              key={item.href}
+                              href={item.href}
+                              className="flex items-center gap-3 px-4 py-2 text-foreground/80 hover:text-primary hover:bg-primary/10 transition-colors"
+                              onClick={() => setIsDropdownOpen(false)}
+                            >
+                              {item.icon}
+                              <span className="text-sm font-medium">{item.label}</span>
+                            </Link>
+                          ))}
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
               </div>
 
               {/* Desktop Navigation - Center aligned */}
