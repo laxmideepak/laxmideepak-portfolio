@@ -413,16 +413,11 @@ export default function Home() {
     setTimeout(() => setAnimKey(null), 700)
   }
 
-  // Navigation links for GlassNav
+  // Navigation links for GlassNav - Simplified to 4 main items
   const navLinks = [
-    { label: "About", href: "#hero", icon: <User className="h-5 w-5" /> },
-    { label: "Experience", href: "#experience", icon: <Briefcase className="h-5 w-5" /> },
-    { label: "Certifications", href: "#certifications", icon: <Book className="h-5 w-5" /> },
-    { label: "Projects", href: "#projects", icon: <FolderOpen className="h-5 w-5" /> },
     { label: "Work", href: "/work", icon: <FolderOpen className="h-5 w-5" /> },
-    { label: "About Page", href: "/about", icon: <User className="h-5 w-5" /> },
+    { label: "About", href: "/about", icon: <User className="h-5 w-5" /> },
     { label: "Writing", href: "/writing", icon: <BookOpen className="h-5 w-5" /> },
-    { label: "Skills", href: "#skills", icon: <Wrench className="h-5 w-5" /> },
     { label: "Contact", href: "#contact", icon: <Mail className="h-5 w-5" /> }
   ]
 
@@ -432,7 +427,7 @@ export default function Home() {
       <GlassNav links={navLinks} />
       
       {/* Main Container */}
-      <div className="max-w-4xl w-full mx-auto px-4 sm:px-6 lg:px-8 pb-32 pt-24">
+      <div id="main-content" className="max-w-4xl w-full mx-auto px-4 sm:px-6 lg:px-8 pb-32 pt-24">
         {/* Social Links Sidebar */}
         <motion.div
           className="fixed left-8 bottom-0 flex flex-col items-center gap-6 z-40"
