@@ -180,12 +180,15 @@ export function GlassNav({ links, logo }: GlassNavProps) {
                     variant="ghost"
                     size="sm"
                     onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                    className="flex items-center gap-1 text-foreground/80 hover:text-primary hover:bg-primary/10"
+                    className="flex items-center justify-center w-8 h-8 p-0 text-foreground/80 hover:text-primary hover:bg-primary/10 rounded-full"
                     aria-label="Open sections menu"
                     aria-expanded={isDropdownOpen}
                   >
-                    <span className="text-sm font-medium">Sections</span>
-                    <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${isDropdownOpen ? 'rotate-180' : ''}`} />
+                    <div className="flex flex-col items-center justify-center w-4 h-4">
+                      <div className={`w-1 h-1 bg-current rounded-full transition-all duration-200 ${isDropdownOpen ? 'translate-y-0.5' : '-translate-y-0.5'}`}></div>
+                      <div className="w-1 h-1 bg-current rounded-full transition-all duration-200"></div>
+                      <div className={`w-1 h-1 bg-current rounded-full transition-all duration-200 ${isDropdownOpen ? '-translate-y-0.5' : 'translate-y-0.5'}`}></div>
+                    </div>
                   </Button>
 
                   {/* Dropdown Menu */}
