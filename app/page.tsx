@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect, useCallback } from "react"
+import { useAnalytics } from "@/hooks/useAnalytics"
 import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
@@ -257,8 +258,10 @@ export default function Home() {
   const { scrollYProgress } = useScroll();
   const rotateX = useTransform(scrollYProgress, [0, 1], [0, 45]);
   const duration = useTransform(scrollYProgress, [0, 1], [0.3, 1.2]);
+  const { trackInteraction } = useAnalytics()
 
   const downloadResume = () => {
+    trackInteraction('engagement', 'download', 'resume', 1)
     window.open('/Laxmideepak_Nelapatla_Resume_SDE-2025.pdf', '_blank')
   }
 

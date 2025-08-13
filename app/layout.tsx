@@ -10,10 +10,109 @@ import Image from "next/image"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "Laxmideepak Nelapatla - Full-Stack Developer",
-  description:
-    "Graduate student in Computer Science at UTA with over 2 years of experience developing scalable full-stack applications using React, Node.js, and AWS.",
-  generator: 'v0.dev'
+  title: {
+    default: 'Laxmideepak Nelapatla - Software Engineer & AI Enthusiast',
+    template: '%s | Laxmideepak Nelapatla'
+  },
+  description: 'Software Engineer specializing in full-stack development, machine learning, and AI. Passionate about creating innovative solutions and sharing knowledge through technical writing.',
+  keywords: [
+    'Software Engineer',
+    'Full Stack Developer',
+    'Machine Learning',
+    'AI Engineer',
+    'React Developer',
+    'Python Developer',
+    'Web Development',
+    'Artificial Intelligence',
+    'Data Science',
+    'Portfolio'
+  ],
+  authors: [{ name: 'Laxmideepak Nelapatla' }],
+  creator: 'Laxmideepak Nelapatla',
+  publisher: 'Laxmideepak Nelapatla',
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
+  metadataBase: new URL('https://laxmideepak-portfolio.vercel.app'),
+  alternates: {
+    canonical: '/',
+  },
+  openGraph: {
+    type: 'website',
+    locale: 'en_US',
+    url: 'https://laxmideepak-portfolio.vercel.app',
+    title: 'Laxmideepak Nelapatla - Software Engineer & AI Enthusiast',
+    description: 'Software Engineer specializing in full-stack development, machine learning, and AI. Passionate about creating innovative solutions and sharing knowledge through technical writing.',
+    siteName: 'Laxmideepak Nelapatla Portfolio',
+    images: [
+      {
+        url: '/og-image.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Laxmideepak Nelapatla - Software Engineer & AI Enthusiast',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Laxmideepak Nelapatla - Software Engineer & AI Enthusiast',
+    description: 'Software Engineer specializing in full-stack development, machine learning, and AI. Passionate about creating innovative solutions and sharing knowledge through technical writing.',
+    images: ['/og-image.jpg'],
+    creator: '@laxmideepak',
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  verification: {
+    google: 'your-google-verification-code',
+    yandex: 'your-yandex-verification-code',
+    yahoo: 'your-yahoo-verification-code',
+  },
+}
+
+// Structured data for Person
+const personStructuredData = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Laxmideepak Nelapatla",
+  "jobTitle": "Software Engineer",
+  "description": "Software Engineer specializing in full-stack development, machine learning, and AI",
+  "url": "https://laxmideepak-portfolio.vercel.app",
+  "image": "https://laxmideepak-portfolio.vercel.app/profile-image.jpg",
+  "email": "laxmideepak2023@gmail.com",
+  "sameAs": [
+    "https://github.com/laxmideepak",
+    "https://www.linkedin.com/in/laxmideepak-nelapatla-2a1a8b190/"
+  ],
+  "knowsAbout": [
+    "Software Engineering",
+    "Full Stack Development",
+    "Machine Learning",
+    "Artificial Intelligence",
+    "React",
+    "Python",
+    "JavaScript",
+    "Node.js",
+    "Data Science"
+  ],
+  "alumniOf": {
+    "@type": "Organization",
+    "name": "University of North Texas"
+  },
+  "worksFor": {
+    "@type": "Organization",
+    "name": "Software Engineer"
+  }
 }
 
 export default function RootLayout({
@@ -23,6 +122,55 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        {/* Structured Data */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(personStructuredData),
+          }}
+        />
+        
+        {/* Analytics Script */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              // Google Analytics 4
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-XXXXXXXXXX'); // Replace with your GA4 ID
+              
+              // Web Vitals
+              function sendToAnalytics(metric) {
+                const body = JSON.stringify(metric);
+                const url = '/api/analytics';
+                
+                if (navigator.sendBeacon) {
+                  navigator.sendBeacon(url, body);
+                } else {
+                  fetch(url, { body, method: 'POST', keepalive: true });
+                }
+              }
+              
+              // Report Web Vitals
+              import('web-vitals').then(({ getCLS, getFID, getFCP, getLCP, getTTFB }) => {
+                getCLS(sendToAnalytics);
+                getFID(sendToAnalytics);
+                getFCP(sendToAnalytics);
+                getLCP(sendToAnalytics);
+                getTTFB(sendToAnalytics);
+              });
+            `,
+          }}
+        />
+        
+        {/* Google Analytics Script */}
+        <script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"
+        />
+      </head>
       <body
         className={cn(
           "min-h-screen bg-background font-sans antialiased",
