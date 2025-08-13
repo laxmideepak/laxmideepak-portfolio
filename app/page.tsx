@@ -15,6 +15,7 @@ import Link from "next/link"
 import { 
   ArrowDown,
   Book,
+  BookOpen,
   Briefcase,
   Code2,
   Cloud,
@@ -417,6 +418,7 @@ export default function Home() {
     { label: "Projects", href: "#projects", icon: <FolderOpen className="h-5 w-5" /> },
     { label: "Work", href: "/work", icon: <FolderOpen className="h-5 w-5" /> },
     { label: "About Page", href: "/about", icon: <User className="h-5 w-5" /> },
+    { label: "Writing", href: "/writing", icon: <BookOpen className="h-5 w-5" /> },
     { label: "Skills", href: "#skills", icon: <Wrench className="h-5 w-5" /> },
     { label: "Contact", href: "#contact", icon: <Mail className="h-5 w-5" /> }
   ]
