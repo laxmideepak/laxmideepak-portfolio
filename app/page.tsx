@@ -415,6 +415,7 @@ export default function Home() {
     { label: "Experience", href: "#experience", icon: <Briefcase className="h-5 w-5" /> },
     { label: "Certifications", href: "#certifications", icon: <Book className="h-5 w-5" /> },
     { label: "Projects", href: "#projects", icon: <FolderOpen className="h-5 w-5" /> },
+    { label: "Work", href: "/work", icon: <FolderOpen className="h-5 w-5" /> },
     { label: "Skills", href: "#skills", icon: <Wrench className="h-5 w-5" /> },
     { label: "Contact", href: "#contact", icon: <Mail className="h-5 w-5" /> }
   ]
