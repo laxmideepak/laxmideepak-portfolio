@@ -89,8 +89,8 @@ export function TimeWeatherDisplay() {
   }
 
   return (
-    <div className="inline-block border border-white/20 rounded-md px-2 py-1 bg-black/10 backdrop-blur-sm">
-      <div className="flex items-center space-x-1.5">
+    <div className="inline-block border border-white/20 rounded-md px-1.5 sm:px-2 py-0.5 sm:py-1 bg-black/10 backdrop-blur-sm">
+      <div className="flex items-center space-x-1 sm:space-x-1.5">
         {/* Time */}
         <span className="text-xs font-mono font-medium text-white">
           {formatTime(currentTime)}

@@ -16,6 +16,7 @@ export const metadata: Metadata = {
     template: '%s | Laxmideepak Nelapatla'
   },
   description: 'Software Engineer specializing in full-stack development, machine learning, and AI. Passionate about creating innovative solutions and sharing knowledge through technical writing.',
+  viewport: 'width=device-width, initial-scale=1, maximum-scale=5',
   keywords: [
     'Software Engineer',
     'Full Stack Developer',

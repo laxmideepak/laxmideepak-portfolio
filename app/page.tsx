@@ -224,15 +224,15 @@ function HeroSection() {
   return (
     <section id="hero" className="scroll-mt-20 min-h-[60vh] flex flex-col md:flex-row justify-center items-center text-center md:text-left relative space-y-6 mb-16">
       <div className="flex-1 flex flex-col justify-center items-center md:items-start space-y-4">
-        <div className="text-primary/80 mb-2 font-mono">INITIALIZING NEURAL LINK...</div>
-        <motion.h1 style={{ rotateX, transition: `transform ${duration} cubic-bezier(0.95,0.05,0.795,0.035)`, transformStyle: "preserve-3d" }} className="text-4xl md:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary via-accent to-primary glow mb-2">Laxmideepak Nelapatla</motion.h1>
-        <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-4 backdrop-blur-sm bg-background/30 p-4 rounded-lg border border-primary/20">Full-stack engineer with strong Java expertise and hands-on experience in deploying scalable solutions. Skilled in configuring and customizing applications on Unix-like and Windows systems, with a solid foundation in relational databases to meet client-specific requirements.</p>
+        <div className="text-primary/80 mb-2 font-mono text-sm md:text-base">INITIALIZING NEURAL LINK...</div>
+        <motion.h1 style={{ rotateX, transition: `transform ${duration} cubic-bezier(0.95,0.05,0.795,0.035)`, transformStyle: "preserve-3d" }} className="text-3xl sm:text-4xl md:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary via-accent to-primary glow mb-2">Laxmideepak Nelapatla</motion.h1>
+        <p className="text-sm sm:text-lg text-muted-foreground max-w-2xl mx-auto mb-4 backdrop-blur-sm bg-background/30 p-3 sm:p-4 rounded-lg border border-primary/20">Full-stack engineer with strong Java expertise and hands-on experience in deploying scalable solutions. Skilled in configuring and customizing applications on Unix-like and Windows systems, with a solid foundation in relational databases to meet client-specific requirements.</p>
         <AnimatedRoles />
       </div>
       
-      {/* Profile Image Only */}
-      <div className="flex-1 flex justify-center items-center mt-8 md:mt-0">
-        <div className="rounded-2xl overflow-hidden shadow-lg border-4 border-primary/30" style={{ maxWidth: 320 }}>
+      {/* Profile Image Only - Mobile Optimized */}
+      <div className="flex-1 flex justify-center items-center mt-6 md:mt-0">
+        <div className="rounded-2xl overflow-hidden shadow-lg border-4 border-primary/30 w-64 h-64 sm:w-80 sm:h-80 md:w-80 md:h-80">
           <Image
             src="/profile.jpg"
             alt="Profile"
@@ -473,9 +473,9 @@ export default function Home() {
       
       {/* Main Container */}
       <div id="main-content" className="max-w-4xl w-full mx-auto px-4 sm:px-6 lg:px-8 pb-32 pt-24">
-        {/* Social Links Sidebar */}
+        {/* Social Links Sidebar - Hidden on mobile */}
         <motion.div
-          className="fixed left-8 bottom-0 flex flex-col items-center gap-6 z-40"
+          className="fixed left-8 bottom-0 flex flex-col items-center gap-6 z-40 hidden md:flex"
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5 }}
@@ -494,25 +494,25 @@ export default function Home() {
           <div className="h-24 w-[1px] bg-border" />
         </motion.div>
 
-        {/* Hero Section - No Location Card */}
+        {/* Hero Section - Mobile Optimized */}
         <HeroSection />
 
         {/* Rest of the sections remain the same */}
         {/* Experience Section */}
         <motion.section
           id="experience"
-          className={`scroll-mt-24 space-y-8 py-16 rounded-2xl transition-all duration-500 ${activeSection === 'experience' ? 'ring-4 ring-primary/60 active-glow' : ''}`}
+          className={`scroll-mt-24 space-y-6 sm:space-y-8 py-12 sm:py-16 rounded-2xl transition-all duration-500 ${activeSection === 'experience' ? 'ring-4 ring-primary/60 active-glow' : ''}`}
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
         >
-          <div className="text-center space-y-4">
-            <motion.h2 style={{ rotateX, transition: `transform ${duration} cubic-bezier(0.95,0.05,0.795,0.035)`, transformStyle: "preserve-3d" }} className="text-3xl md:text-4xl font-bold flex items-center justify-center gap-3">
-              <Code2 className="h-8 w-8 text-primary" />
+          <div className="text-center space-y-3 sm:space-y-4">
+            <motion.h2 style={{ rotateX, transition: `transform ${duration} cubic-bezier(0.95,0.05,0.795,0.035)`, transformStyle: "preserve-3d" }} className="text-2xl sm:text-3xl md:text-4xl font-bold flex items-center justify-center gap-2 sm:gap-3">
+              <Code2 className="h-6 w-6 sm:h-8 sm:w-8 text-primary" />
               Experience
             </motion.h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">My journey through the tech cosmos</p>
+            <p className="text-muted-foreground max-w-2xl mx-auto text-sm sm:text-base">My journey through the tech cosmos</p>
           </div>
           <div className="space-y-6">
             {experiences.map((exp, index) => (
@@ -752,10 +752,10 @@ export default function Home() {
             </Button>
           </div>
           
-          {/* Alternative Contact Methods */}
+          {/* Alternative Contact Methods - Mobile Optimized */}
           <div className="text-center space-y-6 mt-12">
-            <p className="text-muted-foreground">Prefer to connect directly? Here are my other channels:</p>
-            <div className="flex items-center justify-center gap-8">
+            <p className="text-muted-foreground text-sm sm:text-base">Prefer to connect directly? Here are my other channels:</p>
+            <div className="flex items-center justify-center gap-4 sm:gap-8 flex-wrap">
               <Button asChild variant="ghost" size="icon" className="hover:bg-primary/20 group relative hover:scale-110 transition-transform">
                 <Link href="mailto:nelapatla.laxmideepak@gmail.com" target="_blank">
                   <Code2 className="h-4 w-4" />
@@ -764,7 +764,7 @@ export default function Home() {
               </Button>
               <Button asChild variant="ghost" size="icon" className="hover:bg-primary/20 group relative hover:scale-110 transition-transform">
                 <Link href="https://github.com/laxmideepak" target="_blank">
-                  <Github className="h-5 w-5" />
+                  <Github className="h-5 w-4" />
                   <span className="absolute hidden group-hover:block bg-secondary/80 text-xs px-2 py-1 rounded -bottom-8 whitespace-nowrap">View My Code 💻</span>
                 </Link>
               </Button>
@@ -775,8 +775,8 @@ export default function Home() {
                 </Link>
               </Button>
             </div>
-            <div className="text-muted-foreground flex items-center justify-center gap-2">
-              <MapPin className="h-5 w-5" />
+            <div className="text-muted-foreground flex items-center justify-center gap-2 text-sm sm:text-base">
+              <MapPin className="h-4 w-4 sm:h-5 sm:w-5" />
               <span>Base Station: Dallas, Texas 🌎</span>
             </div>
           </div>
