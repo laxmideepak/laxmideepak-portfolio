@@ -1,0 +1,16 @@
+{
+  "status": "commited",
+  "type": "frontend",
+  "scope": "codebase",
+  "localEndpoint": "http://localhost:3000",
+  "executionArgs": {
+    "projectName": "laxmideepak-portfolio",
+    "projectPath": "/Users/laxmideepak-portfolio",
+    "testIds": [],
+    "additionalInstruction": "Execute all frontend tests focusing on theme switching, navigation, responsive design, animations, and all major sections. Ensure mobile optimization and cross-browser compatibility testing.",
+    "envs": {
+      "API_KEY": "sk-user-Im7S1EwiqZeFL1yJ-4CyW6SiS66QuAINCJiPLRp0PdyVkQa78b4awN5pNcmW-Ntq_RFGpB3yod_8e8T-KYJs-Wpq-BGPSeDMa5Y4xWeDBJmjQ13xudSDY5hjJ_yKpWTOKiE"
+    }
+  },
+  "proxy": "http://c4de3309-d1f7-41e6-9fb0-700ee28808ca:ABUQuJnHVTOSdTiGgwQ1gMz8Srl7esxo@tun.testsprite.com:8080"
+}

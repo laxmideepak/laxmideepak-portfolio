@@ -112,7 +112,12 @@ export function GlassNav({ links, logo }: GlassNavProps) {
   }, [isDropdownOpen])
 
   const downloadResume = () => {
-    window.open('/Laxmideepak_Nelapatla_Resume_SDE-2025.pdf', '_blank')
+    const link = document.createElement('a')
+    link.href = '/Laxmideepak_Nelapatla_Resume_SDE-2025.pdf'
+    link.download = 'Laxmideepak_Nelapatla_Resume_SDE-2025.pdf'
+    document.body.appendChild(link)
+    link.click()
+    document.body.removeChild(link)
   }
 
   const emailMe = () => {

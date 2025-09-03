@@ -226,7 +226,7 @@ function HeroSection() {
       <div className="flex-1 flex flex-col justify-center items-center md:items-start space-y-4">
         <div className="text-primary/80 mb-2 font-mono text-sm md:text-base">INITIALIZING NEURAL LINK...</div>
         <motion.h1 style={{ rotateX, transition: `transform ${duration} cubic-bezier(0.95,0.05,0.795,0.035)`, transformStyle: "preserve-3d" }} className="text-3xl sm:text-4xl md:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary via-accent to-primary glow mb-2">Laxmideepak Nelapatla</motion.h1>
-        <p className="text-sm sm:text-lg text-muted-foreground max-w-2xl mx-auto mb-4 backdrop-blur-sm bg-background/30 p-3 sm:p-4 rounded-lg border border-primary/20">Full-stack engineer with strong Java expertise and hands-on experience in deploying scalable solutions. Skilled in configuring and customizing applications on Unix-like and Windows systems, with a solid foundation in relational databases to meet client-specific requirements.</p>
+        <p className="text-sm sm:text-lg text-muted-foreground max-w-2xl mx-auto mb-4 backdrop-blur-sm bg-background/30 p-3 sm:p-4 rounded-lg border border-primary/20">Full-stack engineer specializing in building scalable, cloud-native applications with Python, TypeScript, React, and AWS. Experienced in architecting high-performance systems, optimizing latency across distributed applications, and automating deployments through modern CI/CD pipelines. Adept at translating complex requirements into clean, production-ready solutions with a focus on reliability, maintainability, and performance at scale.</p>
         <AnimatedRoles />
       </div>
       
@@ -459,10 +459,11 @@ export default function Home() {
     setTimeout(() => setAnimKey(null), 700)
   }
 
-  // Navigation links for GlassNav - Simplified to 3 main items
+  // Navigation links for GlassNav - Updated to include Education
   const navLinks = [
     { label: "Work", href: "/work", icon: <FolderOpen className="h-5 w-5" /> },
     { label: "About", href: "/about", icon: <User className="h-5 w-5" /> },
+    { label: "Education", href: "#education", icon: <Book className="h-5 w-5" /> },
     { label: "Contact", href: "#contact", icon: <Mail className="h-5 w-5" /> }
   ]
 
@@ -516,24 +517,38 @@ export default function Home() {
           </div>
           <div className="space-y-6">
             {experiences.map((exp, index) => (
-              <Card key={exp.title || index} className="group hover:border-primary transition-all duration-300 ring-4 ring-primary/60 glow">
-                <CardHeader>
-                  <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2">
-                    <div>
-                      <CardTitle className="text-xl text-foreground">{exp.title}</CardTitle>
-                      <CardDescription className="text-lg font-medium text-foreground">{exp.company} | {exp.location}</CardDescription>
+              <motion.div
+                key={exp.title || index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+              >
+                <Card className="group hover:border-primary hover:shadow-xl hover:scale-[1.02] transition-all duration-300 ring-4 ring-primary/60 glow cursor-pointer">
+                  <CardHeader>
+                    <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2">
+                      <div>
+                        <CardTitle className="text-xl text-foreground group-hover:text-primary transition-colors duration-300">{exp.title}</CardTitle>
+                        <CardDescription className="text-lg font-medium text-foreground group-hover:text-primary/80 transition-colors duration-300">{exp.company} | {exp.location}</CardDescription>
+                      </div>
+                      <Badge variant="outline" className="w-fit group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-300">{exp.period}</Badge>
                     </div>
-                    <Badge variant="outline" className="w-fit">{exp.period}</Badge>
-                  </div>
-                </CardHeader>
-                <CardContent>
-                  <ul className="list-disc list-inside text-foreground/90 text-sm space-y-1">
-                    {exp.achievements.map((achievement, i) => (
-                      <li key={i}>{achievement}</li>
-                    ))}
-                  </ul>
-                </CardContent>
-              </Card>
+                  </CardHeader>
+                  <CardContent>
+                    <ul className="list-disc list-inside text-foreground/90 text-sm space-y-2">
+                      {exp.achievements.map((achievement, i) => (
+                        <motion.li
+                          key={i}
+                          className="group-hover:text-foreground transition-colors duration-300 group-hover:pl-2 transition-all duration-300"
+                          whileHover={{ x: 5 }}
+                        >
+                          {achievement}
+                        </motion.li>
+                      ))}
+                    </ul>
+                  </CardContent>
+                </Card>
+              </motion.div>
             ))}
           </div>
         </motion.section>
@@ -639,34 +654,51 @@ export default function Home() {
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {(Object.keys(skills) as Array<keyof typeof skills>).map((skill) => (
-              <Card key={skill} className="group hover:border-primary transition-all duration-300 h-full flex flex-col justify-between">
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
-                    {skill === "languages" && <Code2 className="h-5 w-5 text-primary" />}
-                    {skill === "webFrameworks" && <ExternalLink className="h-5 w-5 text-primary" />}
-                    {skill === "databases" && <Database className="h-5 w-5 text-primary" />}
-                    {skill === "devOpsCloud" && <Cloud className="h-5 w-5 text-primary" />}
-                    {skill === "mlDs" && <User className="h-5 w-5 text-primary" />}
-                    {skill === "tools" && <Wrench className="h-5 w-5 text-primary" />}
-                    {(skill as string).charAt(0).toUpperCase() + (skill as string).slice(1)}
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="flex flex-wrap gap-4 mt-auto">
-                    {skills[skill].map((s) => (
-                      <div key={s} className="flex flex-col items-center justify-center text-center" title={s} style={{ minWidth: 48 }}>
-                        <span className="text-3xl md:text-4xl">{skillIcons[s] || s[0]}</span>
-                        <span className="text-xs text-muted-foreground mt-1">{s}</span>
-                      </div>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
+              <motion.div
+                key={skill}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+              >
+                <Card className="group hover:border-primary transition-all duration-300 h-full flex flex-col justify-between">
+                  <CardHeader>
+                    <CardTitle className="flex items-center gap-2">
+                      {skill === "languages" && <Code2 className="h-5 w-5 text-primary" />}
+                      {skill === "webFrameworks" && <ExternalLink className="h-5 w-5 text-primary" />}
+                      {skill === "databases" && <Database className="h-5 w-5 text-primary" />}
+                      {skill === "devOpsCloud" && <Cloud className="h-5 w-5 text-primary" />}
+                      {skill === "mlDs" && <User className="h-5 w-5 text-primary" />}
+                      {skill === "tools" && <Wrench className="h-5 w-5 text-primary" />}
+                      {(skill as string).charAt(0).toUpperCase() + (skill as string).slice(1)}
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="flex flex-wrap gap-4 mt-auto">
+                      {skills[skill].map((s, index) => (
+                        <motion.div
+                          key={s}
+                          initial={{ opacity: 0, scale: 0.8 }}
+                          whileInView={{ opacity: 1, scale: 1 }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 0.3, delay: index * 0.05 }}
+                          className="flex flex-col items-center justify-center text-center"
+                          title={s}
+                          style={{ minWidth: 48 }}
+                        >
+                          <span className="text-3xl md:text-4xl">{skillIcons[s] || s[0]}</span>
+                          <span className="text-xs text-muted-foreground mt-1">{s}</span>
+                        </motion.div>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+              </motion.div>
             ))}
           </div>
         </motion.section>
 
-        {/* Education Section */}
+        {/* Education Section - Modern Redesign */}
         <motion.section
           id="education"
           className={`scroll-mt-24 space-y-8 py-16 rounded-2xl transition-all duration-500 ${activeSection === 'education' ? 'ring-4 ring-primary/60 active-glow' : ''}`}
@@ -680,55 +712,224 @@ export default function Home() {
               <Book className="h-8 w-8 text-primary" />
               Education
             </motion.h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">My academic journey</p>
+            <p className="text-muted-foreground max-w-2xl mx-auto">My academic journey through the digital realm</p>
           </div>
-          <div className="grid md:grid-cols-2 gap-8 justify-center">
-            {/* UTA Card */}
-            <Card className="relative group hover:border-primary transition-all duration-300 flex flex-col items-center text-center overflow-hidden">
-              {/* Watermark Logo */}
-              <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0">
-                <Image
-                  src="/uta-logo.png"
-                  alt="UTA Logo"
-                  width={260}
-                  height={260}
-                  className="opacity-30"
-                  style={{ objectFit: 'contain' }}
-                />
+
+          {/* Education Timeline */}
+          <div className="relative max-w-4xl mx-auto">
+            {/* Timeline line */}
+            <motion.div
+              className="absolute left-1/2 transform -translate-x-1/2 w-0.5 bg-gradient-to-b from-primary/50 via-accent/50 to-primary/50 h-full hidden md:block"
+              initial={{ height: 0 }}
+              whileInView={{ height: "100%" }}
+              viewport={{ once: true }}
+              transition={{ duration: 1.5, delay: 0.5 }}
+            />
+            
+            {/* UTA Education */}
+            <motion.div
+              className="relative mb-8 md:mb-12"
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.6 }}
+            >
+              {/* Timeline dot */}
+              <div className="hidden md:block absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-4 h-4 bg-primary rounded-full border-4 border-background shadow-lg z-10" />
+              
+              <div className="md:ml-8 md:mr-8">
+                <motion.div
+                  className="group cursor-pointer"
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  <div className="bg-gradient-to-r from-background/80 to-background/60 backdrop-blur-md border border-border/50 rounded-2xl p-4 shadow-lg hover:shadow-xl transition-all duration-500 hover:border-primary/30 relative overflow-hidden">
+                    {/* Animated background */}
+                    <motion.div
+                      className="absolute inset-0 bg-gradient-to-r from-primary/5 to-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                      initial={{ x: "-100%" }}
+                      whileHover={{ x: "0%" }}
+                      transition={{ duration: 0.8, ease: "easeOut" }}
+                    />
+                    
+                    {/* Content */}
+                    <div className="relative z-10">
+                      <motion.div
+                        className="flex items-center gap-3 mb-4"
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6, delay: 0.8 }}
+                      >
+                        <div className="p-3 bg-gradient-to-br from-primary/20 to-accent/20 rounded-xl border border-primary/30">
+                          <Book className="h-6 w-6 text-primary" />
+                        </div>
+                        <div>
+                          <motion.div
+                            className="inline-block px-4 py-2 bg-primary/10 text-primary text-sm font-semibold rounded-full border border-primary/20"
+                            initial={{ scale: 0.8, opacity: 0 }}
+                            whileInView={{ scale: 1, opacity: 1 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.5, delay: 1 }}
+                          >
+                            2023 - 2025
+                          </motion.div>
+                        </div>
+                      </motion.div>
+                      
+                                              <motion.h3
+                          className="text-lg md:text-xl font-bold text-foreground mb-2"
+                          initial={{ opacity: 0, y: 20 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 0.6, delay: 1.1 }}
+                        >
+                          Masters in Computer and Information Sciences
+                        </motion.h3>
+                        
+                        <motion.p
+                          className="text-sm md:text-base text-muted-foreground mb-3"
+                          initial={{ opacity: 0, y: 20 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 0.6, delay: 1.2 }}
+                        >
+                          Computer Science
+                        </motion.p>
+                      
+                      <motion.div
+                        className="flex items-center gap-3"
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6, delay: 1.3 }}
+                      >
+                        <div className="w-2 h-2 bg-primary rounded-full animate-pulse" />
+                        <Link 
+                          href="https://www.uta.edu/" 
+                          target="_blank" 
+                          rel="noopener noreferrer" 
+                          className="text-primary font-semibold hover:text-primary/80 transition-colors duration-300 text-lg"
+                        >
+                          The University of Texas at Arlington
+                        </Link>
+                      </motion.div>
+                    </div>
+                  </div>
+                </motion.div>
               </div>
-              {/* Card Content */}
-              <CardHeader className="relative z-10">
-                <Badge variant="outline" className="w-fit mb-2">2023 - 2025</Badge>
-                <CardTitle className="text-xl text-foreground">Master of Science</CardTitle>
-                <CardDescription className="text-lg font-medium text-foreground">Computer Science</CardDescription>
-                <Link href="https://www.uta.edu/" target="_blank" rel="noopener noreferrer" className="school-name underline text-primary font-bold block mt-2">
-                  The University of Texas at Arlington
-                </Link>
-              </CardHeader>
-            </Card>
-            {/* JNTUH Card */}
-            <Card className="relative group hover:border-primary transition-all duration-300 flex flex-col items-center text-center overflow-hidden">
-              {/* Watermark Logo */}
-              <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0">
-                <Image
-                  src="/jntuh-logo.png"
-                  alt="JNTUH Logo"
-                  width={260}
-                  height={260}
-                  className="opacity-30"
-                  style={{ objectFit: 'contain' }}
-                />
+            </motion.div>
+
+            {/* JNTUH Education */}
+            <motion.div
+              className="relative mb-8 md:mb-12"
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.8 }}
+            >
+              {/* Timeline dot */}
+              <div className="hidden md:block absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-4 h-4 bg-accent rounded-full border-4 border-background shadow-lg z-10" />
+              
+              <div className="md:mr-8 md:ml-8">
+                <motion.div
+                  className="group cursor-pointer"
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  <div className="bg-gradient-to-r from-background/60 to-background/80 backdrop-blur-md border border-border/50 rounded-2xl p-4 shadow-lg hover:shadow-xl transition-all duration-500 hover:border-accent/30 relative overflow-hidden">
+                    {/* Animated background */}
+                    <motion.div
+                      className="absolute inset-0 bg-gradient-to-r from-accent/5 to-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                      initial={{ x: "100%" }}
+                      whileHover={{ x: "0%" }}
+                      transition={{ duration: 0.8, ease: "easeOut" }}
+                    />
+                    
+                    {/* Content */}
+                    <div className="relative z-10">
+                      <motion.div
+                        className="flex items-center gap-3 mb-4"
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6, delay: 1.4 }}
+                      >
+                        <div className="p-3 bg-gradient-to-br from-accent/20 to-primary/20 rounded-xl border border-accent/30">
+                          <Book className="h-6 w-6 text-accent" />
+                        </div>
+                        <div>
+                          <motion.div
+                            className="inline-block px-4 py-2 bg-accent/10 text-accent text-sm font-semibold rounded-full border border-accent/20"
+                            initial={{ scale: 0.8, opacity: 0 }}
+                            whileInView={{ scale: 1, opacity: 1 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.5, delay: 1.5 }}
+                          >
+                            2019 - 2023
+                          </motion.div>
+                        </div>
+                      </motion.div>
+                      
+                                              <motion.h3
+                          className="text-lg md:text-xl font-bold text-foreground mb-2"
+                          initial={{ opacity: 0, y: 20 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 0.6, delay: 1.6 }}
+                        >
+                          BTech in Electronics and Communication Engineering
+                        </motion.h3>
+                        
+                        <motion.p
+                          className="text-sm md:text-base text-muted-foreground mb-3"
+                          initial={{ opacity: 0, y: 20 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 0.6, delay: 1.7 }}
+                        >
+                          Electronics & Communication
+                        </motion.p>
+                      
+                      <motion.div
+                        className="flex items-center gap-3"
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6, delay: 1.8 }}
+                      >
+                        <div className="w-2 h-2 bg-accent rounded-full animate-pulse" />
+                        <Link 
+                          href="https://www.jntuh.ac.in/" 
+                          target="_blank" 
+                          rel="noopener noreferrer" 
+                          className="text-accent font-semibold hover:text-accent/80 transition-colors duration-300 text-lg"
+                        >
+                          Jawaharlal Nehru Technological University Hyderabad
+                        </Link>
+                      </motion.div>
+                    </div>
+                  </div>
+                </motion.div>
               </div>
-              {/* Card Content */}
-              <CardHeader className="relative z-10">
-                <Badge variant="outline" className="w-fit mb-2">2019 - 2023</Badge>
-                <CardTitle className="text-xl text-foreground">Bachelor of Technology</CardTitle>
-                <CardDescription className="text-lg font-medium text-foreground">Computer Science and Engineering</CardDescription>
-                <Link href="https://www.jntuh.ac.in/" target="_blank" rel="noopener noreferrer" className="school-name underline text-primary font-bold block mt-2">
-                  Jawaharlal Nehru Technological University Hyderabad
-                </Link>
-              </CardHeader>
-            </Card>
+            </motion.div>
+
+            {/* Bottom floating element */}
+            <motion.div
+              className="text-center"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1, delay: 2 }}
+            >
+              <div className="inline-flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-primary/10 to-accent/10 rounded-full border border-primary/20">
+                <div className="w-2 h-2 bg-primary rounded-full animate-bounce" />
+                <span className="text-sm text-muted-foreground font-medium">
+                  Continuous learning in the digital age
+                </span>
+                <div className="w-2 h-2 bg-accent rounded-full animate-bounce" style={{ animationDelay: '0.2s' }} />
+              </div>
+            </motion.div>
           </div>
         </motion.section>
 

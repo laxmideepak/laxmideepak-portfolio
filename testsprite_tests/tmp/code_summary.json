@@ -1,0 +1,84 @@
+{
+  "tech_stack": [
+    "TypeScript",
+    "Next.js 15.2.4",
+    "React 18",
+    "Tailwind CSS",
+    "Framer Motion",
+    "Node.js",
+    "CSS3",
+    "HTML5"
+  ],
+  "features": [
+    {
+      "name": "Theme System",
+      "description": "Apple-inspired light mode and dark mode with CSS variables and localStorage persistence",
+      "files": ["app/globals.css", "tailwind.config.ts", "components/theme-provider.tsx", "components/theme-toggle.tsx"]
+    },
+    {
+      "name": "Navigation System",
+      "description": "Glass morphism navigation with integrated time display and responsive design",
+      "files": ["components/GlassNav.tsx", "components/TimeWeatherDisplay.tsx"]
+    },
+    {
+      "name": "Hero Section",
+      "description": "Animated 3D text effects with professional summary and profile image",
+      "files": ["app/page.tsx"]
+    },
+    {
+      "name": "Experience Section",
+      "description": "Card-based layout displaying professional experience with hover effects",
+      "files": ["app/page.tsx"]
+    },
+    {
+      "name": "Projects Section",
+      "description": "Grid layout showcasing portfolio projects with technology stacks and responsive design",
+      "files": ["app/page.tsx", "app/work/page.tsx", "components/ProjectCard.tsx"]
+    },
+    {
+      "name": "Skills Section",
+      "description": "Categorized skills display with icons and responsive grid layout",
+      "files": ["app/page.tsx"]
+    },
+    {
+      "name": "Education Section",
+      "description": "Modern timeline design with animations and compact information display",
+      "files": ["app/page.tsx"]
+    },
+    {
+      "name": "Contact System",
+      "description": "Modal-based contact form with alternative contact methods and mobile optimization",
+      "files": ["app/page.tsx", "components/ContactModal.tsx"]
+    },
+    {
+      "name": "Analytics System",
+      "description": "Custom analytics hook for tracking page views and user interactions",
+      "files": ["hooks/useAnalytics.ts", "app/api/analytics/route.ts"]
+    },
+    {
+      "name": "UI Components",
+      "description": "Reusable UI components built with shadcn/ui including buttons, cards, inputs, and badges",
+      "files": ["components/ui/button.tsx", "components/ui/card.tsx", "components/ui/input.tsx", "components/ui/badge.tsx", "components/ui/dropdown-menu.tsx", "components/ui/label.tsx", "components/ui/textarea.tsx"]
+    },
+    {
+      "name": "Responsive Design",
+      "description": "Mobile-first responsive design with Tailwind CSS breakpoints and mobile optimizations",
+      "files": ["app/page.tsx", "app/layout.tsx", "components/ContactModal.tsx", "components/TimeWeatherDisplay.tsx"]
+    },
+    {
+      "name": "Animation System",
+      "description": "Framer Motion animations for page transitions, hover effects, and interactive elements",
+      "files": ["app/page.tsx", "components/ContactModal.tsx", "components/ProjectCard.tsx"]
+    },
+    {
+      "name": "Routing System",
+      "description": "Next.js App Router with dynamic routes for work projects and about page",
+      "files": ["app/layout.tsx", "app/page.tsx", "app/work/page.tsx", "app/about/page.tsx", "app/work/[slug]/page.tsx", "app/writing/[slug]/page.tsx"]
+    },
+    {
+      "name": "SEO Optimization",
+      "description": "Meta tags, sitemap generation, and structured data for search engine optimization",
+      "files": ["app/layout.tsx", "app/sitemap.ts", "app/robots.ts"]
+    }
+  ]
+}

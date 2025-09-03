@@ -240,7 +240,7 @@
     --link-hover: #005BB5;
   }
 
-  .dark {
+  [data-theme="dark"] {
     --background: 230 35% 7%;
     --foreground: 0 0% 100%;
     --card: 230 35% 7%;

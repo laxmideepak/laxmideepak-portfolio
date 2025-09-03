@@ -16,7 +16,6 @@ export const metadata: Metadata = {
     template: '%s | Laxmideepak Nelapatla'
   },
   description: 'Software Engineer specializing in full-stack development, machine learning, and AI. Passionate about creating innovative solutions and sharing knowledge through technical writing.',
-  viewport: 'width=device-width, initial-scale=1, maximum-scale=5',
   keywords: [
     'Software Engineer',
     'Full Stack Developer',
@@ -117,6 +116,12 @@ const personStructuredData = {
   }
 }
 
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
+}
+
 export default function RootLayout({
   children,
 }: {
@@ -215,7 +220,7 @@ export default function RootLayout({
             backgroundPosition: 'center',
           }}
         />
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+        <ThemeProvider attribute="data-theme" defaultTheme="system" enableSystem disableTransitionOnChange>
           {children}
         </ThemeProvider>
       </body>

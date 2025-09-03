@@ -1,0 +1,496 @@
+[
+  {
+    "id": "TC001",
+    "title": "Verify theme switching functionality and persistence",
+    "description": "Test that the user can toggle between light and dark themes and the chosen theme persists across page reloads via localStorage.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to the homepage."
+      },
+      {
+        "type": "action",
+        "description": "Click the theme toggle button to switch to dark mode."
+      },
+      {
+        "type": "assertion",
+        "description": "Verify that the site theme updates to dark mode with the cosmic/starry background."
+      },
+      {
+        "type": "action",
+        "description": "Reload the page."
+      },
+      {
+        "type": "assertion",
+        "description": "Verify that dark mode is still active after reload."
+      },
+      {
+        "type": "action",
+        "description": "Click the theme toggle button to switch back to light mode."
+      },
+      {
+        "type": "assertion",
+        "description": "Verify that site theme updates to the Apple-inspired light mode."
+      },
+      {
+        "type": "action",
+        "description": "Reload the page."
+      },
+      {
+        "type": "assertion",
+        "description": "Verify that light mode persists after reload."
+      }
+    ]
+  },
+  {
+    "id": "TC002",
+    "title": "Validate navigation bar links and buttons for desktop and mobile",
+    "description": "Ensure Work, About, Contact links, Email, and Resume download buttons function correctly and responsive behavior on various screen sizes.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Load the site on desktop viewport."
+      },
+      {
+        "type": "action",
+        "description": "Click the Work link."
+      },
+      {
+        "type": "assertion",
+        "description": "Confirm navigation to the Work (Projects) page."
+      },
+      {
+        "type": "action",
+        "description": "Click the About link."
+      },
+      {
+        "type": "assertion",
+        "description": "Confirm navigation to the About page."
+      },
+      {
+        "type": "action",
+        "description": "Click the Contact link."
+      },
+      {
+        "type": "assertion",
+        "description": "Verify that the contact modal opens."
+      },
+      {
+        "type": "action",
+        "description": "Click on the Email call-to-action button."
+      },
+      {
+        "type": "assertion",
+        "description": "Verify default mail client opens with correct email address."
+      },
+      {
+        "type": "action",
+        "description": "Click on the Resume download button."
+      },
+      {
+        "type": "assertion",
+        "description": "Verify that the resume file is downloaded."
+      },
+      {
+        "type": "action",
+        "description": "Resize the viewport to mobile dimensions."
+      },
+      {
+        "type": "assertion",
+        "description": "Verify navigation bar collapses or adapts for mobile, and all links and buttons remain visible and tappable."
+      },
+      {
+        "type": "action",
+        "description": "Tap each navigation link and buttons on mobile view."
+      },
+      {
+        "type": "assertion",
+        "description": "Verify correct navigations and actions for each tap."
+      }
+    ]
+  },
+  {
+    "id": "TC003",
+    "title": "Verify hero section 3D animated text and profile image",
+    "description": "Check the hero section loading with animated 3D text effects, professional summary, and profile image with border styling.",
+    "category": "ui",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Open the homepage."
+      },
+      {
+        "type": "assertion",
+        "description": "Verify 3D animated text is displayed with smooth continuous animation."
+      },
+      {
+        "type": "assertion",
+        "description": "Verify professional summary text is present and matches the latest resume content."
+      },
+      {
+        "type": "assertion",
+        "description": "Confirm profile image is displayed with correct border effects and is responsive on different device sizes."
+      }
+    ]
+  },
+  {
+    "id": "TC004",
+    "title": "Verify Experience section card layout and hover effects",
+    "description": "Check experience cards display job details correctly, show achievement bullet points, and respond with animations on hover.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to the Experience section on the homepage."
+      },
+      {
+        "type": "assertion",
+        "description": "Verify all professional experience cards are visible with correct job titles, companies, dates, and descriptions."
+      },
+      {
+        "type": "action",
+        "description": "Hover over each experience card."
+      },
+      {
+        "type": "assertion",
+        "description": "Verify that hover animations trigger smoothly and achievement bullet points are highlighted."
+      },
+      {
+        "type": "action",
+        "description": "Resize viewport to mobile and tablet sizes."
+      },
+      {
+        "type": "assertion",
+        "description": "Verify cards layout adjusts responsively and hover effects are replaced with suitable touch interactions."
+      }
+    ]
+  },
+  {
+    "id": "TC005",
+    "title": "Validate Projects section grid layout and displayed technologies",
+    "description": "Check that more than 6 projects display in a responsive grid with technology stack icons and no images or 'View Details' buttons.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to the Projects/Work page."
+      },
+      {
+        "type": "assertion",
+        "description": "Verify at least 6 project cards are displayed in a responsive grid layout."
+      },
+      {
+        "type": "assertion",
+        "description": "Check each project card displays correct technology stack icons or emojis."
+      },
+      {
+        "type": "assertion",
+        "description": "Confirm no project images or 'View Details' buttons are present."
+      },
+      {
+        "type": "action",
+        "description": "Resize viewport to test responsiveness on mobile and tablet."
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the grid adapts layout correctly and is usable on all device sizes."
+      }
+    ]
+  },
+  {
+    "id": "TC006",
+    "title": "Verify Skills section grouping and animated grid layout",
+    "description": "Ensure six skill groups with technology icons/emojis appear grouped and arranged in an animated, responsive grid.",
+    "category": "functional",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Visit the Skills section on the homepage."
+      },
+      {
+        "type": "assertion",
+        "description": "Confirm six distinct skill groups are displayed with appropriate icons or emojis."
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the grid layout is animated with smooth entrance animations using Framer Motion."
+      },
+      {
+        "type": "action",
+        "description": "Resize screen for mobile and tablet."
+      },
+      {
+        "type": "assertion",
+        "description": "Ensure the skills grid adjusts responsively and remains visually clear."
+      }
+    ]
+  },
+  {
+    "id": "TC007",
+    "title": "Validate Education section timeline layout and animations",
+    "description": "Check the education timeline displays compact info boxes with consistent heading styles and smooth Framer Motion animations.",
+    "category": "functional",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Scroll to or navigate to Education section."
+      },
+      {
+        "type": "assertion",
+        "description": "Verify timeline events show education entries with institution names and titles using consistent headings."
+      },
+      {
+        "type": "assertion",
+        "description": "Confirm info boxes are compact and visually uniform."
+      },
+      {
+        "type": "assertion",
+        "description": "Observe and confirm that timeline animations trigger smoothly on scroll."
+      },
+      {
+        "type": "action",
+        "description": "Test on mobile and tablet screen sizes."
+      },
+      {
+        "type": "assertion",
+        "description": "Ensure timeline remains readable, animated, and layout adjusts responsively."
+      }
+    ]
+  },
+  {
+    "id": "TC008",
+    "title": "Test Contact modal form validation and submission",
+    "description": "Open the contact modal, verify form validation behaviors, alternative contact methods, and successful submission with confirmation feedback.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Click Contact link or button to open the contact modal."
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the contact modal appears properly and is mobile-optimized."
+      },
+      {
+        "type": "action",
+        "description": "Attempt to submit the form with empty required fields."
+      },
+      {
+        "type": "assertion",
+        "description": "Verify validation errors are displayed for required fields."
+      },
+      {
+        "type": "action",
+        "description": "Fill form fields with invalid email and incomplete data."
+      },
+      {
+        "type": "action",
+        "description": "Attempt to submit the form."
+      },
+      {
+        "type": "assertion",
+        "description": "Verify form prevents submission and displays email format validation errors."
+      },
+      {
+        "type": "action",
+        "description": "Fill the form correctly with valid name, email, and message."
+      },
+      {
+        "type": "action",
+        "description": "Submit the form."
+      },
+      {
+        "type": "assertion",
+        "description": "Confirm successful submission with a confirmation message or modal feedback."
+      },
+      {
+        "type": "assertion",
+        "description": "Verify alternative contact methods (Email link, GitHub, LinkedIn) are visible and open the correct links."
+      }
+    ]
+  },
+  {
+    "id": "TC009",
+    "title": "Validate real-time clock updates in navigation bar",
+    "description": "Ensure the integrated real-time clock in the glass morphism navigation bar displays current time and date accurately and updates dynamically.",
+    "category": "functional",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Open the homepage."
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the clock displays the current system time and date initially."
+      },
+      {
+        "type": "action",
+        "description": "Wait for at least 2 minutes."
+      },
+      {
+        "type": "assertion",
+        "description": "Confirm the clock updates dynamically and matches the system time."
+      }
+    ]
+  },
+  {
+    "id": "TC010",
+    "title": "Check website accessibility compliance (WCAG 2.1 AA)",
+    "description": "Evaluate the site to ensure compliance with WCAG 2.1 AA standards including keyboard navigation, screen reader compatibility, color contrast, and accessible labels.",
+    "category": "security",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate through all main pages and sections using only keyboard."
+      },
+      {
+        "type": "assertion",
+        "description": "Verify all interactive elements are reachable and operable via keyboard."
+      },
+      {
+        "type": "action",
+        "description": "Use screen reader software to navigate the website."
+      },
+      {
+        "type": "assertion",
+        "description": "Confirm screen reader announces all important information correctly and navigation landmarks are defined."
+      },
+      {
+        "type": "assertion",
+        "description": "Check color contrast ratios meet WCAG 2.1 AA minimum standards on all themes."
+      },
+      {
+        "type": "assertion",
+        "description": "Ensure all images and icons have appropriate alternative text or aria-label attributes."
+      }
+    ]
+  },
+  {
+    "id": "TC011",
+    "title": "Cross-browser compatibility verification",
+    "description": "Test the website on Chrome, Safari, and Firefox on desktop and iOS Safari, Chrome Mobile on mobile to ensure consistent behavior and appearance.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Open the website on desktop Chrome."
+      },
+      {
+        "type": "assertion",
+        "description": "Verify all core functionalities and visual layouts work correctly."
+      },
+      {
+        "type": "action",
+        "description": "Repeat steps for desktop Safari and Firefox."
+      },
+      {
+        "type": "action",
+        "description": "Open the website on iOS Safari and Chrome Mobile."
+      },
+      {
+        "type": "assertion",
+        "description": "Verify responsive design, navigation, theme toggling, contact modal, and animations function without errors."
+      }
+    ]
+  },
+  {
+    "id": "TC012",
+    "title": "Check performance and smoothness of animations and page load",
+    "description": "Measure and verify animations trigger smoothly without jank, and pages load quickly meeting 60fps standards on modern devices.",
+    "category": "functional",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Load the homepage and navigate across multiple sections."
+      },
+      {
+        "type": "assertion",
+        "description": "Observe Framer Motion animations (page transitions, hover effects) for smoothness."
+      },
+      {
+        "type": "assertion",
+        "description": "Verify no animation stuttering or frame drops occur."
+      },
+      {
+        "type": "action",
+        "description": "Measure page load time using browser dev tools performance tab."
+      },
+      {
+        "type": "assertion",
+        "description": "Confirm page load times and animation frame rates meet or exceed smooth 60fps standards on tested devices."
+      }
+    ]
+  },
+  {
+    "id": "TC013",
+    "title": "Verify custom analytics tracking of user interactions and page views",
+    "description": "Ensure that the custom analytics hook tracks correct page views and user interactions data is collected per specification.",
+    "category": "functional",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Open the website and navigate across key pages (Home, Work, About, Contact)."
+      },
+      {
+        "type": "assertion",
+        "description": "Verify analytics events are triggered for page views."
+      },
+      {
+        "type": "action",
+        "description": "Interact with elements such as theme toggle, navigation links, and contact form submissions."
+      },
+      {
+        "type": "assertion",
+        "description": "Verify corresponding user interaction events are tracked by the analytics system."
+      },
+      {
+        "type": "action",
+        "description": "Check network requests or logs to confirm analytics endpoint receives correct data."
+      }
+    ]
+  },
+  {
+    "id": "TC014",
+    "title": "Validate mobile-first responsiveness and touch-friendly interactions",
+    "description": "Check the site on various mobile devices for proper responsive text sizing, touch target sizes, and smooth scrolling.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Open the website on multiple mobile devices and emulators."
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text sizes are readable without zoom and UI elements have adequate touch target sizes."
+      },
+      {
+        "type": "assertion",
+        "description": "Ensure navigation and modal forms respond correctly to touch gestures."
+      },
+      {
+        "type": "action",
+        "description": "Scroll through long pages and sections."
+      },
+      {
+        "type": "assertion",
+        "description": "Verify scrolling is smooth and no layout breakage occurs."
+      }
+    ]
+  }
+]

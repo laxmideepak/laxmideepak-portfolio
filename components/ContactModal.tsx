@@ -20,12 +20,45 @@ export function ContactModal({ isOpen, onClose }: ContactModalProps) {
     project: '',
     message: ''
   })
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    // Handle form submission here
-    console.log('Form submitted:', formData)
-    // You can add API call logic here
+    setIsSubmitting(true)
+    setSubmitStatus('idle')
+    
+    try {
+      // Basic validation
+      if (!formData.name.trim() || !formData.email.trim() || !formData.message.trim()) {
+        throw new Error('Please fill in all required fields')
+      }
+      
+      // Email validation
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+      if (!emailRegex.test(formData.email)) {
+        throw new Error('Please enter a valid email address')
+      }
+      
+      // Simulate API call (replace with actual API endpoint)
+      await new Promise(resolve => setTimeout(resolve, 1000))
+      
+      // Success
+      setSubmitStatus('success')
+      setFormData({ name: '', email: '', project: '', message: '' })
+      
+      // Close modal after 2 seconds
+      setTimeout(() => {
+        onClose()
+        setSubmitStatus('idle')
+      }, 2000)
+      
+    } catch (error) {
+      setSubmitStatus('error')
+      console.error('Form submission error:', error)
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -157,9 +190,43 @@ export function ContactModal({ isOpen, onClose }: ContactModalProps) {
                     />
                   </div>
 
-                  <Button type="submit" className="w-full bg-primary hover:bg-primary/90 h-10 sm:h-11 text-sm sm:text-base">
-                    <Send className="h-4 w-4 mr-2" />
-                    Send Message
+                  {/* Status Messages */}
+                  {submitStatus === 'success' && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      className="p-3 bg-green-500/10 border border-green-500/20 rounded-lg text-green-600 text-sm text-center"
+                    >
+                      ✅ Message sent successfully! I'll get back to you soon.
+                    </motion.div>
+                  )}
+                  
+                  {submitStatus === 'error' && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      className="p-3 bg-red-500/10 border border-red-500/20 rounded-lg text-red-600 text-sm text-center"
+                    >
+                      ❌ Please fill in all required fields correctly.
+                    </motion.div>
+                  )}
+                  
+                  <Button 
+                    type="submit" 
+                    disabled={isSubmitting}
+                    className="w-full bg-primary hover:bg-primary/90 h-10 sm:h-11 text-sm sm:text-base disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
+                    {isSubmitting ? (
+                      <>
+                        <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2" />
+                        Sending...
+                      </>
+                    ) : (
+                      <>
+                        <Send className="h-4 w-4 mr-2" />
+                        Send Message
+                      </>
+                    )}
                   </Button>
                 </form>
 
