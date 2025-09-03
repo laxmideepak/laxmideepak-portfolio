@@ -3,6 +3,7 @@ import type { Metadata } from "next"
 import { cn } from "@/lib/utils"
 import { Inter } from "next/font/google"
 import { ThemeProvider } from "@/components/theme-provider"
+import { TimeWeatherDisplay } from "@/components/TimeWeatherDisplay"
 import "./globals.css"
 import Image from "next/image"
 
@@ -214,6 +215,7 @@ export default function RootLayout({
           }}
         />
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+          <TimeWeatherDisplay />
           {children}
         </ThemeProvider>
       </body>

@@ -292,15 +292,15 @@ export default function WorkPage() {
                   : "space-y-6"
               }
             >
-                             {filteredProjects.map((project, index) => (
-                 <ProjectCard
-                   key={project.title}
-                   project={project}
-                   index={index}
-                   showImage={!!project.image}
-                   viewMode={viewMode}
-                 />
-               ))}
+              {filteredProjects.map((project, index) => (
+                <ProjectCard
+                  key={project.title}
+                  project={project}
+                  index={index}
+                  showImage={!!project.image}
+                  viewMode={viewMode}
+                />
+              ))}
             </motion.div>
           ) : (
             <motion.div
