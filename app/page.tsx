@@ -9,8 +9,9 @@ import { Badge } from "@/components/ui/badge"
 import { ThemeToggle } from "@/components/theme-toggle"
 
 import { GlassNav } from "@/components/GlassNav"
-import { ContactForm } from "@/components/ContactForm"
+import { ContactModal } from "@/components/ContactModal"
 import { ProjectCard } from "@/components/ProjectCard"
+import { TimeWeatherDisplay } from "@/components/TimeWeatherDisplay"
 import Image from "next/image"
 import Link from "next/link"
 import { 
@@ -251,6 +252,7 @@ export default function Home() {
   const [mounted, setMounted] = useState(false)
   const [activeSection, setActiveSection] = useState<string>('experience')
   const [animKey, setAnimKey] = useState<number | null>(null)
+  const [isContactModalOpen, setIsContactModalOpen] = useState(false)
   const { scrollYProgress } = useScroll();
   const rotateX = useTransform(scrollYProgress, [0, 1], [0, 45]);
   const duration = useTransform(scrollYProgress, [0, 1], [0.3, 1.2]);
@@ -739,17 +741,15 @@ export default function Home() {
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
         >
-          <div className="text-center space-y-4">
-            <motion.h2 style={{ rotateX, transition: `transform ${duration} cubic-bezier(0.95,0.05,0.795,0.035)`, transformStyle: "preserve-3d" }} className="text-3xl md:text-4xl font-bold flex items-center justify-center gap-3">
-              <Mail className="h-8 w-8 text-primary" />
-              Let's Connect
-            </motion.h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">Interested in collaborating on innovative projects? Looking for a skilled developer for your team? Or just want to discuss the latest in tech? I'd love to hear from you! 🚀</p>
-          </div>
-          
-          {/* Contact Form */}
-          <div className="mt-8">
-            <ContactForm />
+          {/* Contact Trigger */}
+          <div className="text-center">
+            <Button 
+              onClick={() => setIsContactModalOpen(true)}
+              className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-3 text-lg"
+            >
+              <Mail className="h-5 w-5 mr-2" />
+              Get In Touch
+            </Button>
           </div>
           
           {/* Alternative Contact Methods */}
@@ -782,26 +782,24 @@ export default function Home() {
           </div>
         </motion.section>
 
-        {/* DC Style Footer */}
-        <footer className="w-full py-6 flex flex-col items-center mt-8">
-          <div className="w-full border-t border-border mb-4" />
-          <span className="flex items-center gap-2 text-primary font-semibold text-lg tracking-wide">
-            <Code2 className="h-5 w-5 text-primary" />
-            Made by Deepak Chowdary
-          </span>
-        </footer>
+        {/* Footer */}
+        <motion.footer
+          className="fixed bottom-0 left-0 right-0 text-center text-sm text-muted-foreground py-4 bg-background/80 backdrop-blur-sm z-50"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.5 }}
+        >
+          <span className="font-mono">[SYSTEM]</span> Powered by Next.js • Tailwind CSS • Framer Motion • Quantum Core v2.0
+          <div className="absolute -left-8 bottom-0 text-2xl float">🌠</div>
+          <div className="absolute -right-8 bottom-0 text-2xl float">✨</div>
+        </motion.footer>
       </div>
-      {/* Footer */}
-      <motion.footer
-        className="fixed bottom-0 left-0 right-0 text-center text-sm text-muted-foreground py-4 bg-background/80 backdrop-blur-sm z-50"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.5 }}
-      >
-        <span className="font-mono">[SYSTEM]</span> Powered by Next.js • Tailwind CSS • Framer Motion • Quantum Core v2.0
-        <div className="absolute -left-8 bottom-0 text-2xl float">🌠</div>
-        <div className="absolute -right-8 bottom-0 text-2xl float">✨</div>
-      </motion.footer>
+
+      {/* Contact Modal - Outside main container for proper z-index */}
+      <ContactModal 
+        isOpen={isContactModalOpen}
+        onClose={() => setIsContactModalOpen(false)}
+      />
     </div>
   )
 }

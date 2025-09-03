@@ -30,21 +30,21 @@ export function TimeWeatherDisplay() {
       switch (condition.toLowerCase()) {
         case 'sunny':
         case 'clear':
-          return <Sun className="h-4 w-4 text-yellow-500" />
+          return <Sun className="h-4 w-4 text-yellow-400" />
         case 'rainy':
         case 'rain':
-          return <CloudRain className="h-4 w-4 text-blue-500" />
+          return <CloudRain className="h-4 w-4 text-blue-400" />
         case 'snowy':
         case 'snow':
           return <CloudSnow className="h-4 w-4 text-blue-300" />
         case 'windy':
         case 'wind':
-          return <Wind className="h-4 w-4 text-gray-500" />
+          return <Wind className="h-4 w-4 text-gray-400" />
         case 'cloudy':
         case 'partly cloudy':
-          return <Cloud className="h-4 w-4 text-gray-500" />
+          return <Cloud className="h-4 w-4 text-gray-400" />
         default:
-          return <Cloud className="h-4 w-4 text-gray-500" />
+          return <Cloud className="h-4 w-4 text-gray-400" />
       }
     }
 
@@ -76,7 +76,7 @@ export function TimeWeatherDisplay() {
       hour: '2-digit',
       minute: '2-digit',
       second: '2-digit',
-      hour12: false
+      hour12: true
     })
   }
 
@@ -89,47 +89,17 @@ export function TimeWeatherDisplay() {
   }
 
   return (
-    <div className="fixed top-4 left-4 z-50 bg-white/90 backdrop-blur-md rounded-xl p-4 shadow-xl border border-gray-200/50 hover:shadow-2xl transition-all duration-300">
-      <div className="flex flex-col space-y-3">
+    <div className="inline-block border border-white/20 rounded-md px-2 py-1 bg-black/10 backdrop-blur-sm">
+      <div className="flex items-center space-x-1.5">
         {/* Time */}
-        <div className="flex items-center space-x-3">
-          <Clock className="h-5 w-5 text-blue-600" />
-          <span className="text-lg font-mono font-semibold text-gray-800">
-            {formatTime(currentTime)}
-          </span>
-        </div>
+        <span className="text-xs font-mono font-medium text-white">
+          {formatTime(currentTime)}
+        </span>
         
         {/* Day */}
-        <div className="flex items-center space-x-3">
-          <Calendar className="h-5 w-5 text-green-600" />
-          <span className="text-sm font-medium text-gray-700">
-            {formatDay(currentTime)}
-          </span>
-        </div>
-        
-        {/* Weather */}
-        {weather && (
-          <div className="space-y-2">
-            <div className="flex items-center space-x-3">
-              {weather.icon}
-              <div className="flex items-center space-x-2">
-                <Thermometer className="h-4 w-4 text-red-500" />
-                <span className="text-lg font-semibold text-gray-800">
-                  {weather.temperature}°C
-                </span>
-              </div>
-            </div>
-            <div className="text-xs text-gray-600 font-medium">
-              {weather.condition}
-            </div>
-            {weather.humidity && weather.windSpeed && (
-              <div className="text-xs text-gray-500 space-y-1">
-                <div>💧 {weather.humidity}% humidity</div>
-                <div>💨 {weather.windSpeed} km/h wind</div>
-              </div>
-            )}
-          </div>
-        )}
+        <span className="text-xs font-medium text-white/80">
+          {formatDay(currentTime)}
+        </span>
       </div>
     </div>
   )

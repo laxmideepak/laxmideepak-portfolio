@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { ThemeToggle } from "@/components/theme-toggle"
+import { TimeWeatherDisplay } from "@/components/TimeWeatherDisplay"
 import { Download, Menu, X, Mail, ChevronDown, Briefcase, Book, FolderOpen, Wrench, User } from "lucide-react"
 import Link from "next/link"
 
@@ -152,6 +153,11 @@ export function GlassNav({ links, logo }: GlassNavProps) {
         transition={{ duration: 0.5, ease: "easeOut" }}
       >
         {/* Background with subtle elevation on scroll */}
+        {/* Time Display - Absolute edge positioned outside container */}
+        <div className="absolute left-0 top-1/2 transform -translate-y-1/2 z-10">
+          <TimeWeatherDisplay />
+        </div>
+        
         <div 
           className={`w-full transition-all duration-300 ${
             isScrolled 
@@ -161,17 +167,17 @@ export function GlassNav({ links, logo }: GlassNavProps) {
         >
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex items-center justify-between h-16">
-              {/* Logo and Dropdown - Left aligned */}
+              {/* Logo and Dropdown - Center aligned */}
               <div className="flex items-center space-x-3">
-                {logo || (
-                  <Link 
-                    href="/" 
-                    className="text-xl font-semibold text-foreground hover:text-primary transition-colors"
-                    aria-label="Laxmideepak Nelapatla - Home"
-                  >
-                    Laxmideepak
-                  </Link>
-                )}
+                  {logo || (
+                    <Link 
+                      href="/" 
+                      className="text-xl font-semibold text-foreground hover:text-primary transition-colors"
+                      aria-label="Laxmideepak Nelapatla - Home"
+                    >
+                      Laxmideepak
+                    </Link>
+                  )}
                 
                 {/* Dropdown Button */}
                 <div className="relative" ref={dropdownRef}>
