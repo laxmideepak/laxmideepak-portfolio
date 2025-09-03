@@ -16,7 +16,6 @@ import Link from "next/link"
 import { 
   ArrowDown,
   Book,
-  BookOpen,
   Briefcase,
   Code2,
   Cloud,
@@ -38,7 +37,7 @@ import { useTheme } from "next-themes"
 import { useRef } from "react"
 import { Fragment } from "react"
 import React from 'react';
-import { SiPython, SiJavascript, SiPhp, SiHtml5, SiCss3, SiReact, SiNodedotjs, SiAngular, SiExpress, SiMongodb, SiPostgresql, SiMysql, SiTensorflow, SiKeras, SiNumpy, SiPandas, SiScikitlearn, SiAmazon, SiDocker, SiGithub, SiGit, SiXampp, SiKubernetes } from 'react-icons/si';
+import { SiPython, SiJavascript, SiReact, SiNodedotjs, SiAngular, SiMongodb, SiPostgresql, SiMysql, SiTensorflow, SiKeras, SiNumpy, SiPandas, SiScikitlearn, SiAmazon, SiDocker, SiGithub, SiGit, SiKubernetes } from 'react-icons/si';
 
 
 interface Experience {
@@ -138,40 +137,19 @@ function RocketBackground({ crashState }: { crashState: CrashState }) {
 }
 
 const roles = [
-  "Software Engineer",
-  "AI Engineer",
-  "Data Scientist",
-  "Machine Learning Engineer",
-  "Full Stack Developer",
-  "Backend Developer",
-  "Cloud Engineer"
+  "Full Stack Software Engineer",
+  "AI/ML Engineer",
+  "Software Engineer"
 ]
 
 function AnimatedRoles() {
-  const [index, setIndex] = useState(0)
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      setIndex((i) => (i + 1) % roles.length)
-    }, 1800)
-    return () => clearTimeout(timeout)
-  }, [index])
   return (
     <div className="mt-2 h-10 flex flex-col items-center justify-center">
       <span className="text-muted-foreground text-base mb-1">Looking for full-time opportunities in:</span>
       <div className="relative h-7 w-full flex items-center justify-center">
-        <AnimatePresence mode="wait">
-          <motion.span
-            key={roles[index]}
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 0.7, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.6 }}
-            className="text-lg md:text-xl font-semibold text-accent-foreground/80"
-            style={{ letterSpacing: 1 }}
-          >
-            {roles[index]}
-          </motion.span>
-        </AnimatePresence>
+        <span className="text-lg md:text-xl font-semibold text-accent-foreground/80" style={{ letterSpacing: 1 }}>
+          Full Stack Software Engineer
+        </span>
       </div>
     </div>
   )
@@ -181,30 +159,48 @@ function AnimatedRoles() {
 const skillIcons: Record<string, React.ReactNode> = {
   Python: <SiPython title="Python" className="text-blue-400" />,
   Java: <span title="Java">☕</span>,
+  TypeScript: <span title="TypeScript">🔷</span>,
+  SQL: <span title="SQL">🗄️</span>,
   JavaScript: <SiJavascript title="JavaScript" className="text-yellow-400" />,
-  PHP: <SiPhp title="PHP" className="text-indigo-400" />,
-  'HTML/CSS': <span title="HTML/CSS"><SiHtml5 className="text-orange-400 inline" /> <SiCss3 className="text-blue-400 inline ml-1" /></span>,
-  React: <SiReact title="React" className="text-cyan-400" />,
+  'React.js': <SiReact title="React" className="text-cyan-400" />,
   'Node.js': <SiNodedotjs title="Node.js" className="text-green-500" />,
-  'Angular 12': <SiAngular title="Angular" className="text-red-500" />,
+  Angular: <SiAngular title="Angular" className="text-red-500" />,
   'Spring Boot': <span title="Spring Boot">🌱</span>,
-  Express: <SiExpress title="Express" className="text-gray-400" />,
+  GraphQL: <span title="GraphQL">🔷</span>,
+  MySQL: <SiMysql title="MySQL" className="text-blue-500" />,
+  PostgreSQL: <SiPostgresql title="PostgreSQL" className="text-blue-700" />,
   MongoDB: <SiMongodb title="MongoDB" className="text-green-600" />,
-  'MySQL/PostgreSQL': <span title="MySQL/PostgreSQL"><SiMysql className="text-blue-500 inline" /> <SiPostgresql className="text-blue-700 inline ml-1" /></span>,
+  Redis: <span title="Redis">🔴</span>,
+  Kafka: <span title="Kafka">📨</span>,
+  PyTorch: <span title="PyTorch">🔥</span>,
   TensorFlow: <SiTensorflow title="TensorFlow" className="text-orange-400" />,
   Keras: <SiKeras title="Keras" className="text-red-400" />,
-  NumPy: <SiNumpy title="NumPy" className="text-blue-400" />,
   Pandas: <SiPandas title="Pandas" className="text-black" />,
+  NumPy: <SiNumpy title="NumPy" className="text-blue-400" />,
   'Scikit-learn': <SiScikitlearn title="Scikit-learn" className="text-yellow-500" />,
-  'AWS (S3, DNS)': <SiAmazon title="AWS" className="text-yellow-400" />,
+  TimeSHAP: <span title="TimeSHAP">⏰</span>,
+  'AWS (ECS, S3, CloudFront, Route 53, RDS, Lambda, CodePipeline, SageMaker)': <SiAmazon title="AWS" className="text-yellow-400" />,
   Docker: <SiDocker title="Docker" className="text-blue-400" />,
-  'GitHub Actions': <SiGithub title="GitHub Actions" className="text-gray-400" />,
-  'CI/CD Pipelines': <span title="CI/CD Pipelines">🔁</span>,
-  'API Gateway': <span title="API Gateway">🛣️</span>,
   Kubernetes: <SiKubernetes title="Kubernetes" className="text-blue-400" />,
+  'GitHub Actions': <SiGithub title="GitHub Actions" className="text-gray-400" />,
+  'CI/CD': <span title="CI/CD">🔁</span>,
   Git: <SiGit title="Git" className="text-orange-500" />,
-  XAMPP: <SiXampp title="XAMPP" className="text-orange-400" />,
-  Gradio: <span title="Gradio">🎮</span>,
+  Jest: <span title="Jest">🧪</span>,
+  PyTest: <span title="PyTest">🐍</span>,
+  Lighthouse: <span title="Lighthouse">💡</span>,
+  'axe-core': <span title="axe-core">♿</span>,
+  'HTML5': <span title="HTML5">🌐</span>,
+  'CSS3': <span title="CSS3">🎨</span>,
+  'PL/pgSQL': <span title="PL/pgSQL">🗄️</span>,
+  'Express.js': <span title="Express.js">🚀</span>,
+  'Next.js': <span title="Next.js">⚡</span>,
+  'Jupyter Notebook': <span title="Jupyter Notebook">📓</span>,
+  'Deep Learning': <span title="Deep Learning">🧠</span>,
+  'Computer Vision': <span title="Computer Vision">👁️</span>,
+  'NLP': <span title="Natural Language Processing">💬</span>,
+  'Vercel': <span title="Vercel">🚀</span>,
+  'Satellite Imagery Analysis': <span title="Satellite Imagery Analysis">🛰️</span>,
+  'Performance Optimization': <span title="Performance Optimization">⚡</span>,
 };
 
 function HeroSection() {
@@ -229,7 +225,7 @@ function HeroSection() {
       <div className="flex-1 flex flex-col justify-center items-center md:items-start space-y-4">
         <div className="text-primary/80 mb-2 font-mono">INITIALIZING NEURAL LINK...</div>
         <motion.h1 style={{ rotateX, transition: `transform ${duration} cubic-bezier(0.95,0.05,0.795,0.035)`, transformStyle: "preserve-3d" }} className="text-4xl md:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary via-accent to-primary glow mb-2">Laxmideepak Nelapatla</motion.h1>
-        <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-4 backdrop-blur-sm bg-background/30 p-4 rounded-lg border border-primary/20">Graduate student in Computer Science at UTA with over 2 years of experience developing scalable full-stack applications using React, Node.js, and AWS. Proficient in RESTful API design, cloud integration, and database optimization.</p>
+        <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-4 backdrop-blur-sm bg-background/30 p-4 rounded-lg border border-primary/20">Full-stack engineer with strong Java expertise and hands-on experience in deploying scalable solutions. Skilled in configuring and customizing applications on Unix-like and Windows systems, with a solid foundation in relational databases to meet client-specific requirements.</p>
         <AnimatedRoles />
       </div>
       
@@ -272,51 +268,60 @@ export default function Home() {
   if (!mounted) return null
 
   const skills: SkillsType = {
-    languages: ["Python", "Java", "JavaScript", "PHP", "HTML/CSS"],
-    webFrameworks: ["React", "Node.js", "Angular 12", "Spring Boot", "Express"],
-    databases: ["MySQL/PostgreSQL", "MongoDB"],
-    mlDs: ["TensorFlow", "Keras", "NumPy", "Pandas", "Scikit-learn"],
-    devOpsCloud: ["AWS (S3, DNS)", "Docker", "GitHub Actions", "CI/CD Pipelines", "API Gateway", "Kubernetes"],
-    tools: ["Git", "XAMPP", "Gradio"]
+    languages: ["Python", "Java", "TypeScript", "SQL", "JavaScript", "HTML5", "CSS3", "PL/pgSQL"],
+    webFrameworks: ["React.js", "Node.js", "Angular", "Spring Boot", "GraphQL", "Express.js", "Next.js"],
+    databases: ["MySQL", "PostgreSQL", "MongoDB", "Redis", "Kafka"],
+    mlDs: ["PyTorch", "TensorFlow", "Keras", "Pandas", "NumPy", "Scikit-learn", "TimeSHAP", "Jupyter Notebook", "Deep Learning", "Computer Vision", "NLP"],
+    devOpsCloud: ["AWS (ECS, S3, CloudFront, Route 53, RDS, Lambda, CodePipeline, SageMaker)", "Docker", "Kubernetes", "GitHub Actions", "CI/CD", "Vercel"],
+    tools: ["Git", "Jest", "PyTest", "Lighthouse", "axe-core", "Satellite Imagery Analysis", "Performance Optimization"]
   }
 
   const experiences: Experience[] = [
     {
-      title: "Graduate Research Assistant",
+      title: "Software Engineer",
+      company: "Goto Optical",
+      location: "Remote",
+      period: "May 2024 - Present",
+      achievements: [
+        "Developed and deployed a core e-commerce platform using React, Next.js, and AWS (S3, CloudFront, Route 53) to ensure reliable, high-quality customer deliverables, while configuring CDN caching and server-side rendering to streamline client workflows",
+        "Architected reusable, location-specific landing page templates within a modular monorepo, facilitating efficient customization and configuration to support client-specific processes and optimize API usage with AWS Lambda + API Gateway",
+        "Established CI/CD pipelines with GitHub Actions and AWS (CodePipeline, RDS) for automated, zero-downtime deployments, ensuring high availability in production and adherence to technical standards"
+      ]
+    },
+    {
+      title: "Software Engineer - Graduate Research Assistant",
       company: "UTA Honors College",
-      location: "Dallas, TX",
-      period: "Jan 2025 - May 2025",
+      location: "Arlington, TX",
+      period: "Jan 2024 - May 2024",
       achievements: [
-        "Revamped the Honors Department website, raising overall accessibility and front-end performance by ≈ 80% through targeted optimization with HTML5, CSS3, JavaScript and image-compression techniques",
-        "Built & maintained department sub-sites in WordPress and Sitecore, delivering fully responsive, user-centered layouts that served 1K+ monthly visitors without downtime",
-        "Achieved 100% WCAG 2.1 + DOJ compliance by leading automated and manual remediation (axe-core, Lighthouse)"
+        "Enhanced platform accessibility and user experience by achieving 100% accessibility scores and reducing layout shift by 80% on a React + WordPress solution serving 1K+ MAUs, aligning with quality deliverable standards",
+        "Deployed high-availability assets via AWS S3 and CloudFront (99.95% uptime) with automated GitHub Actions CI/CD pipelines, ensuring robust configuration management and prompt resolution of technical issues"
       ]
     },
     {
-      title: "Java Full-Stack Intern",
-      company: "Cognizant",
-      location: "Hyderabad, India",
-      period: "Feb 2023 - Aug 2023",
-      achievements: [
-        "Developed a demo Audit Management System with a responsive Angular 12 front end and Spring Boot microservices (REST), digitizing manual audit workflows and enabling real-time status tracking",
-        "Implemented JWT authentication, RBAC, and bundle-size optimizations (lazy loading, asset minification), boosting Google PageSpeed Insights scores to 90+ and blocking 100% of unauthorized requests in QA",
-        "Containerized & deployed services via Docker → AWS ECS (Fargate) with CodeBuild / CodePipeline CI/CD, cutting manual release effort by ≈ 50% and supporting zero-downtime, auto-scaling updates"
-      ]
-    },
-    {
-      title: "Full Stack Developer Intern",
-      company: "Srinidhi Technologies Inc",
+      title: "Full Stack Software Engineer",
+      company: "Srinidhi Technologies",
       location: "Telangana, India",
-      period: "Jul 2022 - Dec 2023",
+      period: "Jan 2023 - Jul 2023",
       achievements: [
-        "Developed and maintained web applications using React, Node.js, and MongoDB, improving client project delivery times by 30%",
-        "Collaborated with cross-functional teams to design and implement new features, resulting in a 25% increase in user engagement",
-        "Integrated third-party APIs and optimized database queries, reducing server response times by 40%"
+        "Managed a high-traffic real-estate platform handling 500K+ monthly requests, ensuring service level objectives with 95th-percentile latency under 100ms and supporting client workflows with enhanced content-update velocity",
+        "Optimized MongoDB performance by reducing median query time by 59% (from 110ms to 45ms) through compound indexes and aggregation pipelines, contributing to efficient system performance and reduced compute costs"
       ]
     },
   ]
 
   const certifications: Certification[] = [
+    {
+      title: "AWS Certified Developer – Associate",
+      issuer: "Amazon Web Services",
+      period: "2024",
+      description: [
+        "Certified in developing and maintaining applications on the AWS platform",
+        "Demonstrates expertise in AWS services including Lambda, API Gateway, S3, CloudFront, and RDS",
+        "Validates skills in serverless development, CI/CD pipelines, and cloud-native application architecture",
+        "Proves proficiency in AWS best practices for security, scalability, and cost optimization"
+      ]
+    },
     {
       title: "Advanced Software Engineering Virtual Experience",
       issuer: "Walmart USA",
@@ -344,32 +349,71 @@ export default function Home() {
 
   const projects: Project[] = [
     {
-      title: "Conference Management System",
-      description: "A full-stack web application for managing and tracking personal expenses. Features user authentication, expense categories, and data visualization. Built with React, Node.js, and MongoDB.",
-      technologies: ["React", "Node.js", "MongoDB", "RESTful APIs", "HTML/CSS", "JavaScript"],
+      title: "Dental Clinic Website",
+      description: "A modern dental clinic website built with React, TypeScript, and Express.js. Features end-to-end appointment booking system, responsive design, and comprehensive dental services information.",
+      technologies: ["React", "TypeScript", "Express.js", "Node.js", "Responsive Design", "Booking System", "Full-Stack"],
+      link: "https://dental-clone.vercel.app/",
+      githubUrl: "https://github.com/laxmideepak/dental-clinic-website",
       highlights: [
-        "Developed a full-stack conference management system using React, PHP, and RESTful APIs",
-        "Integrated and optimized MySQL/PostgreSQL databases with secure authentication",
-        "Used Docker for containerized development and deployment",
-        "Followed RESTful API best practices with versioning and schema validation"
+        "Built modern dental clinic website with React and TypeScript",
+        "Implemented end-to-end appointment booking system with full-stack functionality",
+        "Integrated Express.js backend for dynamic content and booking management",
+        "Deployed on Vercel with modern web development best practices"
       ]
     },
     {
-      title: "University Library Management System",
-      description: "A sci-fi themed personal portfolio website built with Next.js 13, TypeScript, and Tailwind CSS. Features smooth animations using Framer Motion and a dark/light theme toggle. Implements responsive design and modern UI components.",
-      technologies: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion", "HTML/CSS", "JavaScript"],
+      title: "VisionCare Site - Eye Care Practice Management",
+      description: "Complete VisionCareSite with mobile-responsive design and full-stack backend for eye care practice management. Comprehensive solution for optometry practices.",
+      technologies: ["TypeScript", "Full-Stack", "Mobile-Responsive", "Practice Management"],
+      link: "https://store2-mauve.vercel.app/",
+      githubUrl: "https://github.com/laxmideepak/VisionCareSite",
       highlights: [
-        "Developed a full-stack library system using MySQL and PHP",
-        "Built real-time analytics dashboards using SQL joins and aggregates",
-        "Designed interactive JavaScript-based user interfaces for borrowing and returning",
-        "MySQL triggers automated alerts—reducing admin workload by 60%"
+        "Developed complete eye care practice management system",
+        "Implemented mobile-responsive design for accessibility",
+        "Built full-stack backend for comprehensive practice management",
+        "Designed for optometry practice workflow optimization"
+      ]
+    },
+    {
+      title: "AI-Powered Land Use Value Predictor",
+      description: "AI-powered model to classify satellite land use and simulate potential land value using deep learning. Advanced machine learning for real estate and urban planning applications.",
+      technologies: ["Python", "Deep Learning", "Satellite Imagery", "Land Classification", "Value Prediction"],
+      githubUrl: "https://github.com/laxmideepak/AI-Powered-Land-Use-Value-Predictor",
+      highlights: [
+        "Developed AI model for satellite land use classification",
+        "Implemented deep learning algorithms for land value prediction",
+        "Applied machine learning to real estate and urban planning",
+        "Built comprehensive solution for land use analysis"
+      ]
+    },
+    {
+      title: "Conference Management System",
+      description: "Designed a full-stack conference platform handling more than two hundred attendees across three concurrent tracks, reducing manual scheduling effort by seventy-five percent through real-time slot conflict resolution.",
+      technologies: ["React", "PHP", "MySQL/PostgreSQL", "Docker", "AWS ECS", "GitHub Actions"],
+      githubUrl: "https://github.com/laxmideepak/Conference-Management-System",
+      highlights: [
+        "Designed a full-stack conference platform handling more than two hundred attendees across three concurrent tracks",
+        "Reduced manual scheduling effort by seventy-five percent through real-time slot conflict resolution",
+        "Containerized and deployed on AWS ECS with GitHub Actions CI/CD, sustaining 99.9 percent uptime",
+        "Kept 95th-percentile page load below 150 milliseconds during peak registration"
+      ]
+    },
+    {
+      title: "RAG-Powered Customer Support Agent with Analytics Dashboard",
+      description: "Built a FastAPI + LangChain chatbot with vector search and React analytics dashboard, reducing L1 tickets by 40–60% and deployed on AWS with CI/CD automation.",
+      technologies: ["FastAPI", "LangChain", "React", "Vector Search", "AWS", "CI/CD"],
+      highlights: [
+        "Built a FastAPI + LangChain chatbot with vector search capabilities",
+        "Developed React analytics dashboard for customer support insights",
+        "Reduced L1 tickets by 40–60% through intelligent automation",
+        "Deployed on AWS with CI/CD automation for seamless updates"
       ]
     },
     {
       title: "Toy Search Engine | Information Retrieval System",
       description: "Engineered a TF-IDF based search engine processing 30+ documents with cosine similarity ranking, achieving precise document retrieval through mathematical scoring algorithms and vector space modeling.",
       technologies: ["Python", "NLTK", "TF-IDF", "Cosine Similarity", "Regex", "NLP"],
-      image: "/ai/search-engine.png",
+
       highlights: [
         "TF-IDF based search engine with cosine similarity ranking",
         "NLP preprocessing: tokenization, stemming, stopword removal (NLTK)",
@@ -382,7 +426,7 @@ export default function Home() {
       title: "CNN Image Classification | Deep Learning Project",
       description: "Architected and deployed Convolutional Neural Network using TensorFlow/Keras achieving 95%+ accuracy on multi-class image classification, implementing multiple conv layers, pooling, dropout, and dense layers for robust feature extraction.",
       technologies: ["TensorFlow", "Keras", "CNN", "Python", "Image Augmentation", "Deep Learning", "Adam Optimizer"],
-      image: "/ai/cnn-classification.png",
+
       highlights: [
         "CNN with TensorFlow/Keras, 95%+ accuracy on multi-class images",
         "Multiple conv, pooling, dropout, and dense layers",
@@ -395,7 +439,7 @@ export default function Home() {
       title: "NBA Player Classification | Sports Analytics & Machine Learning",
       description: "Engineered multi-class classification system using statistical player data to categorize NBA players into traditional and modern position archetypes with 88%+ accuracy using ensemble methods.",
       technologies: ["Python", "Pandas", "Numpy", "Scikit-learn", "XGBoost", "SVM", "Random Forest", "PCA", "K-means", "GMM", "Sports Analytics", "Data Visualization"],
-      image: "/ai/nba-analytics.png",
+
       highlights: [
         "Multi-class classification of NBA players (88%+ accuracy)",
         "Feature engineering: 20+ stats, PCA, correlation analysis",
@@ -413,11 +457,10 @@ export default function Home() {
     setTimeout(() => setAnimKey(null), 700)
   }
 
-  // Navigation links for GlassNav - Simplified to 4 main items
+  // Navigation links for GlassNav - Simplified to 3 main items
   const navLinks = [
     { label: "Work", href: "/work", icon: <FolderOpen className="h-5 w-5" /> },
     { label: "About", href: "/about", icon: <User className="h-5 w-5" /> },
-    { label: "Writing", href: "/writing", icon: <BookOpen className="h-5 w-5" /> },
     { label: "Contact", href: "#contact", icon: <Mail className="h-5 w-5" /> }
   ]
 
@@ -699,9 +742,9 @@ export default function Home() {
           <div className="text-center space-y-4">
             <motion.h2 style={{ rotateX, transition: `transform ${duration} cubic-bezier(0.95,0.05,0.795,0.035)`, transformStyle: "preserve-3d" }} className="text-3xl md:text-4xl font-bold flex items-center justify-center gap-3">
               <Mail className="h-8 w-8 text-primary" />
-              Contact
+              Let's Connect
             </motion.h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">Ready to explore new frontiers? Whether you want to discuss tech innovations or just beam a friendly signal, my communication channels are open! 🪄</p>
+            <p className="text-muted-foreground max-w-2xl mx-auto">Interested in collaborating on innovative projects? Looking for a skilled developer for your team? Or just want to discuss the latest in tech? I'd love to hear from you! 🚀</p>
           </div>
           
           {/* Contact Form */}
@@ -711,24 +754,24 @@ export default function Home() {
           
           {/* Alternative Contact Methods */}
           <div className="text-center space-y-6 mt-12">
-            <p className="text-muted-foreground">Or reach out directly:</p>
+            <p className="text-muted-foreground">Prefer to connect directly? Here are my other channels:</p>
             <div className="flex items-center justify-center gap-8">
               <Button asChild variant="ghost" size="icon" className="hover:bg-primary/20 group relative hover:scale-110 transition-transform">
                 <Link href="mailto:nelapatla.laxmideepak@gmail.com" target="_blank">
                   <Code2 className="h-4 w-4" />
-                  <span className="absolute hidden group-hover:block bg-secondary/80 text-xs px-2 py-1 rounded -bottom-8 whitespace-nowrap">Send Signal 📡</span>
+                  <span className="absolute hidden group-hover:block bg-secondary/80 text-xs px-2 py-1 rounded -bottom-8 whitespace-nowrap">Email Me 📧</span>
                 </Link>
               </Button>
               <Button asChild variant="ghost" size="icon" className="hover:bg-primary/20 group relative hover:scale-110 transition-transform">
                 <Link href="https://github.com/laxmideepak" target="_blank">
                   <Github className="h-5 w-5" />
-                  <span className="absolute hidden group-hover:block bg-secondary/80 text-xs px-2 py-1 rounded -bottom-8 whitespace-nowrap">Code Base 💾</span>
+                  <span className="absolute hidden group-hover:block bg-secondary/80 text-xs px-2 py-1 rounded -bottom-8 whitespace-nowrap">View My Code 💻</span>
                 </Link>
               </Button>
               <Button asChild variant="ghost" size="icon" className="hover:bg-primary/20 group relative hover:scale-110 transition-transform">
                 <Link href="https://linkedin.com/in/laxmideepak" target="_blank">
                   <Linkedin className="h-5 w-5" />
-                  <span className="absolute hidden group-hover:block bg-secondary/80 text-xs px-2 py-1 rounded -bottom-8 whitespace-nowrap">Neural Network 🧠</span>
+                  <span className="absolute hidden group-hover:block bg-secondary/80 text-xs px-2 py-1 rounded -bottom-8 whitespace-nowrap">Connect on LinkedIn 🔗</span>
                 </Link>
               </Button>
             </div>

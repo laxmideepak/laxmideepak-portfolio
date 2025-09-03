@@ -1,0 +1,11 @@
+# Task ID: 4
+# Title: Create Project Card Component
+# Status: done
+# Dependencies: 1
+# Priority: medium
+# Description: Develop reusable ProjectCard component for work pages
+# Details:
+Implement ProjectCard with title, summary, stack icons, and image display, ensuring consistent styling and accessibility attributes for all elements
+
+# Test Strategy:
+Validate component rendering across different project types, check accessibility attributes

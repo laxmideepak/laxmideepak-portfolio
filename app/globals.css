@@ -194,6 +194,50 @@
     --input: 240 25% 12%;
     --ring: 265 89% 78%;
     --radius: 0.75rem;
+    
+    /* Apple Light Theme Variables */
+    --bg-primary: #FFFFFF;
+    --bg-secondary: #F5F5F7;
+    --text-primary: #1D1D1F;
+    --text-secondary: #6E6E73;
+    --border-light: #D2D2D7;
+    --link-color: #0071E3;
+    --link-hover: #005BB5;
+    
+    /* Smooth transitions for theme switching */
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  /* Apple Light Theme Override */
+  [data-theme="light"] {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 12%;
+    --card: 0 0% 96%;
+    --card-foreground: 0 0% 12%;
+    --popover: 0 0% 96%;
+    --popover-foreground: 0 0% 12%;
+    --primary: 210 100% 45%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 0 0% 96%;
+    --secondary-foreground: 0 0% 12%;
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 45%;
+    --accent: 210 100% 45%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 83%;
+    --input: 0 0% 96%;
+    --ring: 210 100% 45%;
+    
+    /* Apple Light Theme Variables */
+    --bg-primary: #FFFFFF;
+    --bg-secondary: #F5F5F7;
+    --text-primary: #1D1D1F;
+    --text-secondary: #6E6E73;
+    --border-light: #D2D2D7;
+    --link-color: #0071E3;
+    --link-hover: #005BB5;
   }
 
   .dark {

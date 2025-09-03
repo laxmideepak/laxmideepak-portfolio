@@ -145,11 +145,70 @@
         ],
         "priority": "high",
         "subtasks": []
+      },
+      {
+        "id": 12,
+        "title": "Implement Apple-Inspired Light Theme with CSS Variables",
+        "description": "Create a theme system with Apple-inspired light mode colors using CSS variables and ensure smooth transitions while preserving existing dark mode functionality",
+        "details": "1. Define CSS variables for light mode colors: --bg-primary (#FFFFFF), --bg-secondary (#F5F5F7), --text-primary (#1D1D1F), --text-secondary (#6E6E73), --border (#D2D2D7), --link-color (#0071E3)\n2. Create a data-theme=\"light\" override system that applies these variables to the root element\n3. Implement smooth transitions between theme states using CSS transition properties\n4. Ensure existing dark mode functionality remains intact and can be toggled independently\n5. Test color contrast ratios to meet accessibility standards\n6. Use Tailwind CSS configuration to extend theme colors and ensure compatibility with existing styling\n7. Add documentation for theme customization and usage patterns",
+        "testStrategy": "1. Verify CSS variables are correctly defined and applied to all relevant elements\n2. Test theme switching functionality between light and dark modes\n3. Check color contrast ratios using accessibility tools\n4. Validate smooth transitions between theme states\n5. Ensure existing dark mode styling remains functional and visually consistent\n6. Confirm Tailwind CSS theme extensions are properly implemented\n7. Perform cross-browser testing to ensure consistent rendering",
+        "status": "done",
+        "dependencies": [
+          1,
+          3
+        ],
+        "priority": "high",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Define CSS Variables for Apple Light Theme",
+            "description": "Create CSS custom properties for Apple-inspired light mode colors in globals.css",
+            "details": "Add CSS variables to app/globals.css: --bg-primary: #FFFFFF, --bg-secondary: #F5F5F7, --text-primary: #1D1D1F, --text-secondary: #6E6E73, --border: #D2D2D7, --link-color: #0071E3, --link-hover: #005BB5",
+            "status": "done",
+            "dependencies": [],
+            "parentTaskId": 12
+          },
+          {
+            "id": 2,
+            "title": "Create Light Theme Data Attribute System",
+            "description": "Implement data-theme=\"light\" override system in CSS",
+            "details": "Add [data-theme=\"light\"] selector to globals.css that applies light mode variables to :root. Include smooth transitions: transition: background-color 0.3s, color 0.3s",
+            "status": "done",
+            "dependencies": [
+              1
+            ],
+            "parentTaskId": 12
+          },
+          {
+            "id": 3,
+            "title": "Update Tailwind Config for Theme Colors",
+            "description": "Extend Tailwind CSS configuration to include Apple light theme colors",
+            "details": "Update tailwind.config.ts to add Apple light theme colors to the theme.extend.colors section. Include all CSS variables as Tailwind color classes for easy usage in components.",
+            "status": "done",
+            "dependencies": [
+              1
+            ],
+            "parentTaskId": 12
+          }
+        ]
+      },
+      {
+        "id": 13,
+        "title": "Refactor Components to Use CSS Variables",
+        "description": "Update all components in the components/ directory to use CSS variables for colors instead of hard-coded values, ensuring compatibility with both light and dark modes",
+        "details": "1. Identify all color-related CSS properties in components/ directory\n2. Replace hard-coded color values with CSS variables: --bg-primary, --text-primary, --border, --link-color\n3. Ensure variables are properly defined in the global theme system (refer to Task 12 for variable definitions)\n4. Implement conditional styling for light/dark modes using CSS media queries and prefers-color-scheme media feature\n5. Add support for theme switching by making components responsive to the data-theme attribute\n6. Validate that all components maintain their visual integrity and functionality across both modes\n7. Test color contrast ratios to ensure accessibility standards are met\n8. Update any component-specific overrides or custom styles to use the new variable system\n9. Document any component-specific styling decisions in the component's README or documentation",
+        "testStrategy": "1. Verify CSS variables are correctly applied to all components\n2. Test components in both light and dark mode configurations\n3. Check color contrast ratios using accessibility tools\n4. Validate theme switching functionality without breaking existing styling\n5. Ensure all components maintain their visual integrity and functionality\n6. Perform cross-browser testing to confirm consistent behavior\n7. Review component documentation for any styling decisions made during the refactor",
+        "status": "pending",
+        "dependencies": [
+          12
+        ],
+        "priority": "high",
+        "subtasks": []
       }
     ],
     "metadata": {
       "created": "2025-08-12T17:21:36.990Z",
-      "updated": "2025-08-13T02:47:21.720Z",
+      "updated": "2025-08-16T22:58:44.099Z",
       "description": "Tasks for master context"
     }
   }

@@ -1,0 +1,11 @@
+# Task ID: 1
+# Title: Setup Project Repository
+# Status: done
+# Dependencies: None
+# Priority: high
+# Description: Initialize Next.js App Router project with TypeScript, Tailwind CSS, and MDX configuration
+# Details:
+Create new Next.js project using create-next-app, enable TypeScript, install Tailwind CSS with JIT mode, configure MDX support, and set up ESLint and Prettier for code quality
+
+# Test Strategy:
+Verify project structure, check for successful build, confirm MDX files render correctly

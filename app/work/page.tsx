@@ -34,29 +34,74 @@ interface Project {
 // Enhanced project data with categories
 const projects: Project[] = [
   {
-    title: "Conference Management System",
-    description: "A full-stack web application for managing and tracking personal expenses. Features user authentication, expense categories, and data visualization. Built with React, Node.js, and MongoDB.",
-    technologies: ["React", "Node.js", "MongoDB", "RESTful APIs", "HTML/CSS", "JavaScript"],
+    title: "Dental Clinic Website",
+    description: "A modern dental clinic website built with React, TypeScript, and Express.js. Features end-to-end appointment booking system, responsive design, and comprehensive dental services information.",
+    technologies: ["React", "TypeScript", "Express.js", "Node.js", "Responsive Design", "Booking System", "Full-Stack"],
     category: "Web Development",
-    slug: "conference-management-system",
+    slug: "dental-clinic-website",
+    link: "https://dental-clone.vercel.app/",
+    githubUrl: "https://github.com/laxmideepak/dental-clinic-website",
     highlights: [
-      "Developed a full-stack conference management system using React, PHP, and RESTful APIs",
-      "Integrated and optimized MySQL/PostgreSQL databases with secure authentication",
-      "Used Docker for containerized development and deployment",
-      "Followed RESTful API best practices with versioning and schema validation"
+      "Built modern dental clinic website with React and TypeScript",
+      "Implemented end-to-end appointment booking system with full-stack functionality",
+      "Integrated Express.js backend for dynamic content and booking management",
+      "Deployed on Vercel with modern web development best practices"
     ]
   },
   {
-    title: "University Library Management System",
-    description: "A sci-fi themed personal portfolio website built with Next.js 13, TypeScript, and Tailwind CSS. Features smooth animations using Framer Motion and a dark/light theme toggle. Implements responsive design and modern UI components.",
-    technologies: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion", "HTML/CSS", "JavaScript"],
+    title: "VisionCare Site - Eye Care Practice Management",
+    description: "Complete VisionCareSite with mobile-responsive design and full-stack backend for eye care practice management. Comprehensive solution for optometry practices.",
+    technologies: ["TypeScript", "Full-Stack", "Mobile-Responsive", "Practice Management"],
     category: "Web Development",
-    slug: "university-library-management",
+    slug: "visioncare-site",
+    link: "https://store2-mauve.vercel.app/",
+    githubUrl: "https://github.com/laxmideepak/VisionCareSite",
     highlights: [
-      "Developed a full-stack library system using MySQL and PHP",
-      "Built real-time analytics dashboards using SQL joins and aggregates",
-      "Designed interactive JavaScript-based user interfaces for borrowing and returning",
-      "MySQL triggers automated alerts—reducing admin workload by 60%"
+      "Developed complete eye care practice management system",
+      "Implemented mobile-responsive design for accessibility",
+      "Built full-stack backend for comprehensive practice management",
+      "Designed for optometry practice workflow optimization"
+    ]
+  },
+  {
+    title: "AI-Powered Land Use Value Predictor",
+    description: "AI-powered model to classify satellite land use and simulate potential land value using deep learning. Advanced machine learning for real estate and urban planning applications.",
+    technologies: ["Python", "Deep Learning", "Satellite Imagery", "Land Classification", "Value Prediction"],
+    category: "Machine Learning",
+    slug: "ai-land-use-predictor",
+    githubUrl: "https://github.com/laxmideepak/AI-Powered-Land-Use-Value-Predictor",
+    highlights: [
+      "Developed AI model for satellite land use classification",
+      "Implemented deep learning algorithms for land value prediction",
+      "Applied machine learning to real estate and urban planning",
+      "Built comprehensive solution for land use analysis"
+    ]
+  },
+  {
+    title: "Conference Management System",
+    description: "Designed a full-stack conference platform handling more than two hundred attendees across three concurrent tracks, reducing manual scheduling effort by seventy-five percent through real-time slot conflict resolution.",
+    technologies: ["React", "PHP", "MySQL/PostgreSQL", "Docker", "AWS ECS", "GitHub Actions"],
+    category: "Web Development",
+    slug: "conference-management-system",
+    githubUrl: "https://github.com/laxmideepak/Conference-Management-System",
+    highlights: [
+      "Designed a full-stack conference platform handling more than two hundred attendees across three concurrent tracks",
+      "Reduced manual scheduling effort by seventy-five percent through real-time slot conflict resolution",
+      "Containerized and deployed on AWS ECS with GitHub Actions CI/CD, sustaining 99.9 percent uptime",
+      "Kept 95th-percentile page load below 150 milliseconds during peak registration"
+    ]
+  },
+  {
+    title: "RAG-Powered Customer Support Agent with Analytics Dashboard",
+    description: "Built a FastAPI + LangChain chatbot with vector search and React analytics dashboard, reducing L1 tickets by 40–60% and deployed on AWS with CI/CD automation.",
+    technologies: ["FastAPI", "LangChain", "React", "Vector Search", "AWS", "CI/CD"],
+    category: "Machine Learning",
+    slug: "rag-customer-support",
+    highlights: [
+      "Built a FastAPI + LangChain chatbot with vector search capabilities",
+      "Developed React analytics dashboard for customer support insights",
+      "Reduced L1 tickets by 40–60% through intelligent automation",
+      "Deployed on AWS with CI/CD automation for seamless updates"
     ]
   },
   {
@@ -65,7 +110,6 @@ const projects: Project[] = [
     technologies: ["Python", "NLTK", "TF-IDF", "Cosine Similarity", "Regex", "NLP"],
     category: "Machine Learning",
     slug: "toy-search-engine",
-    image: "/ai/search-engine.png",
     highlights: [
       "TF-IDF based search engine with cosine similarity ranking",
       "NLP preprocessing: tokenization, stemming, stopword removal (NLTK)",
@@ -80,7 +124,6 @@ const projects: Project[] = [
     technologies: ["TensorFlow", "Keras", "CNN", "Python", "Image Augmentation", "Deep Learning", "Adam Optimizer"],
     category: "Machine Learning",
     slug: "cnn-image-classification",
-    image: "/ai/cnn-classification.png",
     highlights: [
       "CNN with TensorFlow/Keras, 95%+ accuracy on multi-class images",
       "Multiple conv, pooling, dropout, and dense layers",
@@ -95,7 +138,6 @@ const projects: Project[] = [
     technologies: ["Python", "Pandas", "Numpy", "Scikit-learn", "XGBoost", "SVM", "Random Forest", "PCA", "K-means", "GMM", "Sports Analytics", "Data Visualization"],
     category: "Machine Learning",
     slug: "nba-player-classification",
-    image: "/ai/nba-analytics.png",
     highlights: [
       "Multi-class classification of NBA players (88%+ accuracy)",
       "Feature engineering: 20+ stats, PCA, correlation analysis",

@@ -82,10 +82,10 @@ export function ContactForm({ className }: ContactFormProps) {
       <CardHeader className="text-center">
         <CardTitle className="flex items-center justify-center gap-2 text-2xl">
           <Mail className="h-6 w-6 text-primary" />
-          Send a Message
+          Get In Touch
         </CardTitle>
         <CardDescription>
-          Ready to collaborate? Fill out the form below and I'll get back to you as soon as possible.
+          Have a project in mind? Looking for a developer? Or just want to chat about tech? I'm always excited to hear about new opportunities and collaborations!
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -99,7 +99,7 @@ export function ContactForm({ className }: ContactFormProps) {
             >
               <CheckCircle className="h-5 w-5 text-green-600 dark:text-green-400" />
               <span className="text-green-800 dark:text-green-200 font-medium">
-                Message sent successfully! I'll get back to you soon.
+                Perfect! Your message has been sent successfully. I'll review it and get back to you within 24 hours.
               </span>
             </motion.div>
           )}
@@ -113,7 +113,7 @@ export function ContactForm({ className }: ContactFormProps) {
             >
               <AlertCircle className="h-5 w-5 text-red-600 dark:text-red-400" />
               <span className="text-red-800 dark:text-red-200 font-medium">
-                {errorMessage || 'Failed to send message. Please try again.'}
+                {errorMessage || 'Oops! Something went wrong while sending your message. Please try again or reach out directly via email.'}
               </span>
             </motion.div>
           )}
@@ -126,7 +126,7 @@ export function ContactForm({ className }: ContactFormProps) {
             <Input
               id="name"
               type="text"
-              placeholder="Your full name"
+              placeholder="What should I call you?"
               className={errors.name ? 'border-red-500 focus:border-red-500' : ''}
               {...register('name')}
               aria-describedby={errors.name ? 'name-error' : undefined}
@@ -152,7 +152,7 @@ export function ContactForm({ className }: ContactFormProps) {
             <Input
               id="email"
               type="email"
-              placeholder="your.email@example.com"
+              placeholder="your.email@company.com"
               className={errors.email ? 'border-red-500 focus:border-red-500' : ''}
               {...register('email')}
               aria-describedby={errors.email ? 'email-error' : undefined}
@@ -178,7 +178,7 @@ export function ContactForm({ className }: ContactFormProps) {
             <Input
               id="subject"
               type="text"
-              placeholder="What's this about?"
+              placeholder="Project, opportunity, or just a friendly chat?"
               className={errors.subject ? 'border-red-500 focus:border-red-500' : ''}
               {...register('subject')}
               aria-describedby={errors.subject ? 'subject-error' : undefined}
@@ -203,7 +203,7 @@ export function ContactForm({ className }: ContactFormProps) {
             </Label>
             <Textarea
               id="message"
-              placeholder="Tell me about your project, opportunity, or just say hello!"
+              placeholder="Share your vision, describe the project, or tell me what you have in mind. I'm all ears! 👂"
               rows={6}
               className={errors.message ? 'border-red-500 focus:border-red-500' : ''}
               {...register('message')}
@@ -243,12 +243,12 @@ export function ContactForm({ className }: ContactFormProps) {
             {isSubmitting ? (
               <>
                 <Loader2 className="h-4 w-4 animate-spin" />
-                Sending...
+                Sending Message...
               </>
             ) : (
               <>
                 <Send className="h-4 w-4" />
-                Send Message
+                Let's Connect!
               </>
             )}
           </Button>
@@ -256,7 +256,7 @@ export function ContactForm({ className }: ContactFormProps) {
           {/* Accessibility Note */}
           <p className="text-xs text-muted-foreground text-center">
             All fields marked with <span className="text-red-500">*</span> are required.
-            This form includes spam protection and accessibility features.
+            Your message is protected with spam filtering and will be kept confidential.
           </p>
         </form>
       </CardContent>

@@ -118,14 +118,13 @@ export function GlassNav({ links, logo }: GlassNavProps) {
     window.open('mailto:laxmideepak2023@gmail.com', '_blank')
   }
 
-  // Filter to only show the 4 main navigation items
+  // Filter to only show the 3 main navigation items
   const mainNavLinks = links.filter(link => 
-    ['Work', 'About', 'Writing', 'Contact'].includes(link.label) ||
+    ['Work', 'About', 'Contact'].includes(link.label) ||
     link.href.includes('/work') || 
     link.href.includes('/about') || 
-    link.href.includes('/writing') ||
     link.href.includes('#contact')
-  ).slice(0, 4)
+  ).slice(0, 3)
 
   // Dropdown items for additional sections
   const dropdownItems = [

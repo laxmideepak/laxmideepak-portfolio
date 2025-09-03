@@ -1,0 +1,43 @@
+# Task ID: 12
+# Title: Implement Apple-Inspired Light Theme with CSS Variables
+# Status: in-progress
+# Dependencies: 1, 3
+# Priority: high
+# Description: Create a theme system with Apple-inspired light mode colors using CSS variables and ensure smooth transitions while preserving existing dark mode functionality
+# Details:
+1. Define CSS variables for light mode colors: --bg-primary (#FFFFFF), --bg-secondary (#F5F5F7), --text-primary (#1D1D1F), --text-secondary (#6E6E73), --border (#D2D2D7), --link-color (#0071E3)
+2. Create a data-theme="light" override system that applies these variables to the root element
+3. Implement smooth transitions between theme states using CSS transition properties
+4. Ensure existing dark mode functionality remains intact and can be toggled independently
+5. Test color contrast ratios to meet accessibility standards
+6. Use Tailwind CSS configuration to extend theme colors and ensure compatibility with existing styling
+7. Add documentation for theme customization and usage patterns
+
+# Test Strategy:
+1. Verify CSS variables are correctly defined and applied to all relevant elements
+2. Test theme switching functionality between light and dark modes
+3. Check color contrast ratios using accessibility tools
+4. Validate smooth transitions between theme states
+5. Ensure existing dark mode styling remains functional and visually consistent
+6. Confirm Tailwind CSS theme extensions are properly implemented
+7. Perform cross-browser testing to ensure consistent rendering
+
+# Subtasks:
+## 1. Define CSS Variables for Apple Light Theme [pending]
+### Dependencies: None
+### Description: Create CSS custom properties for Apple-inspired light mode colors in globals.css
+### Details:
+Add CSS variables to app/globals.css: --bg-primary: #FFFFFF, --bg-secondary: #F5F5F7, --text-primary: #1D1D1F, --text-secondary: #6E6E73, --border: #D2D2D7, --link-color: #0071E3, --link-hover: #005BB5
+
+## 2. Create Light Theme Data Attribute System [pending]
+### Dependencies: 12.1
+### Description: Implement data-theme="light" override system in CSS
+### Details:
+Add [data-theme="light"] selector to globals.css that applies light mode variables to :root. Include smooth transitions: transition: background-color 0.3s, color 0.3s
+
+## 3. Update Tailwind Config for Theme Colors [pending]
+### Dependencies: 12.1
+### Description: Extend Tailwind CSS configuration to include Apple light theme colors
+### Details:
+Update tailwind.config.ts to add Apple light theme colors to the theme.extend.colors section. Include all CSS variables as Tailwind color classes for easy usage in components.
+

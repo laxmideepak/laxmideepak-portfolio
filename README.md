@@ -1,30 +1,82 @@
-# Modern portfolio website
+# Laxmideepak Nelapatla - Portfolio Website
 
-*Automatically synced with your [v0.dev](https://v0.dev) deployments*
+A modern, responsive portfolio website built with Next.js, TypeScript, and Tailwind CSS.
 
-[![Deployed on Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-black?style=for-the-badge&logo=vercel)](https://vercel.com/laxmideepak2023-2364s-projects/v0-modern-portfolio-website)
-[![Built with v0](https://img.shields.io/badge/Built%20with-v0.dev-black?style=for-the-badge)](https://v0.dev/chat/projects/G40fwUkn2dp)
+## 🚀 Features
 
-## Overview
+- **Modern Design**: Clean, professional design with Apple-inspired light mode
+- **Responsive**: Fully responsive across all devices
+- **Performance**: Optimized for speed and accessibility
+- **Dark/Light Theme**: Automatic theme switching with system preference detection
+- **Contact Form**: Functional contact form with validation
+- **Project Showcase**: Dynamic project display with filtering
+- **Analytics**: Built-in analytics tracking
 
-This repository will stay in sync with your deployed chats on [v0.dev](https://v0.dev).
-Any changes you make to your deployed app will be automatically pushed to this repository from [v0.dev](https://v0.dev).
+## 🛠️ Tech Stack
 
-## Deployment
+- **Framework**: Next.js 15 with App Router
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS with custom CSS variables
+- **UI Components**: shadcn/ui components
+- **Animations**: Framer Motion
+- **Icons**: Lucide React & React Icons
+- **Forms**: React Hook Form with Zod validation
+- **Deployment**: Vercel
 
-Your project is live at:
+## 📁 Project Structure
 
-**[https://vercel.com/laxmideepak2023-2364s-projects/v0-modern-portfolio-website](https://vercel.com/laxmideepak2023-2364s-projects/v0-modern-portfolio-website)**
+```
+├── app/                 # Next.js app directory
+│   ├── api/            # API routes
+│   ├── about/          # About page
+│   ├── work/           # Work/Projects page
+│   └── globals.css     # Global styles
+├── components/          # React components
+│   ├── ui/             # shadcn/ui components
+│   └── ...             # Custom components
+├── hooks/               # Custom React hooks
+├── lib/                 # Utility functions
+└── public/              # Static assets
+```
 
-## Build your app
+## 🚀 Getting Started
 
-Continue building your app on:
+1. **Clone the repository**
+   ```bash
+   git clone <repository-url>
+   cd laxmideepak-portfolio
+   ```
 
-**[https://v0.dev/chat/projects/G40fwUkn2dp](https://v0.dev/chat/projects/G40fwUkn2dp)**
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
 
-## How It Works
+3. **Run the development server**
+   ```bash
+   npm run dev
+   ```
 
-1. Create and modify your project using [v0.dev](https://v0.dev)
-2. Deploy your chats from the v0 interface
-3. Changes are automatically pushed to this repository
-4. Vercel deploys the latest version from this repository
+4. **Open your browser**
+   Navigate to [http://localhost:3000](http://localhost:3000)
+
+## 📝 Available Scripts
+
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run start` - Start production server
+- `npm run lint` - Run ESLint
+
+## 🌐 Live Demo
+
+Visit the live portfolio at: [https://laxmideepak-portfolio.vercel.app](https://laxmideepak-portfolio.vercel.app)
+
+## 📧 Contact
+
+- **Email**: laxmideepak2023@gmail.com
+- **LinkedIn**: [Laxmideepak Nelapatla](https://linkedin.com/in/laxmideepak-nelapatla)
+- **GitHub**: [laxmideepak2023](https://github.com/laxmideepak2023)
+
+## 📄 License
+
+This project is open source and available under the [MIT License](LICENSE).

@@ -1,0 +1,11 @@
+# Task ID: 8
+# Title: Design Writing Section
+# Status: done
+# Dependencies: 1
+# Priority: medium
+# Description: Create writing section with list and detail views with reading progress
+# Details:
+Implement writing section with list view of posts, detail view with reading progress tracking using CSS scroll-timeline, and ensure reduced-motion fallback
+
+# Test Strategy:
+Verify reading progress tracking, check reduced-motion fallback, validate responsive design

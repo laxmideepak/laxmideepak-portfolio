@@ -1,0 +1,11 @@
+# Task ID: 6
+# Title: Design Work Detail Page
+# Status: done
+# Dependencies: 5
+# Priority: medium
+# Description: Create detailed project page with Problem → Approach → Result structure
+# Details:
+Develop work detail page with structured content sections, KPI callout, architecture diagram, and 'What I'd do next' section, ensuring proper routing and responsive design
+
+# Test Strategy:
+Verify content structure, check responsive design, validate routing

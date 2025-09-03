@@ -68,6 +68,22 @@ const config: Config = {
   					light: 'rgba(255, 255, 255, 0.2)',
   					dark: 'rgba(255, 255, 255, 0.1)'
   				}
+  			},
+  			// Apple Light Theme Colors
+  			apple: {
+  				bg: {
+  					primary: 'var(--bg-primary)',
+  					secondary: 'var(--bg-secondary)'
+  				},
+  				text: {
+  					primary: 'var(--text-primary)',
+  					secondary: 'var(--text-secondary)'
+  				},
+  				border: 'var(--border-light)',
+  				link: {
+  					DEFAULT: 'var(--link-color)',
+  					hover: 'var(--link-hover)'
+  				}
   			}
   		},
   		backdropBlur: {
